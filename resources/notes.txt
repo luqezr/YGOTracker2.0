@@ -1,0 +1,32 @@
+
+#######################################
+--------------   API     -------------- 
+#######################################
+
+API ygorganization (Uses KONAMI ID)
+https://db.ygorganization.com/about/api
+
+
+Request a card => https://db.ygorganization.com/data/card/13092
+Request rulings from a card => https://db.ygorganization.com/data/qa/22921
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+API Ygoprodeck (Uses Card ID)
+https://db.ygoprodeck.com/api-guide/
+
+
+
+Request all cards => https://db.ygoprodeck.com/api/v7/cardinfo.php
+
+
+#######################################
+-------------- ESTETICOS --------------
+#######################################
+
+Bootstrap 
+
+
+
+
+allCards.data[card number] 
