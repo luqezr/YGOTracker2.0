@@ -22,12 +22,13 @@ function startWebPage() {
 async function queryYGOPD() {
   // https://db.ygoprodeck.com/api/v7/cardinfo.php
   const response = await fetch(
-    "https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes"
+    "https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new"
   )
     .then((response) => response.json())
     .then((data) => {
       allCards = data;
-      console.log(allCards.data);
+      // console.log(allCards.data); // show all cards
+      console.log('data fetched 😎')
     })
 
     .catch((error) => {
@@ -45,7 +46,8 @@ async function queryYGOrg(card) {
     .then((response) => response.json())
     .then((data) => {
       ygoorgCard = data;
-      console.log(ygoorgCard);
+      // console.log(ygoorgCard); // show card
+      console.log('data fetched 😎')
     })
 
     .catch((error) => {
@@ -57,11 +59,13 @@ async function queryYGOrg(card) {
 
 // SORTERS
 
-function sortBy(value) {
+function sortById(howMany) {
   allCards.data.sort(function (a, b) {
     return a.id - b.id;
   });
 }
+
+
 
 // SEARCHERS
 
