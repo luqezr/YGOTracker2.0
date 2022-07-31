@@ -1,6 +1,8 @@
 // var initializations
 var lang;
 var allCards;
+var sortedCards;
+var filteredCards;
 var ygoorgCard;
 var query;
 var filteredQueryResults;
@@ -59,12 +61,24 @@ async function queryYGOrg(card) {
 
 // SORTERS
 
-function sortById(howMany) {
-  allCards.data.sort(function (a, b) {
-    return a.id - b.id;
-  });
-}
 
+function sortBy(property) { //"property" can be any value from allCards.data
+  //to use you have to write "allCards.data.sort(sortBy("property"))"
+  //if you want to reverse sort just use - before the property
+  //i.e. "allCards.data.sort(sortBy("-property"))
+  var sortOrder = 1;
+  if(property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
+  }
+  return function (a,b) {
+      /* next line works with strings and numbers, 
+       * and you may want to customize it to your needs
+       */
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+  }
+}
 
 
 // SEARCHERS
@@ -74,5 +88,11 @@ function searchCardsByNameOrDescription(value) {
   filteredQueryResults = allCards.data.filter((card) =>
     `${card.name} ${card.desc}`.includes(query)
   );
+
   console.log(filteredQueryResults);
+}
+
+  function searchByExactValue (field, value)  {       
+    filteredCards = allCards.data.filter((card) => card[field] === value)
+    console.log(filteredCards)
 }
