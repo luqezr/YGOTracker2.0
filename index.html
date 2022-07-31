@@ -23,6 +23,8 @@
 
   <link rel="stylesheet" href="/css/styles.css">
 
+  <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -64,10 +66,29 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
       </ul>
     </div>
 
-    <form class="d-flex w-100 d-inline-block" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn" type="submit">Search</button>
+    <form class="d-flex w-100 d-inline-block" action="" id="searchForm" name="search" role="search">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="card_name" name="fname" type="text" class="form-control search-menu" autofocus
+              placeholder="">
+      <button class="btn"  type="submit" id="send" >Search</button>
     </form>
+
+<!-- 
+    <div id="searchBar-div">
+      SEARCH BAR
+        <form class="mr-2 my-auto w-100 d-inline-block order-1"  method="GET" action="" id="searchForm" name="search" autocomplete="off"> 
+          <div class="input-group" class="autocomplete">
+            <input id="card_name" name="fname" type="text" class="form-control search-menu" autofocus
+              placeholder="">
+            <div class="input-group-append">
+              <span class="input-group-text">
+                <button type="submit" id="send" class="fa fa-search" aria-hidden="true"></button>
+              </span>
+            </div>
+          </div>
+      </form>
+    </div> 
+  -->
+
 
 
   </div>

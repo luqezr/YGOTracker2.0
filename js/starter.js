@@ -101,8 +101,7 @@ function searchCardsByNameOrDescription(value) {
   filteredQueryResults = allCards.data.filter((card) =>
     `${card.name} ${card.desc}`.includes(query)
   );
-
-  console.log(filteredQueryResults);
+  // console.log(filteredQueryResults);
 }
 
 
@@ -116,6 +115,19 @@ function searchBy (field, value)  {
   filteredCards = allCards.data.filter((card) => card[field] .includes(value))
   console.log(filteredCards)
 }
+
+
+var searchButton = document.getElementById("send")
+
+searchButton.addEventListener("click", function getCard(evt) {
+  evt.preventDefault();
+    sortCards("name")
+    let cardName = document.search.fname.value;
+    // console.log("Searching : "+cardName)
+    searchCardsByNameOrDescription(cardName)
+    printCards(filteredQueryResults.length)
+})
+
 
 
 // #######################################################################
