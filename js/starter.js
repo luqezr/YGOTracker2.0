@@ -19,6 +19,11 @@ function startWebPage() {
   queryYGOPD();
 }
 
+
+// #######################################################################
+
+// DB QUERYS
+
 // Query Yugiohprodeck DB
 
 async function queryYGOPD() {
@@ -58,6 +63,7 @@ async function queryYGOrg(card) {
       // Code for handling the error
     });
 }
+// #######################################################################
 
 // SORTERS
 
@@ -65,7 +71,7 @@ async function queryYGOrg(card) {
 function sortBy(property) { //"property" can be any value from allCards.data
   //to use you have to write "allCards.data.sort(sortBy("property"))"
   //if you want to reverse sort just use - before the property
-  //i.e. "allCards.data.sort(sortBy("-property"))
+  //i.e. "allCards.data.sort(sortBy("-property"))"
   var sortOrder = 1;
   if(property[0] === "-") {
       sortOrder = -1;
@@ -80,6 +86,7 @@ function sortBy(property) { //"property" can be any value from allCards.data
   }
 }
 
+// #######################################################################
 
 // SEARCHERS
 
@@ -92,7 +99,32 @@ function searchCardsByNameOrDescription(value) {
   console.log(filteredQueryResults);
 }
 
-  function searchByExactValue (field, value)  {       
-    filteredCards = allCards.data.filter((card) => card[field] === value)
-    console.log(filteredCards)
+
+function searchByExactValue (field, value)  {       
+  filteredCards = allCards.data.filter((card) => card[field] === value)
+  console.log(filteredCards)
+}
+
+
+function searchBy (field, value)  {       
+  filteredCards = allCards.data.filter((card) => card[field] .includes(value))
+  console.log(filteredCards)
+}
+
+
+
+// #######################################################################
+
+// PRINT IN SCREEN
+
+function printCards(howMany, howManyMoreCards){
+    let cards2print = []
+    sortedCards = allCards.data.sort(sortBy("name"))
+    
+    for (let i = 0; i <= howMany; i++) { 
+      cards2print.push(sortedCards[i])
+    }
+
+    console.log(cards2print)
+
 }
