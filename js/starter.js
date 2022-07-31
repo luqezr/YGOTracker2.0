@@ -86,6 +86,12 @@ function sortBy(property) { //"property" can be any value from allCards.data
   }
 }
 
+function sortCards (value){
+  sortedCards = allCards.data.sort(sortBy(`${value}`))
+}
+
+
+
 // #######################################################################
 
 // SEARCHERS
@@ -112,19 +118,17 @@ function searchBy (field, value)  {
 }
 
 
-
 // #######################################################################
 
 // PRINT IN SCREEN
 
 function printCards(howMany, howManyMoreCards){
     let cards2print = []
-    sortedCards = allCards.data.sort(sortBy("name"))
     
     for (let i = 0; i <= howMany; i++) { 
       cards2print.push(sortedCards[i])
+      console.log(sortedCards[i])
     }
 
-    console.log(cards2print)
 
 }
