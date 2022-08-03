@@ -161,10 +161,15 @@ function createCard(card){
   <div class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="card_${card.id}" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-
+        <div class="modal-body">
           <div class="cardHeader">
-            ${card.name}  
+            ${card.name}
+            <br>
+            ${card.id}
+            <br>
+            ${card.race}
+            <br>
+            ${card.type}
           </div>
           <div class="cardInfo">
             ${card.desc}
