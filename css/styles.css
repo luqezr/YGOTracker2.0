@@ -1,7 +1,20 @@
+
+
 body {
     background-image: url("/media/background.jpg");
     background-repeat: repeat;
 }
+
+
+main {
+    background-color: rgba(218, 218, 218, 0.85);
+    height: 100vh;
+}
+
+/* ####################################################################### */
+
+/* NAV MENU  */
+
 
 nav , .dropdown-menu, nav li a, .dropdown-item {
     background-color: black;
@@ -32,4 +45,20 @@ nav , .dropdown-menu, nav li a, .dropdown-item {
 nav form button {
     color:white !important;
     border-color:white !important;
+}
+
+/* ####################################################################### */
+
+/* TITLES SECTION  */
+#titlesSection {
+    background-color: rgba(218, 218, 218, 0.85);
+
+}
+
+
+/* CARDS SECTION  */
+
+#cardsSection {
+    background-color: rgba(218, 218, 218, 0.85);
+    
 }

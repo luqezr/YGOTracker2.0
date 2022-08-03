@@ -6,6 +6,8 @@ var filteredCards;
 var ygoorgCard;
 var query;
 var filteredQueryResults;
+var titlesSection = document.getElementById("titlesSection")
+var cardsSection = document.getElementById("cardsSection")
 
 // start webpage
 window.onload = startWebPage();
@@ -24,7 +26,7 @@ function startWebPage() {
 
 // DB QUERYS
 
-// Query Yugiohprodeck DB
+// Query ALL Yugiohprodeck DB
 
 async function queryYGOPD() {
   // https://db.ygoprodeck.com/api/v7/cardinfo.php
@@ -137,10 +139,43 @@ searchButton.addEventListener("click", function getCard(evt) {
 function printCards(howMany, howManyMoreCards){
     let cards2print = []
     
-    for (let i = 0; i <= howMany; i++) { 
+    for (let i = 0; i <= (howMany-1); i++) {  //-1 for it to be the same number as user inputs since the array starts as 0, so if user inputs 9 it will print 10 results, from 0 to 9
       cards2print.push(sortedCards[i])
       console.log(sortedCards[i])
+
     }
+ 
+}
+
+// CREAR CARTA
+
+function createCard(card){
+
+  console.log(card)
+
+  cardsSection.innerHTML += `
+  <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" > 
+  <img src="${card.card_images[0].image_url}" alt="${card.name}">
+  </div>
+
+  <div class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="card_${card.id}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <div class="cardHeader">
+            ${card.name}  
+          </div>
+          <div class="cardInfo">
+            ${card.desc}
+          </div>   
+        </div>
+      </div>
+    </div>   
+  </div>
+
+  `
+
 
 
 }
