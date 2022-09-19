@@ -1,9 +1,9 @@
 // var initializations
 var lang;
-var allCards;
-var sortedCards;
-var filteredCards;
-var ygoorgCard;
+var allCards; //reply from the query to the server
+var sortedCards; //cards sorted by X format
+var filteredCards; // cards filtered by x format
+var ygoorgCard; //query from yugiohorganization
 var query;
 var filteredQueryResults;
 var titlesSection = document.getElementById("titlesSection")
@@ -51,7 +51,7 @@ async function queryYGOPD() {
 
 async function queryYGOrg(card) {
   // https://db.ygoprodeck.com/api/v7/cardinfo.php
-  await fetch(`https://db.ygorganization.com/data/card/${card}`)
+  await fetch(`https://db.ygorganization.com/data/card/${card}`) //use konami id for this, cards[x].misc_info[0].konami_id
     .then((response) => response.json())
     .then((data) => {
       ygoorgCard = data;
@@ -103,7 +103,7 @@ function searchCardsByNameOrDescription(value) {
   filteredQueryResults = allCards.data.filter((card) =>
     `${card.name} ${card.desc}`.includes(query)
   );
-  // console.log(filteredQueryResults);
+  console.log(filteredQueryResults);
 }
 
 
