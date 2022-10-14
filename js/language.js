@@ -1,3 +1,12 @@
+// PAGE
+
+var title = "Card results : "
+
+
+
+
+// CARDS
+
 // var currentLanguage;
 var cardDescriptionLanguages = {
   attributes: {

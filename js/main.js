@@ -19,6 +19,7 @@ function startWebPage() {
     // hacer un query a la db de todas las cartas
   }
   queryYGOPD();
+
 }
 
 
@@ -38,6 +39,7 @@ async function queryYGOPD() {
       allCards = data;
       // console.log(allCards.data); // show all cards
       console.log('data fetched 😎')
+      searchCardNamesForAutocomplete()
     })
 
     .catch((error) => {
@@ -50,7 +52,7 @@ async function queryYGOPD() {
 // Query YgoOrganization
 
 async function queryYGOrg(card) {
-  // https://db.ygoprodeck.com/api/v7/cardinfo.php
+  // API URL = https://db.ygoprodeck.com/api/v7/cardinfo.php
   await fetch(`https://db.ygorganization.com/data/card/${card}`) //use konami id for this, cards[x].misc_info[0].konami_id
     .then((response) => response.json())
     .then((data) => {
@@ -99,26 +101,50 @@ function sortCards (value){
 // SEARCHERS
 
 function searchCardsByNameOrDescription(value) {
-  query = value;
+
+  // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
+  query = value.toLowerCase();
   filteredQueryResults = allCards.data.filter((card) =>
-    `${card.name} ${card.desc}`.includes(query)
+    `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query)
   );
-  console.log(filteredQueryResults);
+  console.log("Results: "+ filteredQueryResults.length+" cards")
+  // console.log(filteredQueryResults);
+
+  // if (filteredQueryResults.length < 30 ){
+    printCards(filteredQueryResults.length, filteredQueryResults, title)
+  // }
 }
 
 
-function searchByExactValue (field, value)  {       
+function searchByExactValue (field, value)  {     
   filteredCards = allCards.data.filter((card) => card[field] === value)
   console.log(filteredCards)
 }
 
+function searchBy (field, value){
+  allCards.data.find(card => card.field === value);
 
-function searchBy (field, value)  {       
-  filteredCards = allCards.data.filter((card) => card[field] .includes(value))
-  console.log(filteredCards)
+}
+
+function searchData(arr, query) {
+
+  let data = [];
+  let re = new RegExp(query, 'i');
+
+  for (let item of arr) {
+    for (let p in item) {
+      if (re.test(item[p]))
+        data.push(item[p]);
+    }
+  }
+  return data;
 }
 
 
+// #######################################################################
+
+
+// SEARCH BAR 
 var searchButton = document.getElementById("send")
 
 searchButton.addEventListener("click", function getCard(evt) {
@@ -127,7 +153,8 @@ searchButton.addEventListener("click", function getCard(evt) {
     let cardName = document.search.fname.value;
     // console.log("Searching : "+cardName)
     searchCardsByNameOrDescription(cardName)
-    printCards(filteredQueryResults.length)
+
+    
 })
 
 
@@ -136,26 +163,50 @@ searchButton.addEventListener("click", function getCard(evt) {
 
 // PRINT IN SCREEN
 
-function printCards(howMany, howManyMoreCards){
+function printCards(howMany, cards, title){
+    cardsSection.innerHTML=("")
     let cards2print = []
-    
-    for (let i = 0; i <= (howMany-1); i++) {  //-1 for it to be the same number as user inputs since the array starts as 0, so if user inputs 9 it will print 10 results, from 0 to 9
-      cards2print.push(sortedCards[i])
-      console.log(sortedCards[i])
+    cards2print = cards
 
+    titlesSection.innerHTML = title + howMany + " cards"
+    // console.log(cards2print)
+
+    for (let i = 0; i <= (howMany-1); i++) {  
+      cards2print.push(sortedCards[i])
+      // console.log(sortedCards[i])
+      try {
+      createCard(cards2print[i])
+        } catch (error) {
+          console.error(error);
+        }
     }
  
 }
 
-// CREAR CARTA
+
+
+// #######################################################################
+
+// WRITE TITLE
+
+function writeTitle(title){
+  titlesSection.innerHTML=title
+
+}
+
+
+
+// #######################################################################
+
+// CREATE CARD
 
 function createCard(card){
 
-  console.log(card)
+  // console.log(card)
 
   cardsSection.innerHTML += `
-  <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" > 
-  <img src="${card.card_images[0].image_url}" alt="${card.name}">
+  <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="width:200px" > 
+  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
   </div>
 
   <div class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="card_${card.id}" aria-hidden="true">
@@ -163,6 +214,8 @@ function createCard(card){
       <div class="modal-content">
         <div class="modal-body">
           <div class="cardHeader">
+          <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+          <br>
             ${card.name}
             <br>
             ${card.id}
@@ -184,3 +237,4 @@ function createCard(card){
 
 
 }
+
