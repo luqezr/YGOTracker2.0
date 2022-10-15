@@ -1,15 +1,16 @@
 
-
 body {
     background-image: url("/media/background.jpg");
     background-repeat: repeat;
 }
 
-/* 
+ 
 main {
-    background-color: rgba(218, 218, 218, 0.85);
-    height: 100%;
-} */
+    background-color: rgba(218, 218, 218, 0.75);
+    width: 100%;
+    padding: 0 !important;
+    
+}
 
 /* ####################################################################### */
 
@@ -44,7 +45,7 @@ nav , .dropdown-menu, nav li a, .dropdown-item {
 
 nav form button {
     color:white !important;
-    border-color:white !important;
+    /* border-color:white !important;white */
 }
 
 /* ####################################################################### */
@@ -52,16 +53,23 @@ nav form button {
 /* TITLES SECTION  */
 #titlesSection {
     background-color: rgba(218, 218, 218, 0.85);
+    width: 100%;
 
 }
+
+/* ####################################################################### */
 
 
 /* CARDS SECTION  */
 
 #cardsSection {
-    background-color: rgba(218, 218, 218, 0.85);
+    /* background-color: rgba(218, 218, 218, 0.85); */
+    width: 100%;
+    justify-content: center;
     
 }
+
+/* ####################################################################### */
 
 
 /* SEARCH BAR  */
@@ -74,6 +82,7 @@ nav form button {
 #searchBar-div {
     padding: 0% 1% 1% 1%;
     background-color: rgba(0, 0, 0, 0.9);
+    width: 100% !important;
   }
   
 
@@ -82,12 +91,20 @@ form input {
     color: white !important;
 }
 
+#searchBar-div span, #searchBar-div button {
+  background-color: #000 !important;
+  color: white !important;
+}
+
+#searchBar-div button {
+  border: none !important;
+
+}
+
+/* ####################################################################### */
 
 
-/* END OF SEARCH BAR */
-
-
-/* AUTOCOMPLET TEXTO */
+/* AUTOCOMPLETE TEXT */
 
 /*the container must be positioned relative:*/
 .autocomplete {
@@ -146,8 +163,8 @@ form input {
     color: #ffffff;
   }
 
+/* ####################################################################### */
 
-  /* FIN AUTOCOMPLETE TEXTO */
 
   #titlesSection {
     color: #000;
@@ -162,7 +179,62 @@ form input {
 
   /* FOOTER */
   footer {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.7);
+    justify-content: center;
+    text-align: center;
   }
   /* FIN DEL FOOTER */
 
+
+
+/* ####################################################################### */
+
+  /* CARD MODALS */
+
+  .card {
+    width: 300px;
+    padding: 0;
+    padding: 7px;
+    background-color: rgba(255, 255, 255, 0);
+  }
+
+  .modal {
+    --bs-modal-width : 90% !important;
+    top : 10vh;
+  }
+
+  .modal-content{
+    /* display: flex; */
+    /* width: 80vh !important */
+  }
+
+
+  .modal-body {
+    display: flex;
+    justify-content: space-evenly;
+    /* width: 80vh I!important; */
+    
+  }
+
+  .cardHeader{
+    display: flex;
+    padding-right: 10px;
+  }
+
+  .cardName {
+    font-size: 24pt;
+    padding: 0;
+  }
+
+  .cardArchetype span{
+    color: rgb(194, 34, 34);
+  }
+
+  .cardSubTitle {
+    padding: 10px 0px 10px 0px;
+    font-size: 15pt;
+  }
+
+  .cardDescription{
+    font-size: 15pt;
+  }

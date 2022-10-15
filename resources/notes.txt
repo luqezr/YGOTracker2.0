@@ -16,7 +16,7 @@ https://db.ygoprodeck.com/api-guide/
 
 Request all cards => https://db.ygoprodeck.com/api/v7/cardinfo.php
 Request all sets => https://db.ygoprodeck.com/api/v7/cardsets.php
-
+Request cards from certain period => https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=01/01/2000&enddate=08/23/2002&dateregion=tcg_date
 
 #######################################
 -------------- ESTETICOS --------------
