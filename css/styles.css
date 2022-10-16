@@ -200,7 +200,7 @@ form input {
 
   .modal {
     --bs-modal-width : 90% !important;
-    top : 10vh;
+    /* margin-top : 10vh; */
   }
 
   .modal-content{
@@ -231,10 +231,230 @@ form input {
   }
 
   .cardSubTitle {
-    padding: 10px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     font-size: 15pt;
   }
 
   .cardDescription{
     font-size: 15pt;
   }
+
+  .iconsSprite{
+    background: url(/media/icons.png) no-repeat;
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+  }
+
+  .cardLevel{
+    background-position: -192px -288px;
+  }
+
+  .cardRace{
+    background-position: 0 32px;
+  }
+
+  .normalMonster{
+    background-position: 0px 0px;
+  }
+  
+  .effectMonster{
+    background-position: -32px 0px;
+  }
+
+  .geminiMonster{
+    background-position: -160px 0px;
+  }
+  
+  .ritualMonster{
+    background-position: -64px 0px;
+  }
+  
+  .fusionMonster{
+    background-position: -96px 0px;
+  }
+  
+  .synchroMonster{
+    background-position: -320px 0px;
+  }
+
+  .xyzMonster{
+    background-position: -128px 0px;
+  }
+
+  .pendulumMonster{
+    background-position: -192px 0px;
+  }
+
+  .pendulumXyzMonster{
+    background-position: -448px 0px;
+  }
+
+
+  .pendulumSynchroMonster{
+    background-position: -352px 0px;
+  }
+
+  .pendulumFusionMonster{
+    background-position: -416px 0px;
+  }
+
+
+  .linkMonster{
+    background-position: -480px 0px;
+  }
+
+  .tokenMonster{
+    background-position: -288px 0px;
+  }
+
+  .spellCard{
+    background-position: -224px 0px;
+  }
+
+  .normalSpell{
+    background-position: -224px 0px;
+  }
+
+  .fieldSpell{
+    background-position: -224px 0px;
+  }
+  
+  .equipSpell{
+    background-position: -224px 0px;
+  }
+  
+  
+  .quickPlaySpell{
+    background-position: -224px 0px;
+  }
+  
+  .ritualSpell{
+    background-position: -224px 0px;
+  }
+  
+  .continuous{
+    background-position: -224px 0px;
+  }
+
+
+  .counterTrap{
+    background-position: -224px 0px;
+  }
+
+  .trapCard {
+    background-position: -256px 0px;
+  }
+
+
+  .cardType{
+    background-position: 0 32px;
+  }
+
+  .cardAtk{
+    background-position: -320px -224px;
+  }
+
+  .cardDef{
+    background-position: -352px -224px;
+  }
+
+  /* RACE */
+
+  .aqua{
+    background-position: -416px -32px;
+  }
+
+  .beast {
+    background-position: -320px -32px;
+  }
+
+  .beastWarrior {
+    background-position: -352px -32px;
+  }
+
+  .creatorGod {
+    background-position: -160px -64px;
+  }
+
+  .cyberse {
+    background-position: -352px -224px;
+  }
+
+  .dinosaur {
+    background-position: -256px -32px;
+  }
+
+  .divineBeast {
+    background-position: -160px -64px;
+  }
+
+  .dragon {
+    background-position: 0px -32px;
+  }
+
+  .fairy {
+    background-position: -352px -224px;
+  }
+
+  .fiend {
+    background-position: -64px -32px;
+  }
+
+  .fish {
+    background-position: -224px -32px;
+  }
+
+  .insect {
+    background-position: -288px -32px;
+  }
+
+  .machine {
+    background-position: -192px -32px;
+  }
+
+  .plant {
+    background-position: -384px -32px;
+  }
+
+  .psychic {
+    background-position: -128px -64px;
+  }
+
+  .pyro {
+    background-position: -96px -32px;
+  }
+
+  .reptile {
+    background-position: -96px -64px;
+  }
+
+  .rock {
+    background-position: -160px -32px;
+  }
+
+  .seaSerpent {
+    background-position: -128px -32px;
+  }
+
+  .spellcaster {
+    background-position: -32px -64px;
+  }
+
+  .thunder {
+    background-position: -64px -64px;
+  }
+
+  .warrior {
+    background-position: -448px -224px;
+  }
+
+  .wingedBeast {
+    background-position: -480px -32px;
+  }
+
+  .zombie {
+    background-position: -32px -32px;
+  }
+
+
