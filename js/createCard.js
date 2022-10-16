@@ -23,12 +23,14 @@ function createNormalCard(card){
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
               <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}"></span>
               <span> ID ${card.id} </span>
-              <span> Release Date ${card.misc_info[0].ocg_date} </span>
               <br>
+              <span> Release Date ${card.misc_info[0].ocg_date} </span>
+              <span id="releaseDateTCG_${card.id}"> </span>
             </p>
             <p class="cardDescription">
               ${card.desc} 
             </p>
+            <br>
             <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
             </p>
           </div>   

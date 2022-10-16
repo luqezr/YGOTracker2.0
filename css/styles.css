@@ -230,7 +230,15 @@ form input {
 
   .cardHeader{
     display: flex;
+    align-items: center;
+    /* justify-content: center; */
     padding-right: 10px;
+   
+  }
+
+  .cardHeader img {
+    max-width: 421px;
+    max-height: 614px;
   }
 
   .cardName {
