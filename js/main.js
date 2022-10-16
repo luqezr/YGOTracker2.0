@@ -105,7 +105,6 @@ function sortCards (value){
 // SEARCHERS
 
 function searchCardsByNameOrDescription(value) {
-
   // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
   query = value.toLowerCase();
   filteredQueryResults = allCards.data.filter((card) =>

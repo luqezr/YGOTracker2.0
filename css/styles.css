@@ -2,6 +2,8 @@
 body {
     background-image: url("/media/background.jpg");
     background-repeat: repeat;
+
+  position: relative;
 }
 
  
@@ -208,12 +210,22 @@ form input {
     /* width: 80vh !important */
   }
 
+  .scrollspy {
+    position: relative;
+    overflow: auto;
+    height: auto;
+}
 
   .modal-body {
     display: flex;
     justify-content: space-evenly;
+    max-height: 95vh;
     /* width: 80vh I!important; */
     
+  }
+
+  .tbody {
+    position: relative;
   }
 
   .cardHeader{
@@ -313,33 +325,33 @@ form input {
   }
 
   .normalSpell{
-    background-position: -224px 0px;
+    background-position: 0px -96px;
   }
 
   .fieldSpell{
-    background-position: -224px 0px;
+    background-position: -64px -96px;
   }
   
   .equipSpell{
-    background-position: -224px 0px;
+    background-position: -96x -96px;
   }
   
   
   .quickPlaySpell{
-    background-position: -224px 0px;
+    background-position: -160px -96px;
   }
   
   .ritualSpell{
-    background-position: -224px 0px;
+    background-position: -192px -96px;
   }
   
   .continuous{
-    background-position: -224px 0px;
+    background-position: -128px -96px;
   }
 
 
   .counterTrap{
-    background-position: -224px 0px;
+    background-position: -32px -96px;
   }
 
   .trapCard {
@@ -378,7 +390,7 @@ form input {
   }
 
   .cyberse {
-    background-position: -352px -224px;
+    background-position: -224px -96px;
   }
 
   .dinosaur {
@@ -446,15 +458,56 @@ form input {
   }
 
   .warrior {
-    background-position: -448px -224px;
+    background-position: -448px -32px;
   }
 
   .wingedBeast {
     background-position: -480px -32px;
   }
 
+  .wyrm {
+    background-position: -256px -96px;
+  }
+
   .zombie {
     background-position: -32px -32px;
+  }
+
+
+  .light {
+    background-position: -192px -64px;
+  }
+
+  .dark  {
+    background-position: -224px -64px;
+  }
+
+  .water {
+    background-position: -256px -64px;
+  }
+
+  .fire  {
+    background-position: -288px -64px;
+  }
+
+  .earth {
+    background-position: -320px -64px;
+  }
+
+  .wind  {
+    background-position: -352px -64px;
+  }
+
+  .divine  {
+    background-position: -384px -64px;
+  }
+
+  .spell {
+    background-position: -416px -64px;
+  }
+
+  .trap  {
+    background-position: -448px -64px;
   }
 
 

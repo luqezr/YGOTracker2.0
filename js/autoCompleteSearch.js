@@ -3,8 +3,11 @@ var allCardNames = []
 function searchCardNamesForAutocomplete(){
     
 for (let b=0 ; b < allCards.data.length ; b++){
-    allCardNames.push(allCards.data[b].name)
+  allCardNames.push(allCards.data[b].name)
 }
+
+
+//  allCardNames = allCardNames.replace('-', ' ');
 
 allCardNames = [...new Set(allCardNames)];
 //  console.log(allCardNames)
