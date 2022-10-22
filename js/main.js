@@ -1,6 +1,7 @@
 // var initializations
 var lang;
-var allCards; //reply from the query to the server
+var allCards; //reply from the query for the cards
+var allSets; //reply from the query for the sets
 var sortedCards; //cards sorted by X format
 var filteredCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
@@ -30,9 +31,10 @@ function startWebPage() {
 
 // Query ALL Yugiohprodeck DB
 
-async function queryYGOPD() {
+// async function queryYGOPD() {
+  function queryYGOPD() {
   // https://db.ygoprodeck.com/api/v7/cardinfo.php
-  const response = await fetch(
+  const response = fetch(
     "https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new"
   )
     .then((response) => response.json())
@@ -40,7 +42,7 @@ async function queryYGOPD() {
       allCards = data;
       sortedCards = allCards.data
       // console.log(allCards.data); // show all cards
-      console.log('data fetched 😎')
+      console.log('all cards from YGOPD fetched 😎')
       searchCardNamesForAutocomplete()
       printCards(resultsPerPage,allCards.data,title )
 
@@ -53,6 +55,33 @@ async function queryYGOPD() {
     });
 }
 
+// SEARCH ALL SETS FROM YGOPD
+function searchAllSets (value) {
+
+  const response = fetch(
+    "https://db.ygoprodeck.com/api/v7/cardsets.php"
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      allSets = data;
+      console.log('all sets fetched 😎')
+      // console.log(allSets)
+      printSets(30,allSets,title )
+
+    })
+
+    .catch((error) => {
+      console.log("ups 😢 " + error);
+      return;
+      // Code for handling the error
+    });
+
+  // https://db.ygoprodeck.com/api/v7/cardsets.php
+
+  // printCards(filteredCards.length, filteredCards, title)
+
+}
+
 // Query YgoOrganization
 
 async function queryYGOrg(card) {
@@ -62,7 +91,7 @@ async function queryYGOrg(card) {
     .then((data) => {
       ygoorgCard = data;
       // console.log(ygoorgCard); // show card
-      console.log('data fetched 😎')
+      console.log('data from YGOrg fetched 😎')
     })
 
     .catch((error) => {
@@ -134,6 +163,14 @@ function searchByArchetype (value) {
 
 }
 
+function searchBySet (cardSetNumber, value) {
+  console.log("under construction 👨‍🏭")
+  // searchByExactValue(`card_sets[${cardSetNumber}].set_name`, value) 
+  // printCards(filteredCards.length, filteredCards, title)
+
+}
+
+
 
 
 function searchData(arr, query) {
@@ -194,6 +231,26 @@ function printCards(howMany, cards, title){
  
 }
 
+function printSets(howMany, sets, title){
+  cardsSection.innerHTML=("")
+  let cards2print = []
+  cards2print = sets
+
+  titlesSection.innerHTML = title + howMany + " cards"
+  // console.log(cards2print)
+
+  for (let i = 0; i <= (howMany-1); i++) {  
+    cards2print.push(sets[i])
+    // console.log(sortedCards[i])
+    try {
+    createSet(cards2print[i])
+      } catch (error) {
+        console.error(error);
+      }
+  }
+
+
+}
 
 
 // #######################################################################

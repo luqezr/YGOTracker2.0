@@ -21,7 +21,7 @@ function createNormalCard(card){
           <div class="cardInfo  scrollspy">
             <p class="cardName">${card.name}</p>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}"></span>
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
               <span> ID ${card.id} </span>
               <br>
               <span> Release Date ${card.misc_info[0].ocg_date} </span>
@@ -453,7 +453,7 @@ function printCardSets (modalId, card) {
               <th scope="col">Set</th>
               <th scope="col">Rarity</th>
               <th scope="col">Set Code</th>
-              <th scope="col" data-toggle="tooltip" data-placement="top" title="AVG Means average price for that specific set">AVG Price</th>
+              <th scope="col" data-toggle="tooltip" data-placement="top" title="AVG Means average price for that card of that specific set">AVG* Price</th>
             </tr>
           </thead>
           
@@ -469,7 +469,7 @@ function printCardSets (modalId, card) {
 
     document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row">${card.card_sets[i].set_name}</th>
+             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="searchBySet(${i}, '${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name}</th>
              <td>${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td>${card.card_sets[i].set_code}</td>
              <td>${card.card_sets[i].set_price}</td>
@@ -479,24 +479,47 @@ function printCardSets (modalId, card) {
 }
 
 }
-// Object { set_name: "Dark Neostorm", set_code: "DANE-EN038", set_rarity: "Ultra Rare", … }
-// ​​​​
-// set_code: "DANE-EN038"
-// ​​​​
-// set_name: "Dark Neostorm"
-// ​​​​
-// set_price: "8.98"
-// ​​​​
-// set_rarity: "Ultra Rare"
-// ​​​​
-// // set_rarity_code: "(UR)"
 
 
+function createSet(sets) {
 
-         
-            // <tr>
-            //   <th scope="row">1</th>
-            //   <td>Mark</td>
-            //   <td>Otto</td>
-            //   <td>@mdo</td>
-            // </tr>
+  let setName = sets.set_name
+  let setCode = sets.set_code
+  let setDate = sets.tcg_date
+  let setQuantity = sets.num_of_cards
+
+	let setImage = setName.replace(/ /g, "_");
+	setImage = setImage.replace(/:/g,"_");
+
+
+  cardsSection.innerHTML += `
+        <div class="sets" id='${setCode}'>
+          <div class="setGrid" >
+
+            <div class="setImage"> 
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalID${setCode}">
+                <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
+            
+              </button>
+            </div>
+
+            <div class='cardInfo'>
+            <span onclick='cardSet(this.id)'><h5><a  style="cursor: pointer" id="${setName}" class='getBySet' href="#"> ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
+            </div>
+          
+
+            <div class="modal fade modalCardImage" id="ModalID${setImage}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modalImage">
+                  
+                  <img src="https://static-3.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImages" id='${setName}' alt="${setName}" class="close" data-dismiss="modal">
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+	
+  `
+}

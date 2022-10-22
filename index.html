@@ -51,7 +51,10 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
     <div class="collapse navbar-collapse" id="navbar">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" onclick="" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">New Cards</a>
+          <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage,allCards.data,title )" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">New Cards</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" onclick="searchAllSets()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Sets</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -82,7 +85,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
 
   <main class="container-fluid">
   
-  <div id="searchBar-div">
+  <div id="searchBar-div" class="sticky-top">
     <!-- SEARCH BAR -->
       <form class="mr-2 my-auto w-100 d-inline-block order-1"  method="GET" action="" id="searchForm"name="search" autocomplete="off"> 
         <div class="input-group" class="autocomplete">

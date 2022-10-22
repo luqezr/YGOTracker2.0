@@ -1,7 +1,7 @@
 
 body {
     background-image: url("/media/background.jpg");
-    background-repeat: repeat;
+    background-repeat: initial;
 
   position: relative;
 }
@@ -82,8 +82,8 @@ nav form button {
 }
 
 #searchBar-div {
-    padding: 0% 1% 1% 1%;
-    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1% 1% 1% 1%;
+    background-color: rgba(0, 0, 0, 1);
     width: 100% !important;
   }
   
@@ -519,3 +519,12 @@ form input {
   }
 
 
+
+
+  /* SET MODALS */
+
+  .setImage button {
+    width: 250px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0);
+  }
