@@ -150,7 +150,7 @@ function searchCardsByNameOrDescription(value) {
 
 function searchByExactValue (field, value)  {     
   filteredCards = allCards.data.filter((card) => card[field] === value)
-  console.log(filteredCards)
+  // console.log(filteredCards)
 }
 
 // SEARCH BY SOME VALUE, FOR EXAMPLE
@@ -163,11 +163,15 @@ function searchByArchetype (value) {
 
 }
 
-function searchBySet (cardSetNumber, value) {
-  console.log("under construction 👨‍🏭")
-  // searchByExactValue(`card_sets[${cardSetNumber}].set_name`, value) 
-  // printCards(filteredCards.length, filteredCards, title)
+function searchBySet (card, set) {
+  console.log("searching set... "+ set)
+  if (card.card_sets){
+  const findBySet = (id) => allCards.data
+  .filter(x => x.id === id || x.set_name.some(set => id === set.id))
+  .map(y => ({...y, children: y.set_name.filter(set => id === set.id)}))
 
+    console.log(findBySet(set))
+  }
 }
 
 
@@ -216,7 +220,7 @@ function printCards(howMany, cards, title){
     let cards2print = []
     cards2print = cards
 
-    titlesSection.innerHTML = title + howMany + " cards"
+    titlesSection.innerHTML = title +"<span class='greenText'>" + howMany + " </span> cards"
     // console.log(cards2print)
 
     for (let i = 0; i <= (howMany-1); i++) {  
@@ -236,7 +240,7 @@ function printSets(howMany, sets, title){
   let cards2print = []
   cards2print = sets
 
-  titlesSection.innerHTML = title + howMany + " cards"
+  titlesSection.innerHTML = title +"<span class='greenText'>" + howMany + " </span> cards"
   // console.log(cards2print)
 
   for (let i = 0; i <= (howMany-1); i++) {  
