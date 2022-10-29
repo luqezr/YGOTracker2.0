@@ -535,6 +535,7 @@ function createSet(sets) {
 
     let setImage = setName.replace(/ /g, "_");
     setImage = setImage.replace(/:/g, "_");
+    setImage = setImage.replace(/-/g, "_");
 
 
     cardsSection.innerHTML += `

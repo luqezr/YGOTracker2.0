@@ -577,10 +577,10 @@ footer {
     border: none;
 }
 
-/*   
+
   .sets :hover{
     background-color: rgba(115,79,154, 0.85) !important;
-  } */
+  } 
 
 .sets {
     width: min-content;
