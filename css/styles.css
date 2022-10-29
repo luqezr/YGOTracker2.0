@@ -1,17 +1,16 @@
-
 body {
     background-image: url("/media/background.jpg");
     background-repeat: initial;
-
-  position: relative;
+    /* background-repeat: repeat-y; */
+    position: relative;
 }
 
- 
+
 main {
-    background-color: rgba(44, 44, 44, 0.55);
+    /* background-color: rgba(44, 44, 44, 0.55); */
     width: 100%;
     padding: 0 !important;
-    
+
 }
 
 /* ####################################################################### */
@@ -19,7 +18,10 @@ main {
 /* NAV MENU  */
 
 
-nav , .dropdown-menu, nav li a, .dropdown-item {
+nav,
+.dropdown-menu,
+nav li a,
+.dropdown-item {
     background-color: black;
     color: white;
 }
@@ -28,13 +30,13 @@ nav , .dropdown-menu, nav li a, .dropdown-item {
     background-color: rgb(0, 0, 0);
     color: rgb(139, 212, 80)
 }
+
 .custom-toggler.navbar-toggler {
     border-color: white;
 }
 
 .custom-toggler .navbar-toggler-icon {
-    background-image: url(
-"data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
 }
 
 .nav-link {
@@ -43,27 +45,28 @@ nav , .dropdown-menu, nav li a, .dropdown-item {
 }
 
 .nav-link:hover {
-    color: rgb(139,212,80);
+    color: rgb(139, 212, 80);
 }
 
 nav form button {
-    color:rgb(139,212,80) !important;
+    color: rgb(139, 212, 80) !important;
     /* border-color:white !important;white */
 }
 
 /* ####################################################################### */
 
+
 /* TITLES SECTION  */
 #titlesSection {
-  /* background-color: rgba(218, 218, 218, 0.85); */
-  background-color: rgba(0, 0, 0, 0.85);
-  /* color: rgb(150,95,212); */
-  color: white;
-  width: 100%;
-  font-family: CardTitle;
-  font-size: 18pt;
-  padding-left: 5px;
-  padding-right: 5px;
+    /* background-color: rgba(218, 218, 218, 0.85); */
+    background-color: rgba(0, 0, 0, 0.85);
+    /* color: rgb(150,95,212); */
+    color: white;
+    width: 100% !important;
+    font-family: CardTitle;
+    font-size: 18pt;
+    padding-left: 5px;
+    padding-right: 5px;
 
 }
 
@@ -76,9 +79,22 @@ nav form button {
 
 #cardsSection {
     /* background-color: rgba(218, 218, 218, 0.85); */
-    width: 100%;
+    width: 100% !important;
     justify-content: center;
-    
+    margin: 0 !important;
+
+}
+
+.aloneCard {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 10px 10px 10px 10px;
+
+    border-color: white;
+}
+
+.aloneCard table {
+    color: white;
 }
 
 /* ####################################################################### */
@@ -95,21 +111,22 @@ nav form button {
     padding: 1% 1% 1% 1%;
     background-color: rgba(0, 0, 0, 1);
     width: 100% !important;
-  }
-  
+}
+
 
 form input {
     background-color: #000 !important;
     color: white !important;
 }
 
-#searchBar-div span, #searchBar-div button {
-  background-color: #000 !important;
-  color: white !important;
+#searchBar-div span,
+#searchBar-div button {
+    background-color: #000 !important;
+    color: white !important;
 }
 
 #searchBar-div button {
-  border: none !important;
+    border: none !important;
 
 }
 
@@ -122,28 +139,28 @@ form input {
 .autocomplete {
     position: relative;
     display: inline-block;
-  }
-  
-  input {
+}
+
+input {
     border: 1px solid transparent;
     /* background-color: #f1f1f1; */
     padding: 7px;
     font-size: 16px;
-  }
+}
 
-  input[type="text"] {
+input[type="text"] {
     /* background-color: #f1f1f1; */
     width: 100%;
-    color:  rgb(139,212,80)
-  }
-  
-  input[type="submit"] {
-    background-color: rgb(150,95,212);
-    color:  rgb(139,212,80);
+    color: rgb(139, 212, 80)
+}
+
+input[type="submit"] {
+    background-color: rgb(150, 95, 212);
+    color: rgb(139, 212, 80);
     cursor: pointer;
-  }
-  
-  .autocomplete-items {
+}
+
+.autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
     border-bottom: none;
@@ -155,428 +172,429 @@ form input {
     top: 100%;
     left: 0;
     right: 0;
-  }
-  
-  .autocomplete-items div {
+}
+
+.autocomplete-items div {
     padding: 7px;
     cursor: pointer;
-    background-color: rgb(29,26,47);
-    color: rgb(139,212,80);
+    background-color: rgb(29, 26, 47);
+    color: rgb(139, 212, 80);
     border-bottom: 1px solid #d4d4d4;
-  }
-  
-  /*when hovering an item:*/
-  .autocomplete-items div:hover {
-    background-color:  rgb(115,79,154);
-  }
-  
-  /*when navigating through the items using the arrow keys:*/
-  .autocomplete-active {
-    background-color: rgb(115,79,154) !important;
-    color:  rgb(139,212,80);
-  }
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: rgb(115, 79, 154);
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: rgb(115, 79, 154) !important;
+    color: rgb(139, 212, 80);
+}
 
 /* ####################################################################### */
 
 
 
-  /* FOOTER */
-  footer {
-    background-color: rgba(29,26,47, 8.5);
+/* FOOTER */
+footer {
+    background-color: rgba(29, 26, 47, 8.5);
     color: #ffffff;
     justify-content: center;
     text-align: center;
     padding: 20px 20px 20px 20px;
-  }
-  /* FIN DEL FOOTER */
+}
+
+/* FIN DEL FOOTER */
 
 
 
 /* ####################################################################### */
 
-  /* CARD MODALS */
+/* CARD MODALS */
 
-  .card {
+.card {
     width: 300px;
     padding: 6px 8px 6px 8px;
-    background-color: rgba(29,26,47, 0.55);
-  }
+    background-color: rgba(29, 26, 47, 0.55);
+}
 
-  .modal {
-    --bs-modal-width : 90% !important;
+.modal {
+    --bs-modal-width: 90% !important;
     /* margin-top : 10vh; */
-  }
+}
 
-  .modal-content{
+.modal-content {
     /* display: flex; */
     /* width: 80vh !important */
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
-  }
+}
 
-  .modal-content table {
+.modal-content table {
 
     color: #fff;
-  }
+}
 
-  .scrollspy {
+.scrollspy {
     position: relative;
     overflow: auto;
     height: auto;
 }
 
-  .modal-body {
+.modal-body {
     display: flex;
     justify-content: space-evenly;
     max-height: 95vh;
     /* width: 80vh I!important; */
-    
-  }
 
-  .tbody {
+}
+
+.tbody {
     position: relative;
-  }
+}
 
-  .cardHeader{
+.cardHeader {
     display: flex;
     align-items: center;
     /* justify-content: center; */
     padding-right: 10px;
-   
-  }
 
-  .cardHeader img {
+}
+
+.cardHeader img {
     max-width: 421px;
     max-height: 614px;
-  }
+}
 
-  .cardName {
+.cardName {
     font-size: 24pt;
     padding: 0;
-  }
+}
 
-  .cardArchetype span{
-    color: rgb(139,212,80);
-  }
+.cardArchetype span {
+    color: rgb(139, 212, 80);
+}
 
-  .cardArchetype span:hover{
-    color: rgb(150,95,212);
-  }
+.cardArchetype span:hover {
+    color: rgb(150, 95, 212);
+}
 
-  .cardSubTitle {
+.cardSubTitle {
     padding: 0px 0px 10px 0px;
     font-size: 15pt;
-    align-items:center;
-  }
-  
-  .cardSubTitle span {
+    align-items: center;
+}
+
+.cardSubTitle span {
     display: inline-flex;
     /* display: flex;
     align-items: center;
     justify-content: space-between; */
-  }
+}
 
-  .cardDescription{
+.cardDescription {
     font-size: 15pt;
-  }
+}
 
-  .setGrid a {
-    color: rgb(139,212,80)
-    
-  }
+.setGrid a {
+    color: rgb(139, 212, 80)
+}
 
-  .iconsSprite{
+.iconsSprite {
     background: url(/media/icons.png) no-repeat;
     width: 32px;
     height: 32px;
     display: inline-block;
-  }
+}
 
-  .cardLevel{
+.cardLevel {
     background-position: -192px -288px;
-  }
+}
 
-  .cardRace{
+.cardRace {
     background-position: 0 32px;
-  }
+}
 
-  .normalMonster{
+.normalMonster {
     background-position: 0px 0px;
-  }
-  
-  .effectMonster{
+}
+
+.effectMonster {
     background-position: -32px 0px;
-  }
+}
 
-  .geminiMonster{
+.geminiMonster {
     background-position: -160px 0px;
-  }
-  
-  .ritualMonster{
+}
+
+.ritualMonster {
     background-position: -64px 0px;
-  }
-  
-  .fusionMonster{
+}
+
+.fusionMonster {
     background-position: -96px 0px;
-  }
-  
-  .synchroMonster{
+}
+
+.synchroMonster {
     background-position: -320px 0px;
-  }
+}
 
-  .xyzMonster{
+.xyzMonster {
     background-position: -128px 0px;
-  }
+}
 
-  .pendulumMonster{
+.pendulumMonster {
     background-position: -192px 0px;
-  }
+}
 
-  .pendulumXyzMonster{
+.pendulumXyzMonster {
     background-position: -448px 0px;
-  }
+}
 
 
-  .pendulumSynchroMonster{
+.pendulumSynchroMonster {
     background-position: -352px 0px;
-  }
+}
 
-  .pendulumFusionMonster{
+.pendulumFusionMonster {
     background-position: -416px 0px;
-  }
+}
 
 
-  .linkMonster{
+.linkMonster {
     background-position: -480px 0px;
-  }
+}
 
-  .tokenMonster{
+.tokenMonster {
     background-position: -288px 0px;
-  }
+}
 
-  .spellCard{
+.spellCard {
     background-position: -224px 0px;
-  }
+}
 
-  .normalSpell{
+.normalSpell {
     background-position: 0px -96px;
-  }
+}
 
-  .fieldSpell{
+.fieldSpell {
     background-position: -64px -96px;
-  }
-  
-  .equipSpell{
+}
+
+.equipSpell {
     background-position: -96x -96px;
-  }
-  
-  
-  .quickPlaySpell{
+}
+
+
+.quickPlaySpell {
     background-position: -160px -96px;
-  }
-  
-  .ritualSpell{
+}
+
+.ritualSpell {
     background-position: -192px -96px;
-  }
-  
-  .continuous{
+}
+
+.continuous {
     background-position: -128px -96px;
-  }
+}
 
 
-  .counterTrap{
+.counterTrap {
     background-position: -32px -96px;
-  }
+}
 
-  .trapCard {
+.trapCard {
     background-position: -256px 0px;
-  }
+}
 
 
-  .cardType{
+.cardType {
     background-position: 0 32px;
-  }
+}
 
-  .cardAtk{
+.cardAtk {
     background-position: -320px -224px;
-  }
+}
 
-  .cardDef{
+.cardDef {
     background-position: -352px -224px;
-  }
+}
 
-  /* RACE */
+/* RACE */
 
-  .aqua{
+.aqua {
     background-position: -416px -32px;
-  }
+}
 
-  .beast {
+.beast {
     background-position: -320px -32px;
-  }
+}
 
-  .beastWarrior {
+.beastWarrior {
     background-position: -352px -32px;
-  }
+}
 
-  .creatorGod {
+.creatorGod {
     background-position: -160px -64px;
-  }
+}
 
-  .cyberse {
+.cyberse {
     background-position: -224px -96px;
-  }
+}
 
-  .dinosaur {
+.dinosaur {
     background-position: -256px -32px;
-  }
+}
 
-  .divineBeast {
+.divineBeast {
     background-position: -160px -64px;
-  }
+}
 
-  .dragon {
+.dragon {
     background-position: 0px -32px;
-  }
+}
 
-  .fairy {
+.fairy {
     background-position: -352px -224px;
-  }
+}
 
-  .fiend {
+.fiend {
     background-position: -64px -32px;
-  }
+}
 
-  .fish {
+.fish {
     background-position: -224px -32px;
-  }
+}
 
-  .insect {
+.insect {
     background-position: -288px -32px;
-  }
+}
 
-  .machine {
+.machine {
     background-position: -192px -32px;
-  }
+}
 
-  .plant {
+.plant {
     background-position: -384px -32px;
-  }
+}
 
-  .psychic {
+.psychic {
     background-position: -128px -64px;
-  }
+}
 
-  .pyro {
+.pyro {
     background-position: -96px -32px;
-  }
+}
 
-  .reptile {
+.reptile {
     background-position: -96px -64px;
-  }
+}
 
-  .rock {
+.rock {
     background-position: -160px -32px;
-  }
+}
 
-  .seaSerpent {
+.seaSerpent {
     background-position: -128px -32px;
-  }
+}
 
-  .spellcaster {
+.spellcaster {
     background-position: -32px -64px;
-  }
+}
 
-  .thunder {
+.thunder {
     background-position: -64px -64px;
-  }
+}
 
-  .warrior {
+.warrior {
     background-position: -448px -32px;
-  }
+}
 
-  .wingedBeast {
+.wingedBeast {
     background-position: -480px -32px;
-  }
+}
 
-  .wyrm {
+.wyrm {
     background-position: -256px -96px;
-  }
+}
 
-  .zombie {
+.zombie {
     background-position: -32px -32px;
-  }
+}
 
 
-  .light {
+.light {
     background-position: -192px -64px;
-  }
+}
 
-  .dark  {
+.dark {
     background-position: -224px -64px;
-  }
+}
 
-  .water {
+.water {
     background-position: -256px -64px;
-  }
+}
 
-  .fire  {
+.fire {
     background-position: -288px -64px;
-  }
+}
 
-  .earth {
+.earth {
     background-position: -320px -64px;
-  }
+}
 
-  .wind  {
+.wind {
     background-position: -352px -64px;
-  }
+}
 
-  .divine  {
+.divine {
     background-position: -384px -64px;
-  }
+}
 
-  .spell {
+.spell {
     background-position: -416px -64px;
-  }
+}
 
-  .trap  {
+.trap {
     background-position: -448px -64px;
-  }
+}
 
 
 
 
-  /* SET MODALS */
+/* SET MODALS */
 
-  .setImage button {
+.setImage button {
     width: 250px;
     height: 400px;
     background-color: rgba(0, 0, 0, 0.75);
-  }
+}
 
-  .setImage .btn {
+.setImage .btn {
     background-color: rgba(0, 0, 0, 0);
     border: none;
-  }
+}
+
 /*   
   .sets :hover{
     background-color: rgba(115,79,154, 0.85) !important;
   } */
-  
-  .sets {
+
+.sets {
     width: min-content;
     background-color: rgba(0, 0, 0, 0.85);
     /* padding: 6px 8px 6px 8px; */
-  }
+}
 
 
-  /* COLORED TEXT CLASSES */
+/* COLORED TEXT CLASSES */
 
-  .greenText {
-    color: rgb(139,212,80);
-  }
+.greenText {
+    color: rgb(139, 212, 80);
+}
 
-  .purpleText{
-    color: 	rgb(150,95,212);
-  }
+.purpleText {
+    color: rgb(150, 95, 212);
+}
