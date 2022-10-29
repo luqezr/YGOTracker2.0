@@ -514,7 +514,7 @@ function printCardSets(modalId, card) {
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="searchBySet(${i}, '${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name}</th>
+             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="findBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name}</th>
              <td>${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td>${card.card_sets[i].set_code}</td>
              <td>$${card.card_sets[i].set_price}</td>
@@ -543,7 +543,7 @@ function createSet(sets) {
 
             <div class="setImage"> 
             <div class='cardInfo'>
-            <span onclick='cardSet(this.id)'><h5 class="purpleText"><a  style="cursor: pointer" id="${setCode}" class='getBySet' href="#"> ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
+            <span onclick='cardSet(this.id)'><h5 class="purpleText"><a  style="cursor: pointer" id="${setCode}" class='getBySet'  onclick="findBySet('${setName}')" > ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
                 <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 

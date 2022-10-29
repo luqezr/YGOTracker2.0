@@ -167,18 +167,23 @@ function searchByArchetype(value) {
 // FIND BY SET 
 
 function findBySet(set_name) {
-
+    let thisSet = []
 
     for (let i = 0; i < allCards.data.length; i++) {
+
         if (allCards.data[i].card_sets) {
             for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
-                thisSet.push(allCards.data[i].card_sets[b]);
+                if ( allCards.data[i].card_sets[b].set_name == set_name ) {
+                    thisSet.push(allCards.data[i])
+ 
+                } 
             }
-        } else {
-            console.log("not in this set")
-            return
         }
+
+
     }
+
+    printCards(thisSet.length, thisSet, title)
 
 }
 
@@ -207,6 +212,7 @@ function searchData(arr, query) {
     for (let item of arr) {
         for (let p in item) {
             if (re.test(item[p]))
+            data.push(item[p]);
         }
     }
     return data;
