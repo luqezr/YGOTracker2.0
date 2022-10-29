@@ -543,7 +543,7 @@ function createSet(sets) {
 
             <div class="setImage"> 
             <div class='cardInfo'>
-            <span onclick='cardSet(this.id)'><h5 class="purpleText"><a  style="cursor: pointer" id="${setCode}" class='getBySet'  onclick="findBySet('${setName}')" > ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
+            <span><h5 class="purpleText"><a  style="cursor: pointer" id="${setCode}" class='getBySet'  onclick="findBySet('${setName}')" > ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
                 <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
