@@ -2,6 +2,7 @@
 var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
+var thisSet; // Cards for the searched set
 var sortedCards; //cards sorted by X format
 var filteredCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
@@ -163,19 +164,37 @@ function searchByArchetype(value) {
 
 }
 
-function searchBySet(card, set) {
-    console.log("searching set... " + set)
-    if (card.card_sets) {
-        const findBySet = (id) => allCards.data
-            .filter(x => x.id === id || x.set_name.some(set => id === set.id))
-            .map(y => ({
-                ...y,
-                children: y.set_name.filter(set => id === set.id)
-            }))
+// FIND BY SET 
 
-        console.log(findBySet(set))
+function findBySet(set_name) {
+
+
+    for (let i = 0; i < allCards.data.length; i++) {
+        if (allCards.data[i].card_sets) {
+            for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
+                thisSet.push(allCards.data[i].card_sets[b]);
+            }
+        } else {
+            console.log("not in this set")
+            return
+        }
     }
+
 }
+
+// function searchBySet(card, set) {
+//     console.log("searching set... " + set)
+//     if (card.card_sets) {
+//         const findBySet = (id) => allCards.data
+//             .filter(x => x.id === id || x.set_name.some(set => id === set.id))
+//             .map(y => ({
+//                 ...y,
+//                 children: y.set_name.filter(set => id === set.id)
+//             }))
+
+//         console.log(findBySet(set))
+//     }
+// }
 
 
 
@@ -188,7 +207,6 @@ function searchData(arr, query) {
     for (let item of arr) {
         for (let p in item) {
             if (re.test(item[p]))
-                data.push(item[p]);
         }
     }
     return data;
