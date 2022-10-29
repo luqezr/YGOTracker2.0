@@ -17,6 +17,14 @@ main {
 
 /* NAV MENU  */
 
+.logo {
+    background-color: rgb(115, 79, 154) ;
+}
+
+.navbar-brand :hover {
+    background-color: rgb(139, 212, 80);
+    transition: 0.3s;
+}
 
 nav,
 .dropdown-menu,
@@ -28,11 +36,12 @@ nav li a,
 
 .dropdown-menu :hover {
     background-color: rgb(0, 0, 0);
-    color: rgb(139, 212, 80)
+    color: rgb(139, 212, 80);
+    transition: 0.3s;
 }
 
 .custom-toggler.navbar-toggler {
-    border-color: white;
+    border-color:  rgb(115, 79, 154);
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -46,6 +55,7 @@ nav li a,
 
 .nav-link:hover {
     color: rgb(139, 212, 80);
+    transition: 0.3s;
 }
 
 nav form button {
