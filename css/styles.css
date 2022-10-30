@@ -1,3 +1,8 @@
+img[src*="000webhost"] {
+    display: none !important;
+}
+
+
 body {
     background-image: url("/media/background.jpg");
     background-repeat: initial;
@@ -624,11 +629,52 @@ footer {
 
 /* MORE CARDS BUTTON  */
 
-.moreCardsButton {
-    color: rgb(150, 95, 212);
-    font-size: 100px;
+
+#loadMoreCards {
+    display: inline-block;
+    background-color: black;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    z-index: 8000;
+    opacity: 0;
+    visibility: hidden;
 }
 
-.moreCardsButton:hover {
-    color: rgb(139, 212, 80);
+/* back 2 top */
+#back2top {
+    display: inline-block;
+    color: rgb(150, 95, 212);
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 8000;
+}
+
+
+
+#back2top:hover,
+#loadMoreCards:hover {
+    cursor: pointer;
+    background-color: rgb(139, 212, 80);
+}
+
+
+#back2top.show,
+#loadMoreCards.show {
+    opacity: 1;
+    visibility: visible;
 }

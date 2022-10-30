@@ -11,6 +11,8 @@ var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
 var resultsPerPage = 18
 var printedResults = 19
+var scrollingValue = 6000; //distance where buttons will show
+
 
 // start webpage
 window.onload = startWebPage();
@@ -334,3 +336,37 @@ function printMoreResults(howMany) {
 
     printedResults = printedResults + howMany
 }
+
+
+// LOAD MORE CARDS BUTTON
+
+
+var moreCardsbtn = $('#loadMoreCards');
+
+$(window).scroll(function() {
+    if ($(window).scrollTop() > scrollingValue) {
+        moreCardsbtn.addClass('show');
+    } else {
+        moreCardsbtn.removeClass('show');
+    }
+});
+
+
+// BACK TO TOP BUTTON
+
+var btn = $('#back2top');
+
+$(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+        btn.addClass('show');
+    } else {
+        btn.removeClass('show');
+    }
+});
+
+btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({
+        scrollTop: 0
+    }, '300');
+});

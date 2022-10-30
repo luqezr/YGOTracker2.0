@@ -18,6 +18,9 @@
     <!-- End of Bootstrap -->
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -106,9 +109,9 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
         </div>
 
 
-        <i class="bi bi-file-plus moreCardsButton" onclick="printMoreResults(resultsPerPage)"></i>
+        <i class="bi bi-file-plus" id="loadMoreCards" onclick="printMoreResults(resultsPerPage)"></i>
 
-
+        <i class="bi bi-file-arrow-up" id="back2top"></i>
 
 
 
