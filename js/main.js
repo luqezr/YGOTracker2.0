@@ -4,13 +4,14 @@ var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
 var thisSet; // Cards for the searched set
 var sortedCards; //cards sorted by X format
-var filteredCards; // cards filtered by x format
+var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
 var filteredQueryResults;
 var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
 var resultsPerPage = 18
+var printedResults = 19
 
 // start webpage
 window.onload = startWebPage();
@@ -42,6 +43,7 @@ function queryYGOPD() {
         .then((data) => {
             allCards = data;
             sortedCards = allCards.data
+            currentCards = allCards.data
             // console.log(allCards.data); // show all cards
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
@@ -150,7 +152,7 @@ function searchCardsByNameOrDescription(value) {
 
 
 function searchByExactValue(field, value) {
-    filteredCards = allCards.data.filter((card) => card[field] === value)
+    currentCards = allCards.data.filter((card) => card[field] === value)
     // console.log(filteredCards)
 }
 
@@ -160,7 +162,7 @@ function searchByExactValue(field, value) {
 
 function searchByArchetype(value) {
     searchByExactValue("archetype", value)
-    printCards(filteredCards.length, filteredCards, title)
+    printCards(currentCards.length, currentCards, title)
 
 }
 
@@ -173,17 +175,18 @@ function findBySet(set_name) {
 
         if (allCards.data[i].card_sets) {
             for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
-                if ( allCards.data[i].card_sets[b].set_name == set_name ) {
+                if (allCards.data[i].card_sets[b].set_name == set_name) {
                     thisSet.push(allCards.data[i])
- 
-                } 
+
+                }
             }
         }
 
 
     }
 
-    printCards(thisSet.length, thisSet, title)
+    printCards(resultsPerPage, thisSet, title)
+    currentCards = thisSet
 
 }
 
@@ -212,7 +215,7 @@ function searchData(arr, query) {
     for (let item of arr) {
         for (let p in item) {
             if (re.test(item[p]))
-            data.push(item[p]);
+                data.push(item[p]);
         }
     }
     return data;
@@ -250,11 +253,11 @@ function printCards(howMany, cards, title) {
     titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
     // console.log(cards2print)
 
-    for (let i = 0; i <= (howMany - 1); i++) {
+    for (let i = 0; i <= (howMany); i++) {
         cards2print.push(sortedCards[i])
         // console.log(sortedCards[i])
         try {
-            if (howMany <= 3) {
+            if (howMany <= 5) {
                 createNormalCard(cards2print[i], "aloneCard")
             } else {
                 createNormalCard(cards2print[i])
@@ -274,7 +277,7 @@ function printSets(howMany, sets, title) {
     titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
     // console.log(cards2print)
 
-    for (let i = 0; i <= (howMany - 1); i++) {
+    for (let i = 0; i <= howMany; i++) {
         cards2print.push(sets[i])
         // console.log(sortedCards[i])
         try {
@@ -300,3 +303,17 @@ function writeTitle(title) {
 
 
 // #######################################################################
+
+// MORE RESULTS
+
+function printMoreResults(howMany) {
+
+
+    for (let i = printedResults; i < (printedResults + howMany); i++) {
+
+        createNormalCard(currentCards[i])
+
+    }
+
+    printedResults = printedResults + howMany
+}

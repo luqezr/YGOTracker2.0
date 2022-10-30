@@ -18,13 +18,14 @@ main {
 /* NAV MENU  */
 
 .logo {
-    background-color: rgb(115, 79, 154) ;
+    background-color: rgb(115, 79, 154);
 }
 
 .navbar-brand :hover {
     background-color: rgb(139, 212, 80);
     transition: 0.3s;
 }
+
 
 nav,
 .dropdown-menu,
@@ -41,7 +42,7 @@ nav li a,
 }
 
 .custom-toggler.navbar-toggler {
-    border-color:  rgb(115, 79, 154);
+    border-color: rgb(115, 79, 154);
 }
 
 .custom-toggler .navbar-toggler-icon {
@@ -141,6 +142,7 @@ form input {
 }
 
 /* ####################################################################### */
+
 
 
 /* AUTOCOMPLETE TEXT */
@@ -246,6 +248,15 @@ footer {
 
     color: #fff;
 }
+
+.cardSet {
+    color: rgb(139, 212, 80);
+}
+
+.cardSet:hover {
+    color: rgb(150, 95, 212) !important;
+}
+
 
 .scrollspy {
     position: relative;
@@ -588,9 +599,9 @@ footer {
 }
 
 
-  .sets :hover{
-    background-color: rgba(115,79,154, 0.85) !important;
-  } 
+.sets :hover {
+    background-color: rgba(115, 79, 154, 0.85) !important;
+}
 
 .sets {
     width: min-content;
