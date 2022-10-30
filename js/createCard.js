@@ -106,7 +106,7 @@ function hasArchetype(modalId, archetype) {
     } else {
         // console.log("archetype is "+archetype)
         document.getElementById(`${modalId}`).innerHTML = `
-        Archetype <span style="cursor pointer" >${archetype}</span>
+        Archetype <span style="cursor pointer">${archetype}</span>
         `
     }
 }

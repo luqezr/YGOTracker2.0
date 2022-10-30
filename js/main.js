@@ -3,7 +3,6 @@ var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
 var thisSet; // Cards for the searched set
-var sortedCards; //cards sorted by X format
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
@@ -42,12 +41,11 @@ function queryYGOPD() {
         .then((response) => response.json())
         .then((data) => {
             allCards = data;
-            sortedCards = allCards.data
             currentCards = allCards.data
             // console.log(allCards.data); // show all cards
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
-            printCards(resultsPerPage, allCards.data, title)
+            printCards(resultsPerPage, currentCards, text_NewestCards)
 
         })
 
@@ -67,9 +65,11 @@ function searchAllSets(value) {
         .then((response) => response.json())
         .then((data) => {
             allSets = data;
+            resetCurrentCards()
+            currentCards = allSets
             console.log('all sets fetched 😎')
             // console.log(allSets)
-            printSets(30, allSets, title)
+            printSets(30, allSets, text_CardResults)
 
         })
 
@@ -79,9 +79,7 @@ function searchAllSets(value) {
             // Code for handling the error
         });
 
-    // https://db.ygoprodeck.com/api/v7/cardsets.php
 
-    // printCards(filteredCards.length, filteredCards, title)
 
 }
 
@@ -105,6 +103,11 @@ async function queryYGOrg(card) {
 }
 // #######################################################################
 
+// RESET CURRENT CARDS
+function resetCurrentCards() {
+    currentCards = undefined
+}
+
 // SORTERS
 
 
@@ -127,7 +130,8 @@ function sortBy(property) { //"property" can be any value from allCards.data
 }
 
 function sortCards(value) {
-    sortedCards = allCards.data.sort(sortBy(`${value}`))
+    resetCurrentCards()
+    currentCards = allCards.data.sort(sortBy(`${value}`))
 }
 
 
@@ -138,20 +142,22 @@ function sortCards(value) {
 
 function searchCardsByNameOrDescription(value) {
     // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
+    resetCurrentCards()
     query = value.toLowerCase();
-    filteredQueryResults = allCards.data.filter((card) =>
-        `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query)
-    );
-    console.log("Results: " + filteredQueryResults.length + " cards")
+    currentCards = allCards.data.filter((card) =>
+        `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
+    console.log("Results: " + currentCards.length + " cards")
     // console.log(filteredQueryResults);
-
     // if (filteredQueryResults.length < 30 ){
-    printCards(filteredQueryResults.length, filteredQueryResults, title)
+
+    printCards(currentCards.length, currentCards, text_CardResults)
     // }
 }
 
 
 function searchByExactValue(field, value) {
+
+    resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
     // console.log(filteredCards)
 }
@@ -161,8 +167,10 @@ function searchByExactValue(field, value) {
 // WILL SEARCH "ARCHETYPES" THAT ARE EQUAL TO "BRANDED"
 
 function searchByArchetype(value) {
+
+    resetCurrentCards()
     searchByExactValue("archetype", value)
-    printCards(currentCards.length, currentCards, title)
+    printCards(currentCards.length, currentCards, text_Archetype)
 
 }
 
@@ -185,7 +193,10 @@ function findBySet(set_name) {
 
     }
 
-    printCards(resultsPerPage, thisSet, title)
+    printCards(resultsPerPage, thisSet, text_SetResults)
+
+
+    resetCurrentCards()
     currentCards = thisSet
 
 }
@@ -246,26 +257,26 @@ searchButton.addEventListener("click", function getCard(evt) {
 // PRINT IN SCREEN
 
 function printCards(howMany, cards, title) {
+
+    resetCurrentCards()
+    currentCards = cards
     cardsSection.innerHTML = ("")
-    let cards2print = []
-    cards2print = cards
 
     titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
     // console.log(cards2print)
 
-    for (let i = 0; i <= (howMany); i++) {
-        cards2print.push(sortedCards[i])
-        // console.log(sortedCards[i])
+    for (let i = 0; i < (howMany); i++) {
         try {
-            if (howMany <= 5) {
-                createNormalCard(cards2print[i], "aloneCard")
+            if (howMany < 5) {
+                createNormalCard(currentCards[i], "aloneCard")
             } else {
-                createNormalCard(cards2print[i])
+                createNormalCard(currentCards[i])
             }
         } catch (error) {
             console.error(error);
         }
     }
+
 
 }
 
@@ -279,7 +290,6 @@ function printSets(howMany, sets, title) {
 
     for (let i = 0; i <= howMany; i++) {
         cards2print.push(sets[i])
-        // console.log(sortedCards[i])
         try {
             createSet(cards2print[i])
         } catch (error) {
@@ -295,7 +305,7 @@ function printSets(howMany, sets, title) {
 
 // WRITE TITLE
 
-function writeTitle(title) {
+function writeTitle(title, howmany) {
     titlesSection.innerHTML = title
 
 }
@@ -311,7 +321,14 @@ function printMoreResults(howMany) {
 
     for (let i = printedResults; i < (printedResults + howMany); i++) {
 
-        createNormalCard(currentCards[i])
+        try {
+            createNormalCard(currentCards[i])
+        } catch (error) {
+            // console.error(error);
+            alert("No more cards!")
+            return
+        }
+
 
     }
 

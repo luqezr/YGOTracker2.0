@@ -296,6 +296,7 @@ footer {
 
 .cardArchetype span {
     color: rgb(139, 212, 80);
+    padding-left: 8px;
 }
 
 .cardArchetype span:hover {
@@ -618,4 +619,16 @@ footer {
 
 .purpleText {
     color: rgb(150, 95, 212);
+}
+
+
+/* MORE CARDS BUTTON  */
+
+.moreCardsButton {
+    color: rgb(150, 95, 212);
+    font-size: 100px;
+}
+
+.moreCardsButton:hover {
+    color: rgb(139, 212, 80);
 }
