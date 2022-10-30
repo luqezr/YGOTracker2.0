@@ -516,7 +516,7 @@ function printCardSets(modalId, card) {
            <tr>
              <th scope="row"  class="cardSet" id="set_${card.id}" onclick="findBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name}</th>
              <td>${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
-             <td>${card.card_sets[i].set_code}</td>
+             <td> ${card.card_sets[i].set_code}</td>
              <td>$${card.card_sets[i].set_price}</td>
            </tr>
     

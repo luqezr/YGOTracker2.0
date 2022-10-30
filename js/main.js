@@ -343,8 +343,9 @@ function printMoreResults(howMany) {
 
 var moreCardsbtn = $('#loadMoreCards');
 
+
 $(window).scroll(function() {
-    if ($(window).scrollTop() > scrollingValue) {
+    if ($(window).scrollTop() > 300) {
         moreCardsbtn.addClass('show');
     } else {
         moreCardsbtn.removeClass('show');
@@ -369,4 +370,16 @@ btn.on('click', function(e) {
     $('html, body').animate({
         scrollTop: 0
     }, '300');
+});
+
+// FOOTER
+
+var footer = $('#footer');
+
+$(window).scroll(function() {
+    if ($(window).scrollTop() > 300) {
+        footer.addClass('show');
+    } else {
+        footer.removeClass('show');
+    }
 });

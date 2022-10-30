@@ -15,8 +15,16 @@ main {
     /* background-color: rgba(44, 44, 44, 0.55); */
     width: 100%;
     padding: 0 !important;
+    margin-bottom: 8vh;
 
 }
+
+/* FONTS  */
+
+@font-face { 
+    font-family: CardTitle;
+    src: url(/ttf/CardTitle.ttf);
+        }
 
 /* ####################################################################### */
 
@@ -80,7 +88,7 @@ nav form button {
     color: white;
     width: 100% !important;
     font-family: CardTitle;
-    font-size: 18pt;
+    font-size: 32pt;
     padding-left: 5px;
     padding-right: 5px;
 
@@ -131,18 +139,23 @@ nav form button {
 
 
 form input {
-    background-color: #000 !important;
-    color: white !important;
+    background-color: rgb(29, 26, 47) !important;
+    color: rgb(139, 212, 80) !important;
 }
 
 #searchBar-div span,
 #searchBar-div button {
-    background-color: #000 !important;
-    color: white !important;
+    background-color: rgb(29, 26, 47) !important;
+    color: rgb(139, 212, 80) !important;
 }
 
 #searchBar-div button {
     border: none !important;
+
+}
+
+#searchBar-div button:hover{
+   color: rgb(150, 95, 212)!important;
 
 }
 
@@ -220,7 +233,14 @@ footer {
     color: #ffffff;
     justify-content: center;
     text-align: center;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;  
+    position: fixed;
+    bottom: 0vh;
+    width: 100%;
+    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    
 }
 
 /* FIN DEL FOOTER */
@@ -296,7 +316,10 @@ footer {
 
 .cardName {
     font-size: 24pt;
-    padding: 0;
+    /* padding: 0; */
+    padding-top: 2vh;
+    font-family: CardTitle;
+    font-size: 35pt;
 }
 
 .cardArchetype span {
@@ -631,50 +654,40 @@ footer {
 
 
 #loadMoreCards {
-    display: inline-block;
-    background-color: black;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 4px;
-    position: fixed;
-    bottom: 30px;
     left: 30px;
-    transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
-    z-index: 8000;
-    opacity: 0;
-    visibility: hidden;
 }
 
 /* back 2 top */
 #back2top {
-    display: inline-block;
-    color: rgb(150, 95, 212);
-    font-size: 50px;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    border-radius: 4px;
-    position: fixed;
-    bottom: 30px;
     right: 30px;
+
+}
+
+
+#back2top,
+#loadMoreCards {
+    color: rgb(139, 212, 80);
+    font-size: 70px;
+    bottom: 6vh;
+    text-align: center; 
+    display: inline-block;
+    border-radius: 4px;    
     transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 0;
     visibility: hidden;
     z-index: 8000;
+    position: fixed;
 }
-
-
 
 #back2top:hover,
 #loadMoreCards:hover {
     cursor: pointer;
-    background-color: rgb(139, 212, 80);
+    color: rgb(150, 95, 212);
 }
 
 
 #back2top.show,
-#loadMoreCards.show {
+#loadMoreCards.show, #footer.show {
     opacity: 1;
     visibility: visible;
 }
