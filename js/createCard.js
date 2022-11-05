@@ -96,7 +96,7 @@ function createNormalCard(card, view) {
         printCardSets(`cardSets_${card.id}`, card)
     }
 
-    // hasTcgReleaseDate(`releaseDate_${card.id}`, card)
+    hasTcgReleaseDate(card.id, card)
 
 }
 
@@ -119,8 +119,8 @@ function hasArchetype(modalId, archetype) {
 
 function hasTcgReleaseDate(modalId, card) {
     if (card.misc_info[0].tcg_date) {
-        document.getElementById(`releaseDate_${modalId}`).innerHTML = `
-    // TCG Release Date : ${card.misc_info[0].tcg_date}
+        document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = `
+    TCG Release Date : ${card.misc_info[0].tcg_date}
     `
     }
 }
@@ -550,7 +550,7 @@ function createSet(sets) {
 
             <div class="setImage"> 
             <div class='cardInfo'>
-            <span><h5 class="purpleText"><a  style="cursor: pointer" id="${setCode}" class='getBySet'  onclick="findBySet('${setName}')" > ${setName} </a><br>${setQuantity} // ${setCode} //  ${setDate}</h5></span> 
+            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="findBySet('${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
                 <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 

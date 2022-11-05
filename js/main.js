@@ -3,6 +3,7 @@ var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
 var thisSet; // Cards for the searched set
+var sets=false; //show true for load more sets button
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
@@ -320,20 +321,38 @@ function writeTitle(title, howmany) {
 
 function printMoreResults(howMany) {
 
+    // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
+    if (sets == true) {
+        for (let i = printedResults; i < (printedResults + howMany); i++) {
 
-    for (let i = printedResults; i < (printedResults + howMany); i++) {
+            try {
+                createSet(currentCards[i])
+            } catch (error) {
+                // console.error(error);
+                alert("No more cards!")
+                return
+            }
 
-        try {
-            createNormalCard(currentCards[i])
-        } catch (error) {
-            // console.error(error);
-            alert("No more cards!")
-            return
+
         }
 
 
-    }
+    } else {
 
+            for (let i = printedResults; i < (printedResults + howMany); i++) {
+
+                try {
+                    createNormalCard(currentCards[i])
+                } catch (error) {
+                    // console.error(error);
+                    alert("No more cards!")
+                    return
+                }
+
+
+            }
+
+    }
     printedResults = printedResults + howMany
 }
 
