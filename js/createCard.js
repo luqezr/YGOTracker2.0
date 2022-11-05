@@ -7,11 +7,14 @@ function createNormalCard(card, view) {
     if (view) {
         cardsSection.innerHTML += `
             <div class="modal-body aloneCard" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
-            <div class="cardHeader">
+            <div class="cardHeader"  >
             <img src="${card.card_images[0].image_url}" alt="${card.name}" >
             </div>
             <div class="cardInfo  scrollspy">
-              <p class="cardName">${card.name}</p>
+              <span class="cardName" >
+                <p>${card.name}</p>
+                <span id="cardName_${card.id}"></span>
+              </span>
               <p class="cardSubTitle" id="cardSubTitle_${card.id}">
                 <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
                 <br>
@@ -44,11 +47,14 @@ function createNormalCard(card, view) {
     <div class="modal-dialog">
       <div class="modal-content" >
         <div class="modal-body" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
-          <div class="cardHeader">
+          <div class="cardHeader" >
           <img src="${card.card_images[0].image_url}" alt="${card.name}" >
           </div>
           <div class="cardInfo  scrollspy">
-            <p class="cardName">${card.name}</p>
+              <span class="cardName" >
+              <p>${card.name}</p>
+              <span id="cardName_${card.id}"></span>
+            </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
               <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
               <br>
@@ -79,12 +85,12 @@ function createNormalCard(card, view) {
 
     hasArchetype(`archetype_${card.id}`, card.archetype)
     if (card.attribute) {
-        whichAttribute(`cardSubTitle_${card.id}`, card.attribute, card)
+        whichAttribute(`cardName_${card.id}`, card.attribute, card)
     } else {
         document.getElementById(`cardSets_${card.id}`).innerHTML = `No prints for this card in TCG yet. `
     }
-    whichRace(`cardSubTitle_${card.id}`, card.race, card)
-    whichType(`cardSubTitle_${card.id}`, card.type, card)
+    whichRace(`cardName_${card.id}`, card.race, card)
+    whichType(`cardName_${card.id}`, card.type, card)
 
     if (card.card_sets) {
         printCardSets(`cardSets_${card.id}`, card)

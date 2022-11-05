@@ -314,7 +314,7 @@ footer {
     max-height: 614px;
 }
 
-.cardName {
+.cardName p {
     font-size: 24pt;
     /* padding: 0; */
     padding-top: 2vh;
@@ -322,6 +322,12 @@ footer {
     font-size: 35pt;
 }
 
+.cardName span {   
+    font-family: CardTitle;
+    font-size: 20pt;
+    text-align: center;
+
+}
 .cardArchetype span {
     color: rgb(139, 212, 80);
     padding-left: 8px;
