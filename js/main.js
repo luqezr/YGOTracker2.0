@@ -314,6 +314,21 @@ function writeTitle(title, howmany) {
 }
 
 
+function changeResolution(id) {
+        // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
+        var width = window.screen.width
+        var height = window.screen.height
+        // console.log(width+"px width and "+ height + "px height")
+
+        // MOVE:
+        // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
+        // COPY:
+        // jQuery("#NodesToMove").appendTo('#DestinationContainerNode')
+        jQuery( `#cardName_${id}`).detach().appendTo( `#cardHeader_${id}`)
+        jQuery( `#cardSubTitle_${id}`).detach().appendTo( `#cardHeader_${id}`)
+        
+}
+
 
 // #######################################################################
 

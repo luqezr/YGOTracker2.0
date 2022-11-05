@@ -7,13 +7,17 @@ function createNormalCard(card, view) {
     if (view) {
         cardsSection.innerHTML += `
             <div class="modal-body aloneCard" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
-            <div class="cardHeader"  >
-            <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+            <div class="cardHeader">
+            <div> 
+              <img src="${card.card_images[0].image_url}" alt="${card.name}" >  
+            </div>
+            <div id="cardHeader_${card.id}"> </div>
             </div>
             <div class="cardInfo  scrollspy">
               <span class="cardName" >
+                <span id="cardName_${card.id}">
                 <p>${card.name}</p>
-                <span id="cardName_${card.id}"></span>
+                </span>
               </span>
               <p class="cardSubTitle" id="cardSubTitle_${card.id}">
                 <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
@@ -47,13 +51,17 @@ function createNormalCard(card, view) {
     <div class="modal-dialog">
       <div class="modal-content" >
         <div class="modal-body" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
-          <div class="cardHeader" >
-          <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+          <div class="cardHeader">
+            <div> 
+            <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+            </div>
+            <div id="cardHeader_${card.id}"> </div>
           </div>
           <div class="cardInfo  scrollspy">
               <span class="cardName" >
+              <span id="cardName_${card.id}">
               <p>${card.name}</p>
-              <span id="cardName_${card.id}"></span>
+              </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
               <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
@@ -97,6 +105,13 @@ function createNormalCard(card, view) {
     }
 
     hasTcgReleaseDate(card.id, card)
+
+
+
+    // CHECK RESOLUTION 
+    if (window.screen.width < 400) {
+      changeResolution(card.id)
+    }
 
 }
 

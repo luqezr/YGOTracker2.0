@@ -4,6 +4,7 @@ img[src*="000webhost"] {
 
 
 body {
+    background-color: black;
     background-image: url("/media/background.jpg");
     background-repeat: initial;
     /* background-repeat: repeat-y; */
@@ -734,6 +735,16 @@ footer {
         width: 150px;
     }
 
+    
+    .cardInfo span {
+
+        font-size: 25pt;
+    }
+    
+    .cardInfo p , .cardSubTitle {
+        font-size: 23pt !important;
+    }
+
     .cardHeader img{
         width: 80px;
     }
@@ -756,8 +767,44 @@ footer {
         width: 100px;
     }
 
+    .cardHeader {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .cardHeader span {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        
+        font-size: 9pt;
+    }
+
+    .iconsSprite{
+        
+    }
+
+    .cardHeader .cardSubTitle {
+        display: flex;
+        flex-direction: row;
+        font-size: 9pt;
+    } 
+
+
     .cardHeader img{
         width: 80px;
     }
+
+    .cardInfo span {
+
+        font-size: 15pt;
+    }
+    
+    .cardInfo p,  .cardSubTitle span {
+        font-size: 10pt !important;
+    }
+
+
 
 }
