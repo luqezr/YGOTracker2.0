@@ -122,6 +122,7 @@ nav form button {
 
 .cardInfo{
     font-family: CardEffect;
+    padding: 12px;
     /* text-decoration: none; */
     /* text-transform: capitalize; */
 }
@@ -162,8 +163,10 @@ form input {
 
 #searchBar-div span,
 #searchBar-div button {
-    background-color: rgb(29, 26, 47) !important;
-    color: rgb(139, 212, 80) !important;
+    /* background-color: rgb(29, 26, 47) !important; */
+
+    background-color: rgba(0, 0, 0, 1);
+    color: rgb(150, 95, 212)!important;
 }
 
 #searchBar-div button {
@@ -172,7 +175,7 @@ form input {
 }
 
 #searchBar-div button:hover{
-   color: rgb(150, 95, 212)!important;
+   color: rgb(139, 212, 80) !important;
 
 }
 
@@ -289,6 +292,9 @@ footer {
 .modal-content table {
 
     color: #fff;
+
+    text-align: center;
+    vertical-align: middle;
 }
 
 .cardSet {
@@ -332,11 +338,12 @@ footer {
 }
 
 .cardName p {
-    font-size: 24pt;
     /* padding: 0; */
     padding-top: 2vh;
     font-family: CardTitle;
-    font-size: 35pt;
+    font-size: 38pt;
+    /* overflow: hidden; */
+    white-space: nowrap;
 }
 
 .cardName span {   
@@ -663,7 +670,7 @@ footer {
 
 }
 
-.sets :hover {
+.set:hover {
     background-color: rgba(115, 79, 154, 0.85) !important;
     transition: 0.3s;
 }
@@ -672,7 +679,11 @@ footer {
     width: min-content;
     background-color: rgba(0, 0, 0, 0.85);
     margin: 15px 5px 15px 5px;
-    /* padding: 6px 8px 6px 8px; */
+}
+
+.setGrid {
+
+    padding: 6px 8px 6px 8px;
 }
 
 
@@ -767,6 +778,12 @@ footer {
         width: 100px;
     }
 
+
+    .iconsSprite{
+        width: 0;
+        height: 0;
+    }
+
     .cardHeader {
         display: flex;
         flex-direction: row;
@@ -776,14 +793,11 @@ footer {
     .cardHeader span {
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: space-evenly;
         
         font-size: 9pt;
     }
 
-    .iconsSprite{
-        
-    }
 
     .cardHeader .cardSubTitle {
         display: flex;
@@ -799,6 +813,10 @@ footer {
     .cardInfo span {
 
         font-size: 15pt;
+    }
+
+    .table th, .table td{
+        font-size: 9pt
     }
     
     .cardInfo p,  .cardSubTitle span {
