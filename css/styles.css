@@ -652,6 +652,15 @@ footer {
     background-position: -448px -64px;
 }
 
+/* Pendulum Scales */
+
+.penScaleRight{
+    background-position: -32px -288px;
+}
+.penScaleLeft {
+    background-position: 0px -288px;
+}
+
 /* BAN STATUS  */
 
 .unlimited {

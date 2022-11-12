@@ -4,12 +4,19 @@ function createNormalCard(card, view) {
     // console.log(card)
     // let desc = card.desc.replace(/\./g, '. <br/>');
 
+    let desc1 = card.desc.replace('----------------------------------------', '. <br/>');
+    let desc2 = desc1.replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/>' )
+    let desc3 = desc2.replace('[ Monster Effect ]', ' [ Monster Effect ] <br/>' )
+  
+    let desc = desc3
+
+
     if (view) {
         cardsSection.innerHTML += `
             <div class="modal-body aloneCard" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div class="cardHeader">
             <div> 
-              <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >  
+              <img src="${card.card_images[0].image_url}" alt="${card.name}" >  
             </div>
             <div id="cardHeader_${card.id}"> </div>
             </div>
@@ -27,7 +34,7 @@ function createNormalCard(card, view) {
                 <span id="releaseDateTCG_${card.id}"> </span>
               </p>
               <p class="cardDescription">
-                ${card.desc} 
+                ${desc} 
               </p>
               <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
               </p>
@@ -41,7 +48,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" > 
-  <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
   </div>
 
   <div class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="card_${card.id}" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
@@ -50,7 +57,7 @@ function createNormalCard(card, view) {
         <div class="modal-body" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
           <div class="cardHeader">
             <div> 
-            <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >
+            <img src="${card.card_images[0].image_url}" alt="${card.name}" >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -68,7 +75,7 @@ function createNormalCard(card, view) {
               <span id="releaseDateTCG_${card.id}"> </span>
             </p>
             <p class="cardDescription">
-              ${card.desc} 
+              ${desc} 
             </p>
             <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
             </p>
@@ -110,7 +117,12 @@ function createNormalCard(card, view) {
 }
 
 function checkPendulumScales(modalId, card){
-  console.log("needs working")
+  // console.log("needs working")
+  if (card.type.includes('Pendulum')) {
+    document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite penScaleLeft"></span>  ${card.scale} <span class="iconsSprite penScaleRight"></span> </span>
+    `
+  }
 }
 
 function levelOrRankOrLink(modalId, card ) {
