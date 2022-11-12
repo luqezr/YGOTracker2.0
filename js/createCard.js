@@ -1,15 +1,15 @@
 // CREATE CARD
 
 function createNormalCard(card, view) {
-
     // console.log(card)
+    // let desc = card.desc.replace(/\./g, '. <br/>');
 
     if (view) {
         cardsSection.innerHTML += `
             <div class="modal-body aloneCard" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div class="cardHeader">
             <div> 
-              <img src="${card.card_images[0].image_url}" alt="${card.name}" >  
+              <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >  
             </div>
             <div id="cardHeader_${card.id}"> </div>
             </div>
@@ -21,13 +21,10 @@ function createNormalCard(card, view) {
               </span>
               <p class="cardSubTitle" id="cardSubTitle_${card.id}">
                 <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
-                <br>
                 <span> ID : ${card.id} </span>
                 <br>
                 <span id"releaseDate_${card.id}"> OCG Release Date : ${card.misc_info[0].ocg_date} </span>
-                <br>
                 <span id="releaseDateTCG_${card.id}"> </span>
-                <br>
               </p>
               <p class="cardDescription">
                 ${card.desc} 
@@ -44,7 +41,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" > 
-  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >
   </div>
 
   <div class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="card_${card.id}" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
@@ -53,7 +50,7 @@ function createNormalCard(card, view) {
         <div class="modal-body" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
           <div class="cardHeader">
             <div> 
-            <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+            <img src="${card.card_images[0].image_url_small}" alt="${card.name}" >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -65,13 +62,10 @@ function createNormalCard(card, view) {
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
               <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
-              <br>
               <span> ID : ${card.id} </span>
               <br>
               <span id"releaseDate_${card.id}"> OCG Release Date : ${card.misc_info[0].ocg_date} </span>
-              <br>
               <span id="releaseDateTCG_${card.id}"> </span>
-              <br>
             </p>
             <p class="cardDescription">
               ${card.desc} 
@@ -92,18 +86,18 @@ function createNormalCard(card, view) {
 
 
     hasArchetype(`archetype_${card.id}`, card.archetype)
-    if (card.attribute) {
-        whichAttribute(`cardName_${card.id}`, card.attribute, card)
-    } else {
-        document.getElementById(`cardSets_${card.id}`).innerHTML = `No prints for this card in TCG yet. `
-    }
+    checkBanStatus(`cardName_${card.id}`, card)
+    levelOrRankOrLink(`cardName_${card.id}`, card)
+    checkPendulumScales(`cardName_${card.id}`, card)
+    if(card.attribute) {whichAttribute(`cardName_${card.id}`, card)}
     whichRace(`cardName_${card.id}`, card.race, card)
     whichType(`cardName_${card.id}`, card.type, card)
 
     if (card.card_sets) {
         printCardSets(`cardSets_${card.id}`, card)
+      }else {
+        document.getElementById(`cardSets_${card.id}`).innerHTML = `No prints for this card in TCG yet. `
     }
-
     hasTcgReleaseDate(card.id, card)
 
 
@@ -115,9 +109,49 @@ function createNormalCard(card, view) {
 
 }
 
+function checkPendulumScales(modalId, card){
+  console.log("needs working")
+}
 
-// let levelOrRank =  
+function levelOrRankOrLink(modalId, card ) {
+  if (card.type=="Link Monster"){
+    // console.log("link here")
+    document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite cardLink"></span>  ${card.linkval} </span>
+    `
+  } else if (card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster") {
+    // console.log("xyz here")
+    document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite cardRank"></span>  ${card.level} </span>
+    `
+  } else if (card.level){
+    document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite cardLevel"></span>  ${card.level} </span>
+    `
+  }
 
+}  
+
+function checkBanStatus (modalId, card) {
+    if (card.banlist_info){
+      if (card.banlist_info.ban_tcg) {
+      console.log(card.banlist_info.ban_tcg)
+      document.getElementById(modalId).innerHTML += `
+      <span> <span class="iconsSprite ${card.banlist_info.ban_tcg.toLowerCase() }"></span>  ${card.banlist_info.ban_tcg} </span>
+      `
+      }
+      else {
+          document.getElementById(modalId).innerHTML += ` 
+      <span> <span class="iconsSprite unlimited"></span> Unlimited </span>
+      `
+      }
+    } else {
+
+      document.getElementById(modalId).innerHTML += ` 
+      <span> <span class="iconsSprite unlimited"></span> Unlimited </span>
+      `
+    }
+}
 
 function hasArchetype(modalId, archetype) {
 
@@ -127,15 +161,14 @@ function hasArchetype(modalId, archetype) {
     } else {
         // console.log("archetype is "+archetype)
         document.getElementById(`${modalId}`).innerHTML = `
-        Archetype <span style="cursor pointer">${archetype}</span>
-        `
+        Archetype : <span style="cursor pointer">${archetype}</span>`
     }
 }
 
 function hasTcgReleaseDate(modalId, card) {
     if (card.misc_info[0].tcg_date) {
         document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = `
-    TCG Release Date : ${card.misc_info[0].tcg_date}
+    // TCG Release Date : ${card.misc_info[0].tcg_date}
     `
     }
 }
@@ -143,15 +176,20 @@ function hasTcgReleaseDate(modalId, card) {
 
 function whichType(modalId, type, card) {
     let cardType = card.type.replace(/\s/g, '');
-    if (type == "Spell Card" | type == "Trap Card") {
+    if (type == "Spell Card" || type == "Trap Card" || type == "Skill Card") {
         // console.log("trap or magic card detected")
         if (type == "Spell Card") {
             document.getElementById(modalId).innerHTML += `
           <span> <span class="iconsSprite spellCard"></span> ${card.type} </span>
           `
         } else if (type == "Trap Card") {
+          document.getElementById(modalId).innerHTML += `
+          <span> <span class="iconsSprite trapCard"></span> ${card.type} </span>
+          `
+          } else if (type == "Skill Card") {
+            console.log("skill card")
             document.getElementById(modalId).innerHTML += `
-            <span> <span class="iconsSprite trapCard"></span> ${card.type} </span>
+            <span> <span class="iconsSprite skillCard"></span> ${card.type} </span>
             `
         }
     } else {
@@ -234,8 +272,14 @@ function whichType(modalId, type, card) {
           `
         }
 
-        document.getElementById(modalId).innerHTML += `
-        <span> <span class="iconsSprite cardLevel"></span>  ${card.level} </span>
+        if (card.atk == undefined || card.atk == null) { 
+          card.atk = " - "
+      }
+      if (card.def == undefined || card.def == null) { 
+          card.def = " - "
+      }
+
+      document.getElementById(modalId).innerHTML += ` 
         <br>
         <span> <span class="iconsSprite cardAtk"></span>  ${card.atk} </span>
         <span> <span class="iconsSprite cardDef"></span>  ${card.def} </span>
@@ -244,11 +288,11 @@ function whichType(modalId, type, card) {
     }
 }
 
-function whichAttribute(modalId, attribute, card) {
-    let cardAttribute = card.attribute.toLowerCase();
+function whichAttribute(modalId, card) {
+    let cardAttribute = card.attribute.toLowerCase()
     // console.log(cardRace)
-
-
+ 
+    
     if (cardAttribute == "light") {
         document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite light"></span>  ${card.attribute} </span>
@@ -302,7 +346,7 @@ function whichAttribute(modalId, attribute, card) {
     <span> <span class="iconsSprite trap"></span>  ${card.attribute} </span>
     `
     }
-
+    
 }
 
 function whichRace(modalId, race, card) {
@@ -548,7 +592,7 @@ function printCardSets(modalId, card) {
 
 
 function createSet(sets) {
-
+  
     let setName = sets.set_name
     let setCode = sets.set_code
     let setDate = sets.tcg_date

@@ -363,7 +363,7 @@ footer {
 }
 
 .cardSubTitle {
-    padding: 0px 0px 10px 0px;
+    padding: 0px !important;
     font-size: 15pt;
     align-items: center;
 }
@@ -393,6 +393,12 @@ footer {
 .cardLevel {
     background-position: -192px -288px;
 }
+
+
+.cardRank {
+    background-position: -416px -416px;
+}
+
 
 .cardRace {
     background-position: 0 32px;
@@ -641,6 +647,31 @@ footer {
 .trap {
     background-position: -448px -64px;
 }
+
+.skill {
+    background-position: -448px -64px;
+}
+
+/* BAN STATUS  */
+
+.unlimited {
+    background-position: -64px -416px;
+}
+
+.semi-limited {
+    background-position: -32px -416px;
+}
+
+.limited {
+    background-position: 0px -416px;
+}
+
+
+.banned {
+    background-position: -448px -480px;
+}
+
+
 
 
 

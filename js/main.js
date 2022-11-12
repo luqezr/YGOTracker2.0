@@ -46,6 +46,10 @@ function queryYGOPD() {
             allCards = data;
             currentCards = allCards.data
             // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, currentCards, text_NewestCards)
@@ -179,7 +183,7 @@ function searchByArchetype(value) {
 
 // FIND BY SET 
 
-function findBySet(set_name) {
+function searchBySet(set_name) {
     let thisSet = []
 
     for (let i = 0; i < allCards.data.length; i++) {
