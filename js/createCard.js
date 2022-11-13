@@ -35,7 +35,7 @@ function createNormalCard(card, view) {
                 </span>
               </span>
               <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-                <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
+                <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
                 <span> ID : ${card.id} </span>
                 <br>
                 <span id="releaseDateOCG_${card.id}"></span>
@@ -62,7 +62,7 @@ function createNormalCard(card, view) {
 
 
         cardsSection.innerHTML += `
-  <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" > 
+  <div class="card" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> 
   <img src="${card.card_images[0].image_url}" alt="${card.name}" >
   </div>
 
@@ -83,7 +83,7 @@ function createNormalCard(card, view) {
               </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
               <span> ID : ${card.id} </span>
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
@@ -210,7 +210,7 @@ function hasArchetype(modalId, archetype) {
     } else {
         // console.log("archetype is "+archetype)
         document.getElementById(`${modalId}`).innerHTML = `
-        Archetype : <span style="cursor pointer">${archetype} </span> // `
+        Archetype : <span style="cursor pointer">${archetype} </span> / `
     }
 }
 
@@ -222,8 +222,12 @@ function hasOcgReleaseDate(modalId, card) {
   }
 }
 function hasTcgReleaseDate(modalId, card) {
+  if (card.misc_info[0].ocg_date && card.misc_info[0].tcg_date){
+    document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = ` / `
+  }
+
   if (card.misc_info[0].tcg_date) {
-      document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = `
+      document.getElementById(`releaseDateTCG_${modalId}`).innerHTML += `
    TCG Release Date : ${card.misc_info[0].tcg_date}
   `
   }

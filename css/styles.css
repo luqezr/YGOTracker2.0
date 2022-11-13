@@ -59,12 +59,15 @@ main {
 }
 
 
+
 nav,
 .dropdown-menu,
 nav li a,
 .dropdown-item {
     background-color: black;
     color: white;
+    font-family: CardTitle;
+    font-size: 24pt;
 }
 
 .dropdown-menu :hover {
@@ -375,6 +378,7 @@ footer {
     font-size: 17pt;
     overflow: hidden;
     white-space: nowrap;
+    text-align: start;
 
 }
 
@@ -830,6 +834,19 @@ footer {
         width: 100px;
     }
 
+    .cardHeader {
+        flex-direction: column;
+
+    }
+
+
+    .modal-body .cardHeader img{
+        width: 270px;
+        padding: 1%;
+    }
+    .modal img{
+        width: 180px;
+    }
     
     .cardInfo span {
 
@@ -879,6 +896,11 @@ footer {
     #back2top, #loadMoreCards{
         font-size: 40px;
     }
+
+
+   
+
+
 }
 
 
