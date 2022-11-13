@@ -45,9 +45,9 @@ function createNormalCard(card, view) {
                 ${desc} 
               </p>
               <p> 
-              <span href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </span> / 
-              <span href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </span> / 
-              <span href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </span>
+              <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
+              <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
+              <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
               <br>
               <span id='cardFormats_${card.id}' >Card Formats :</span>
               </p>
@@ -93,9 +93,9 @@ function createNormalCard(card, view) {
               ${desc} 
             </p>
             <p> 
-            <span href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </span> / 
-            <span href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </span> / 
-            <span href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </span>
+            <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
+            <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
+            <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
             <br>
             <span id='cardFormats_${card.id}' >Card Formats :</span>
             </p>

@@ -52,7 +52,7 @@ function queryYGOPD() {
             // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
-            printCards(resultsPerPage, currentCards, text_NewestCards)
+            printCards(resultsPerPage, currentCards, text_NewestCards1, '', text_NewestCards2)
 
         })
 
@@ -76,7 +76,7 @@ function searchAllSets(value) {
             currentCards = allSets
             console.log('all sets fetched 😎')
             // console.log(allSets)
-            printSets(30, allSets, text_CardResults)
+            printSets(30, allSets, text_CardResults1)
 
         })
 
@@ -157,7 +157,7 @@ function searchCardsByNameOrDescription(value) {
     // console.log(filteredQueryResults);
     // if (filteredQueryResults.length < 30 ){
 
-    printCards(currentCards.length, currentCards, text_CardResults)
+    printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
     // }
 }
 
@@ -177,7 +177,9 @@ function searchByArchetype(value) {
 
     resetCurrentCards()
     searchByExactValue("archetype", value)
-    printCards(currentCards.length, currentCards, text_Archetype)
+    printCards(currentCards.length, currentCards, '<span class="greenText">'+currentCards.length+'</span>', text_Archetype1+'<span class="purpleText">'+value+'</span> ' , text_Archetype2)
+
+
 
 }
 
@@ -200,7 +202,7 @@ function searchBySet(set_name) {
 
     }
 
-    printCards(resultsPerPage, thisSet, text_SetResults)
+    printCards(thisSet.length, thisSet, '<span class="greenText">'+thisSet.length+'</span>', text_SetResults1+'<span class="purpleText">'+set_name+'</span> ', text_SetResults2)
 
 
     resetCurrentCards()
@@ -225,9 +227,9 @@ function searchByFormat(format) {
 
     }
 
-    printCards(resultsPerPage, thisFormat, text_SetResults)
+    printCards(resultsPerPage, thisFormat, '<span class="greenText">'+thisFormat.length+'</span>'+text_FormatResults1, '<span class="purpleText">'+format+'</span>', text_FormatResults2)
 
-
+    console.log(thisFormat.length+ ' cards from the format '+format)
     resetCurrentCards()
     currentCards = thisFormat
 
@@ -288,13 +290,13 @@ searchButton.addEventListener("click", function getCard(evt) {
 
 // PRINT IN SCREEN
 
-function printCards(howMany, cards, title) {
+function printCards(howMany, cards, title1, title2, title3) {
 
     resetCurrentCards()
     currentCards = cards
     cardsSection.innerHTML = ("")
 
-    titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
+    titlesSection.innerHTML = title1 +title2 + title3
     // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {

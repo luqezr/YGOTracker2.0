@@ -769,6 +769,10 @@ footer {
     color: rgb(139, 212, 80);
 }
 
+.greenText a {
+    text-decoration: none;
+}
+
 .greenText:hover {
     color: rgb(150, 95, 212);
 }

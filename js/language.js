@@ -1,9 +1,16 @@
 // PAGE
 
-var text_CardResults = "Card results : "
-var text_NewestCards = "Newest Cards "
-var text_Archetype = "Cards from the Archetype : "
-var text_SetResults = " cards from the set "
+var text_CardResults1 = "Card results : "
+var text_CardResults2 = " "
+var text_NewestCards1 = "Newest Cards "
+var text_NewestCards2 = ""
+var text_Archetype1 = " cards from the Archetype "
+var text_Archetype2 = " "
+var text_SetResults1 = " cards from the set "
+var text_SetResults2 = " "
+var text_FormatResults1 = " cards from the format "
+var text_FormatResults2 = " "
+
 
 
 
