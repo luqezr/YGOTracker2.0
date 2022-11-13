@@ -166,7 +166,7 @@ function levelOrRankOrLink(modalId, card ) {
   if (card.type=="Link Monster"){
     // console.log("link here")
     document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite cardLink"></span>  ${card.linkval} </span>
+    <span> <span class="iconsSprite linkRate"></span>  ${card.linkval} </span>
     `
   } else if (card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster") {
     // console.log("xyz here")
@@ -254,11 +254,22 @@ function whichType(modalId, type, card) {
         }
     } else {
         // console.log("type is "+type)
-        if (type == "Normal Monster") {
-            document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite normalMonster"></span>  ${card.type.toUpperCase()} </span>
-          `
+        if (type == "Toon Monster") {
+          document.getElementById(modalId).innerHTML += `
+        <span> <span class="iconsSprite toonMonster"></span>  TOON </span>
+        `
+        if (card.misc_info[0].has_effect == 1) {
+          document.getElementById(modalId).innerHTML += `  
+        <span> <span class="iconsSprite effectMonster"></span>  EFFECT MONSTER </span>
+         `  
         }
+      }
+
+      if (type == "Normal Monster") {
+          document.getElementById(modalId).innerHTML += `
+        <span> <span class="iconsSprite normalMonster"></span>  ${card.type.toUpperCase()} </span>
+        `
+      }
 
         if (type == "Effect Monster" || type == "Flip Effect Monster" || type == "Flip Effect Monster") {
             document.getElementById(modalId).innerHTML += `
@@ -280,7 +291,7 @@ function whichType(modalId, type, card) {
 
         if (type == "Synchro Monster" || type == "Synchro Tuner Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite synchroMonster"></span>  ${card.type.toUpperCase()} </span>
+          <span> <span class="iconsSprite synchroMonster"></span> <span class="iconsSprite tuner"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
@@ -291,8 +302,9 @@ function whichType(modalId, type, card) {
         }
 
         if (type == "Gemini Monster") {
+          card.type = "Gemini"
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite geminiMonster"></span>  ${card.type.toUpperCase()} </span>
+          <span> <span class="iconsSprite geminiMonster gemini"></span>  ${card.type.toUpperCase()} EFFECT MONSTER </span>
           `
         }
 
@@ -620,10 +632,10 @@ function printCardSets(modalId, card) {
           <table class="table table-bordered" >
           <thead>
             <tr>
-              <th scope="col">Set</th>
-              <th scope="col">Rarity</th>
-              <th scope="col">Set Code</th>
-              <th scope="col" data-toggle="tooltip" data-placement="top" title="Shown price is the average price for that card of that specific set, the price is expresed in US dolars">Price</th>
+              <th scope="col" class="tableHead">Set</th>
+              <th scope="col"class="tableHead">Rarity</th>
+              <th scope="col"class="tableHead">Set Code</th>
+              <th scope="col"class="tableHead" data-toggle="tooltip" data-placement="top" title="Shown price is the average price for that card of that specific set, the price is expresed in US dolars">Price</th>
             </tr>
           </thead>
           
@@ -639,10 +651,10 @@ function printCardSets(modalId, card) {
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="searchBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
-             <td>${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
-             <td> ${card.card_sets[i].set_code}</td>
-             <td>$ ${card.card_sets[i].set_price}</td>
+             <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick="searchBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
+             <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
+             <td class="tableBody"  onclick="changeCardPicture()"> ${card.card_sets[i].set_code}</td>
+             <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
            </tr>
     
     `

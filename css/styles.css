@@ -319,9 +319,25 @@ footer {
     color: #fff;
     text-align: center;
     vertical-align: middle;
-    font-family: CardTitle;
-    font-size: 18pt;
 }
+
+
+.tableHead {
+    font-family: CardTable;
+    font-size: 15pt;
+    font-weight: 100;
+}
+
+.tableBody{
+    font-family: CardTable;
+    font-size: 15pt;
+    font-weight: 100;
+}
+
+.modal-content table th, .modal-content table td {
+    margin: 0px !important;
+    padding: 0px !important;
+} 
 
 .cardSet {
     color: rgb(139, 212, 80);
@@ -402,7 +418,7 @@ footer {
 .cardSubTitle {
     padding: 0px !important;
     font-family: CardTable;
-    font-size: 13pt;
+    font-size: 14pt;
     font-weight: 400;
     align-items: center;
 }
@@ -415,7 +431,7 @@ footer {
 }
 
 .cardDescription {
-    font-size: 13pt;
+    font-size: 16pt;
     font-weight: lighter;
 }
 
@@ -454,6 +470,14 @@ footer {
 
 .geminiMonster {
     background-position: -160px 0px;
+}
+
+.gemini {
+    background-position: -256px -192px;
+}
+
+.toonMonster{
+    background-position: -224px -192px;
 }
 
 .ritualMonster {
@@ -701,6 +725,11 @@ footer {
     background-position: 0px -288px;
 }
 
+/* Link Value */
+.linkRate {
+    background-position: -64px -288px;
+}
+
 /* BAN STATUS  */
 
 .unlimited {
@@ -829,14 +858,19 @@ footer {
 }
 
 
-@media (max-width: 740px) { 
+@media (max-width: 947px) { 
+
     .card {
-        width: 100px;
+        width: 150px;
     }
 
     .cardHeader {
         flex-direction: column;
 
+    }
+    .modal-body .cardHeader img{
+        width: 320px;
+        padding: 1%;
     }
 
 
