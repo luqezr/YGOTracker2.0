@@ -2,6 +2,14 @@ img[src*="000webhost"] {
     display: none !important;
 }
 
+body, .fade {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+ body::-webkit-scrollbar, .fade::-webkit-scrollbar {
+    display: none;
+    }
 
 body {
     background-color: black;
@@ -32,6 +40,11 @@ main {
     src: url(/ttf/CardEffect.ttf);
         }
         
+@font-face { 
+    font-family: CardTable;
+    src: url(/ttf/CardTable.ttf);
+        }
+                
 /* ####################################################################### */
 
 /* NAV MENU  */
@@ -125,6 +138,12 @@ nav form button {
     padding: 12px;
     /* text-decoration: none; */
     /* text-transform: capitalize; */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.cardInfo::-webkit-scrollbar {
+    display: none;
 }
 
 .aloneCard {
@@ -159,6 +178,7 @@ nav form button {
 form input {
     background-color: rgb(29, 26, 47) !important;
     color: rgb(139, 212, 80) !important;
+    font-family: CardEffect;
 }
 
 #searchBar-div span,
@@ -230,6 +250,7 @@ input[type="submit"] {
     background-color: rgb(29, 26, 47);
     color: rgb(139, 212, 80);
     border-bottom: 1px solid #d4d4d4;
+    font-family: CardEffect;
 }
 
 /*when hovering an item:*/
@@ -272,7 +293,7 @@ footer {
 /* CARD MODALS */
 
 .card {
-    width: 300px;
+    width: 230px;
     padding: 6px 8px 6px 8px;
     background-color: rgba(29, 26, 47, 0.55);
 }
@@ -287,14 +308,16 @@ footer {
     /* width: 80vh !important */
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
+    
 }
 
 .modal-content table {
 
     color: #fff;
-
     text-align: center;
     vertical-align: middle;
+    font-family: CardTitle;
+    font-size: 18pt;
 }
 
 .cardSet {
@@ -310,14 +333,22 @@ footer {
     position: relative;
     overflow: auto;
     height: auto;
+    width: 100%;
 }
 
 .modal-body {
     display: flex;
     justify-content: space-evenly;
+    /* width: 100%; */
+    /* width: 8vh !important; */
     max-height: 95vh;
-    /* width: 80vh I!important; */
 
+}
+
+.modal-dialog {
+    /* max-width: fit-content !important; */
+    max-width: 95%;
+    
 }
 
 .tbody {
@@ -333,22 +364,24 @@ footer {
 }
 
 .cardHeader img {
-    max-width: 421px;
-    max-height: 614px;
+    max-width: 380px;
+    max-height: 554px;
 }
 
 .cardName p {
     /* padding: 0; */
     padding-top: 2vh;
-    font-family: CardTitle;
-    font-size: 38pt;
-    /* overflow: hidden; */
+    font-family: CardTable;
+    font-size: 17pt;
+    overflow: hidden;
     white-space: nowrap;
+
 }
 
 .cardName span {   
-    font-family: CardTitle;
-    font-size: 28pt;
+    font-family: CardEffect;
+    font-size: 15pt;
+    font-weight: 500;
     text-align: center;
     vertical-align: middle;
 
@@ -364,7 +397,9 @@ footer {
 
 .cardSubTitle {
     padding: 0px !important;
-    font-size: 15pt;
+    font-family: CardTable;
+    font-size: 13pt;
+    font-weight: 400;
     align-items: center;
 }
 
@@ -376,7 +411,8 @@ footer {
 }
 
 .cardDescription {
-    font-size: 15pt;
+    font-size: 13pt;
+    font-weight: lighter;
 }
 
 .setGrid a {
@@ -684,12 +720,11 @@ footer {
 
 
 
-
 /* SET MODALS */
 
 .setImage button {
-    width: 250px;
-    height: 400px;
+    width: 200px;
+    height: 350px;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -717,6 +752,7 @@ footer {
 
 .sets {
     width: min-content;
+    width: 250px;
     background-color: rgba(0, 0, 0, 0.85);
     margin: 15px 5px 15px 5px;
 }
@@ -731,6 +767,10 @@ footer {
 
 .greenText {
     color: rgb(139, 212, 80);
+}
+
+.greenText:hover {
+    color: rgb(150, 95, 212);
 }
 
 .purpleText {
@@ -783,21 +823,29 @@ footer {
 
 @media (max-width: 740px) { 
     .card {
-        width: 150px;
+        width: 100px;
     }
 
     
     .cardInfo span {
 
-        font-size: 25pt;
+        font-size: 11pt;
     }
     
-    .cardInfo p , .cardSubTitle {
-        font-size: 23pt !important;
+    .cardInfo p , .cardSubTitle , .cardInfo table, .setInfo{
+        font-size: 12pt !important;
     }
 
-    .cardHeader img{
+    .modal-body .cardHeader img{
+        width: 320px;
+        padding: 1%;
+    }
+    .modal img{
         width: 80px;
+    }
+
+    table {
+        padding: 0px;
     }
 
     .cardName, .cardName p, .cardName span, .cardSubTitle  {
@@ -808,14 +856,31 @@ footer {
     .modal-body{
         display: flex;
         flex-direction: column;
+        
     }
 
 }
 
 
+
+@media (max-width: 490px) { 
+    .card {
+        width: 115px;
+    }
+
+    #titlesSection {
+        font-size: 25pt;
+    }
+
+    #back2top, #loadMoreCards{
+        font-size: 40px;
+    }
+}
+
+
 @media (max-width: 390px) { 
     .card {
-        width: 100px;
+        width: 115px;
     }
 
 
@@ -834,7 +899,6 @@ footer {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
-        
         font-size: 9pt;
     }
 
@@ -846,8 +910,17 @@ footer {
     } 
 
 
-    .cardHeader img{
+    .modal-body .cardHeader img{
+        width: 320px;
+        padding: 1%;
+    }
+    .modal img{
         width: 80px;
+    }
+
+    .table {
+        justify-content: center;
+        padding: 0px;
     }
 
     .cardInfo span {

@@ -10,8 +10,8 @@ var query;
 var filteredQueryResults;
 var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
-var resultsPerPage = 18
-var printedResults = 19
+var resultsPerPage = 24
+var printedResults = 20
 var scrollingValue = 6000; //distance where buttons will show
 
 
@@ -208,6 +208,31 @@ function searchBySet(set_name) {
 
 }
 
+// FIND BY FORMATT 
+
+function searchByFormat(format) {
+    let thisFormat = []
+
+    for (let i = 0; i < allCards.data.length; i++) {
+        if (allCards.data[i].misc_info[0].formats) {
+            for (let b = 0; b < allCards.data[i].misc_info[0].formats.length; b++) {
+                if (allCards.data[i].misc_info[0].formats[b] == format) {
+                    thisFormat.push(allCards.data[i])
+                }
+            }
+        }
+
+
+    }
+
+    printCards(resultsPerPage, thisFormat, text_SetResults)
+
+
+    resetCurrentCards()
+    currentCards = thisFormat
+
+}
+
 // function searchBySet(card, set) {
 //     console.log("searching set... " + set)
 //     if (card.card_sets) {
@@ -274,7 +299,7 @@ function printCards(howMany, cards, title) {
 
     for (let i = 0; i < (howMany); i++) {
         try {
-            if (howMany < 5) {
+            if (howMany < 7) {
                 createNormalCard(currentCards[i], "aloneCard")
             } else {
                 createNormalCard(currentCards[i])

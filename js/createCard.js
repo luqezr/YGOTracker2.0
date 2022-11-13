@@ -4,10 +4,18 @@ function createNormalCard(card, view) {
     // console.log(card)
     // let desc = card.desc.replace(/\./g, '. <br/>');
 
-    let desc1 = card.desc.replace('----------------------------------------', '. <br/>');
+    // ACOMODAR DESC PARA PENDULOS
+    let desc1 = card.desc.replace('----------------------------------------', ' <br/>');
     let desc2 = desc1.replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/>' )
     let desc3 = desc2.replace('[ Monster Effect ]', ' [ Monster Effect ] <br/>' )
   
+    // PARA LEER MEJOR LOS EFECTOS
+
+    desc1 = desc3.replace('once per turn.', 'once per turn.<br/>' )
+    // desc2 = desc1.replace('once per turn.) ', 'once per turn.) <br/>' )
+    desc3 = desc1.replace('.)', '.) <br/>');
+    // desc1 = desc3.replace(/\./g, '. <br/>');
+    // DESCRIPCION FINAL
     let desc = desc3
 
 
@@ -23,18 +31,25 @@ function createNormalCard(card, view) {
             <div class="cardInfo  scrollspy">
               <span class="cardName" >
                 <span id="cardName_${card.id}">
-                <p>${card.name}</p>
+                <p>${card.name.toUpperCase()}</p>
                 </span>
               </span>
               <p class="cardSubTitle" id="cardSubTitle_${card.id}">
                 <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
                 <span> ID : ${card.id} </span>
                 <br>
-                <span id"releaseDate_${card.id}"> OCG Release Date : ${card.misc_info[0].ocg_date} </span>
+                <span id="releaseDateOCG_${card.id}"></span>
                 <span id="releaseDateTCG_${card.id}"> </span>
               </p>
               <p class="cardDescription">
                 ${desc} 
+              </p>
+              <p> 
+              <span href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </span> / 
+              <span href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </span> / 
+              <span href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </span>
+              <br>
+              <span id='cardFormats_${card.id}' >Card Formats :</span>
               </p>
               <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
               </p>
@@ -64,18 +79,25 @@ function createNormalCard(card, view) {
           <div class="cardInfo  scrollspy">
               <span class="cardName" >
               <span id="cardName_${card.id}">
-              <p>${card.name}</p>
+              <p>${card.name.toUpperCase()}</p>
               </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
               <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"></span>
               <span> ID : ${card.id} </span>
               <br>
-              <span id"releaseDate_${card.id}"> OCG Release Date : ${card.misc_info[0].ocg_date} </span>
+              <span id="releaseDateOCG_${card.id}"> </span>
               <span id="releaseDateTCG_${card.id}"> </span>
             </p>
             <p class="cardDescription">
               ${desc} 
+            </p>
+            <p> 
+            <span href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </span> / 
+            <span href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </span> / 
+            <span href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </span>
+            <br>
+            <span id='cardFormats_${card.id}' >Card Formats :</span>
             </p>
             <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
             </p>
@@ -105,8 +127,9 @@ function createNormalCard(card, view) {
       }else {
         document.getElementById(`cardSets_${card.id}`).innerHTML = `No prints for this card in TCG yet. `
     }
+    hasOcgReleaseDate(card.id, card)
     hasTcgReleaseDate(card.id, card)
-
+    checkCardFormats(card)
 
 
     // CHECK RESOLUTION 
@@ -114,6 +137,20 @@ function createNormalCard(card, view) {
       changeResolution(card.id)
     }
 
+}
+
+
+function checkCardFormats(card){
+
+  for (let i = 0; i < card.misc_info[0].formats.length; i++) {
+    
+        document.getElementById(`cardFormats_${card.id}`).innerHTML += `<span class='cardFormat greenText' id="format_${card.id}" onclick="searchByFormat('${card.misc_info[0].formats[i]}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> ${card.misc_info[0].formats[i]} </span>`
+
+        if (i < card.misc_info[0].formats.length && i < (card.misc_info[0].formats.length-1) ){
+          document.getElementById(`cardFormats_${card.id}`).innerHTML += `/`
+        }
+
+  }
 }
 
 function checkPendulumScales(modalId, card){
@@ -149,18 +186,18 @@ function checkBanStatus (modalId, card) {
       if (card.banlist_info.ban_tcg) {
       console.log(card.banlist_info.ban_tcg)
       document.getElementById(modalId).innerHTML += `
-      <span> <span class="iconsSprite ${card.banlist_info.ban_tcg.toLowerCase() }"></span>  ${card.banlist_info.ban_tcg} </span>
+      <span> <span class="iconsSprite ${card.banlist_info.ban_tcg.toLowerCase() }"></span>  ${card.banlist_info.ban_tcg.toUpperCase()} </span>
       `
       }
       else {
           document.getElementById(modalId).innerHTML += ` 
-      <span> <span class="iconsSprite unlimited"></span> Unlimited </span>
+      <span> <span class="iconsSprite unlimited"></span> UNLIMITED </span>
       `
       }
     } else {
 
       document.getElementById(modalId).innerHTML += ` 
-      <span> <span class="iconsSprite unlimited"></span> Unlimited </span>
+      <span> <span class="iconsSprite unlimited"></span> UNLIMITED </span>
       `
     }
 }
@@ -173,16 +210,23 @@ function hasArchetype(modalId, archetype) {
     } else {
         // console.log("archetype is "+archetype)
         document.getElementById(`${modalId}`).innerHTML = `
-        Archetype : <span style="cursor pointer">${archetype}</span>`
+        Archetype : <span style="cursor pointer">${archetype} </span> // `
     }
 }
 
+function hasOcgReleaseDate(modalId, card) {
+  if (card.misc_info[0].ocg_date) {
+      document.getElementById(`releaseDateOCG_${modalId}`).innerHTML = `
+   OCG Release Date : ${card.misc_info[0].ocg_date}
+  `
+  }
+}
 function hasTcgReleaseDate(modalId, card) {
-    if (card.misc_info[0].tcg_date) {
-        document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = `
-    // TCG Release Date : ${card.misc_info[0].tcg_date}
-    `
-    }
+  if (card.misc_info[0].tcg_date) {
+      document.getElementById(`releaseDateTCG_${modalId}`).innerHTML = `
+   TCG Release Date : ${card.misc_info[0].tcg_date}
+  `
+  }
 }
 
 
@@ -192,95 +236,95 @@ function whichType(modalId, type, card) {
         // console.log("trap or magic card detected")
         if (type == "Spell Card") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite spellCard"></span> ${card.type} </span>
+          <span> <span class="iconsSprite spellCard"></span> ${card.type.toUpperCase()} </span>
           `
         } else if (type == "Trap Card") {
           document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite trapCard"></span> ${card.type} </span>
+          <span> <span class="iconsSprite trapCard"></span> ${card.type.toUpperCase()} </span>
           `
           } else if (type == "Skill Card") {
             console.log("skill card")
             document.getElementById(modalId).innerHTML += `
-            <span> <span class="iconsSprite skillCard"></span> ${card.type} </span>
+            <span> <span class="iconsSprite skillCard"></span> ${card.type.toUpperCase()} </span>
             `
         }
     } else {
         // console.log("type is "+type)
         if (type == "Normal Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite normalMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite normalMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Effect Monster" || type == "Flip Effect Monster" || type == "Flip Effect Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite effectMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite effectMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Ritual Monster" || type == "Ritual Effect Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite ritualMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite ritualMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Fusion Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite fusionMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite fusionMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Synchro Monster" || type == "Synchro Tuner Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite synchroMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite synchroMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "XYZ Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite xyzMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite xyzMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Gemini Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite geminiMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite geminiMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Pendulum Effect Monster" || type == "Pendulum Flip Effect Monster" || type == "Pendulum Tuner Effect Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite pendulumMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite pendulumMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "XYZ Pendulum Effect Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite pendulumXyzMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite pendulumXyzMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Synchro Pendulum Effect Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite pendulumSynchroMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite pendulumSynchroMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Pendulum Effect Fusion Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite pendulumFusionMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite pendulumFusionMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Link Monster") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite linkMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite linkMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
         if (type == "Token") {
             document.getElementById(modalId).innerHTML += `
-          <span> <span class="iconsSprite tokenMonster"></span>  ${card.type} </span>
+          <span> <span class="iconsSprite tokenMonster"></span>  ${card.type.toUpperCase()} </span>
           `
         }
 
@@ -307,55 +351,55 @@ function whichAttribute(modalId, card) {
     
     if (cardAttribute == "light") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite light"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite light"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "dark") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite dark"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite dark"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "water") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite water"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite water"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "fire") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite fire"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite fire"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "earth") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite earth"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite earth"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "wind") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite wind"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite wind"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "divine") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite divine"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite divine"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "spell") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite spell"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite spell"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
 
     if (cardAttribute == "trap") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite trap"></span>  ${card.attribute} </span>
+    <span> <span class="iconsSprite trap"></span>  ${card.attribute.toUpperCase()} </span>
     `
     }
     
@@ -368,193 +412,193 @@ function whichRace(modalId, race, card) {
 
     if (cardRace == "aqua") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite aqua"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite aqua"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "beast") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite beast"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite beast"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "beastwarrior") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite beastWarrior"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite beastWarrior"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "creatorgod") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite creatorGod"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite creatorGod"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "cyberse") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite cyberse"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite cyberse"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "dinosaur") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite dinosaur"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite dinosaur"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "divinebeast") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite divineBeast"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite divineBeast"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "dragon") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite dragon"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite dragon"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "fairy") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite fairy"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite fairy"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "fiend") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite fiend"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite fiend"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "fish") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite fish"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite fish"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "insect") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite insect"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite insect"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "machine") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite machine"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite machine"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "plant") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite plant"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite plant"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "psychic") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite psychic"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite psychic"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "pyro") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite pyro"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite pyro"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "reptile") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite reptile"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite reptile"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "rock") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite rock"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite rock"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "seaserpent") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite seaSerpent"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite seaSerpent"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "spellcaster") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite spellcaster"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite spellcaster"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "thunder") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite thunder"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite thunder"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "warrior") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite warrior"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite warrior"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "wingedbeast") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite wingedBeast"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite wingedBeast"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "wyrm") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite wyrm"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite wyrm"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "zombie") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite zombie"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite zombie"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "normal") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite normalSpell"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite normalSpell"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "continuous") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite continuous"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite continuous"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "quickplay") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite quickPlaySpell"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite quickPlaySpell"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "ritual") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite ritualSpell"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite ritualSpell"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "counter") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite counterTrap"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite counterTrap"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "equip") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite equipTrap"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite equipTrap"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
     if (cardRace == "field") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite fieldSpell"></span>  ${card.race} </span>
+    <span> <span class="iconsSprite fieldSpell"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
@@ -575,7 +619,7 @@ function printCardSets(modalId, card) {
               <th scope="col">Set</th>
               <th scope="col">Rarity</th>
               <th scope="col">Set Code</th>
-              <th scope="col" data-toggle="tooltip" data-placement="top" title="AVG Means average price for that card of that specific set, the price is expresed in US dolars">AVG* Price</th>
+              <th scope="col" data-toggle="tooltip" data-placement="top" title="Shown price is the average price for that card of that specific set, the price is expresed in US dolars">Price</th>
             </tr>
           </thead>
           
@@ -591,10 +635,10 @@ function printCardSets(modalId, card) {
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="findBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name}</th>
+             <th scope="row"  class="cardSet" id="set_${card.id}" onclick="searchBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td>${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td> ${card.card_sets[i].set_code}</td>
-             <td>$${card.card_sets[i].set_price}</td>
+             <td>$ ${card.card_sets[i].set_price}</td>
            </tr>
     
     `
@@ -621,7 +665,7 @@ function createSet(sets) {
 
             <div class="setImage"> 
             <div class='cardInfo'>
-            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="findBySet('${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
+            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="searchBySet('${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
                 <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
