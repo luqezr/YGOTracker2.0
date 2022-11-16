@@ -8,9 +8,11 @@ var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
 var filteredQueryResults;
+let filteredSets;
 var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
 var resultsPerPage = 24
+var setsPerPage = 30
 var printedResults = 20
 var scrollingValue = 6000; //distance where buttons will show
 
@@ -76,7 +78,7 @@ function searchAllSets(value) {
             currentCards = allSets
             console.log('all sets fetched 😎')
             // console.log(allSets)
-            printSets(30, allSets, text_CardResults1)
+            printSets(setsPerPage, allSets, text_CardResults1)
 
         })
 
@@ -192,7 +194,7 @@ function searchBySet(set_name) {
 
         if (allCards.data[i].card_sets) {
             for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
-                if (allCards.data[i].card_sets[b].set_name == set_name) {
+                if (allCards.data[i].card_sets[b].set_name === set_name) {
                     thisSet.push(allCards.data[i])
 
                 }
@@ -285,6 +287,17 @@ searchButton.addEventListener("click", function getCard(evt) {
 })
 
 
+// #######################################################################
+
+// FILTER SETS BY STARTING LETTER
+
+function filterSets(letter){
+filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
+    printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">'+letter+' </span>')
+
+    // console.log(filterSets)
+
+}
 
 // #######################################################################
 
@@ -322,7 +335,40 @@ function printSets(howMany, sets, title) {
     titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
     // console.log(cards2print)
 
-    for (let i = 0; i <= howMany; i++) {
+    cardsSection.innerHTML += `
+            <h2 class='setLetters'>
+
+                    <span onclick="filterSets('A')"> A </span>
+                    <span onclick="filterSets('B')"> B </span>
+                    <span onclick="filterSets('C')"> C </span>
+                    <span onclick="filterSets('D')"> D </span>
+                    <span onclick="filterSets('F')"> F </span>
+                    <span onclick="filterSets('G')"> G </span>
+                    <span onclick="filterSets('H')"> H </span>
+                    <span onclick="filterSets('I')"> I </span>
+                    <span onclick="filterSets('J')"> J </span>
+                    <span onclick="filterSets('K')"> K </span>
+                    <span onclick="filterSets('L')"> L </span>
+                    <span onclick="filterSets('M')"> M </span>
+                    <span onclick="filterSets('N')"> N </span>
+                    <span onclick="filterSets('O')"> O </span>
+                    <span onclick="filterSets('P')"> P </span>
+                    <span onclick="filterSets('Q')"> Q </span>
+                    <span onclick="filterSets('R')"> R </span>
+                    <span onclick="filterSets('S')"> S </span>
+                    <span onclick="filterSets('T')"> T </span>
+                    <span onclick="filterSets('U')"> U </span>
+                    <span onclick="filterSets('V')"> V </span>
+                    <span onclick="filterSets('W')"> W </span>
+                    <span onclick="filterSets('X')"> X </span>
+                    <span onclick="filterSets('Y')"> Y </span>
+                    <span onclick="filterSets('Z')"> Z </span>
+            
+            </h2>`
+
+
+
+    for (let i = 0; i < howMany; i++) {
         cards2print.push(sets[i])
         try {
             createSet(cards2print[i])

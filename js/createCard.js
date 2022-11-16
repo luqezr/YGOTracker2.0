@@ -44,12 +44,12 @@ function createNormalCard(card, view) {
               <p class="cardDescription">
                 ${desc} 
               </p>
-              <p> 
+              <p class="cardFormats"> 
               <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
               <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
               <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
               <br>
-              <span id='cardFormats_${card.id}' >Card Formats :</span>
+              <span id='cardFormats_${card.id}' class="cardFormats" >Card Formats :</span>
               </p>
               <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
               </p>
@@ -92,12 +92,12 @@ function createNormalCard(card, view) {
             <p class="cardDescription">
               ${desc} 
             </p>
-            <p> 
+            <p class="cardFormats"> 
             <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
             <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
             <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
             <br>
-            <span id='cardFormats_${card.id}' >Card Formats :</span>
+            <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
             </p>
             <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
             </p>
@@ -184,7 +184,7 @@ function levelOrRankOrLink(modalId, card ) {
 function checkBanStatus (modalId, card) {
     if (card.banlist_info){
       if (card.banlist_info.ban_tcg) {
-      console.log(card.banlist_info.ban_tcg)
+      // console.log(card.banlist_info.ban_tcg)
       document.getElementById(modalId).innerHTML += `
       <span> <span class="iconsSprite ${card.banlist_info.ban_tcg.toLowerCase() }"></span>  ${card.banlist_info.ban_tcg.toUpperCase()} </span>
       `

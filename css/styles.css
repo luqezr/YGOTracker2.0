@@ -13,7 +13,7 @@ body, .fade {
 
 body {
     background-color: black;
-    background-image: url("/media/background.jpg");
+    background-image: url("/media/background.webp");
     background-repeat: initial;
     /* background-repeat: repeat-y; */
     position: relative;
@@ -435,12 +435,15 @@ footer {
     font-weight: lighter;
 }
 
+.cardDescription span {
+}
+
 .setGrid a {
     color: rgb(139, 212, 80)
 }
 
 .iconsSprite {
-    background: url(/media/icons.png) no-repeat;
+    background: url(/media/icons.webp) no-repeat;
     width: 32px;
     height: 32px;
     display: inline-block;
@@ -758,6 +761,7 @@ footer {
 .setImage button {
     width: 200px;
     height: 350px;
+    max-height: 350px;
     background-color: rgba(0, 0, 0, 0.75);
 }
 
@@ -788,6 +792,15 @@ footer {
     width: 250px;
     background-color: rgba(0, 0, 0, 0.85);
     margin: 15px 5px 15px 5px;
+}
+
+
+.setLetters{
+    font-family: CardTitle;
+    color: rgb(139, 212, 80);
+    font-size: 52pt;
+    cursor: pointer;
+    text-align: center;
 }
 
 .setGrid {
@@ -873,6 +886,13 @@ footer {
         padding: 1%;
     }
 
+    .setLetters{
+        font-family: CardTitle;
+        color: rgb(139, 212, 80);
+        font-size: 32pt;
+        cursor: pointer;
+        text-align: center;
+    }
 
     .modal-body .cardHeader img{
         width: 270px;
@@ -932,17 +952,37 @@ footer {
     }
 
 
-   
+    .cardDescription,.cardFormats span  {
+        font-size: 13pt;
+        font-weight: lighter;
+        align-items: center;
+    }
+    
 
+
+    .table th, .table td{
+        font-size: 10pt;
+        padding:10px;
+    }
 
 }
 
 
 @media (max-width: 390px) { 
+    
+        .setLetters{
+            font-size: 32pt;
+        }
+
     .card {
         width: 115px;
     }
 
+    .cardDescription,.cardFormats span  {
+        font-size: 12pt;
+        font-weight: lighter;
+    }
+    
 
     .iconsSprite{
         width: 0;
@@ -966,7 +1006,7 @@ footer {
     .cardHeader .cardSubTitle {
         display: flex;
         flex-direction: row;
-        font-size: 9pt;
+        font-size: 12pt;
     } 
 
 
@@ -983,10 +1023,6 @@ footer {
         padding: 0px;
     }
 
-    .cardInfo span {
-
-        font-size: 15pt;
-    }
 
     .table th, .table td{
         font-size: 9pt
