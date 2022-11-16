@@ -494,3 +494,17 @@ $(window).scroll(function() {
         footer.removeClass('show');
     }
 });
+
+
+// #######################################################################
+// Print Staples
+
+function printStaples(){
+
+    searchByExactValue(id, staples)
+    // Agregar for aca 
+    titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
+    printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+
+
+}
