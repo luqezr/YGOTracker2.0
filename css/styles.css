@@ -104,6 +104,10 @@ nav form button {
     /* border-color:white !important;white */
 }
 
+.form-control {
+    border-radius: 6px;
+}
+
 /* ####################################################################### */
 
 
@@ -153,7 +157,7 @@ nav form button {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
     padding: 10px 10px 10px 10px;
-
+    margin: 10px;
     border-color: white;
 }
 
@@ -328,9 +332,11 @@ footer {
     font-weight: 100;
 }
 
-.tableBody{
+
+.table th, .table td{
+    padding: 5px 5px 5px 5px;
     font-family: CardTable;
-    font-size: 15pt;
+    font-size: 13pt;
     font-weight: 100;
 }
 

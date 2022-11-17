@@ -8,7 +8,8 @@ var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
 var filteredQueryResults;
-let filteredSets;
+var filteredSets;
+var filteredStaples;
 var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
 var resultsPerPage = 24
@@ -497,14 +498,85 @@ $(window).scroll(function() {
 
 
 // #######################################################################
+
+function filterStaples(letter){
+    filteredStaples = currentCards.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
+        printCards(filteredStaples.length, filteredStaples, 'Staples starting with <span class="purpleText">'+letter+' </span>', filteredStaples.length + " cards")
+    
+        // console.log(filterSets)
+        // FUNCIONA PERO HABRIA QUE AGREGAR EL FILTRO DE LETRAS PARA LAS staples, YA QUE AL CREARLAS NO LO VUELVE A PONER 
+
+    }
+
 // Print Staples
 
 function printStaples(){
+    currentCards = staples
+    titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"    
+    cardsSection.innerHTML = ("")
 
-    searchByExactValue(id, staples)
-    // Agregar for aca 
-    titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
-    printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+    cardsSection.innerHTML += `
+    <h2 class='setLetters'>
 
+            <span onclick="filterStaples('A')"> A </span>
+            <span onclick="filterStaples('B')"> B </span>
+            <span onclick="filterStaples('C')"> C </span>
+            <span onclick="filterStaples('D')"> D </span>
+            <span onclick="filterStaples('F')"> F </span>
+            <span onclick="filterStaples('G')"> G </span>
+            <span onclick="filterStaples('H')"> H </span>
+            <span onclick="filterStaples('I')"> I </span>
+            <span onclick="filterStaples('J')"> J </span>
+            <span onclick="filterStaples('K')"> K </span>
+            <span onclick="filterStaples('L')"> L </span>
+            <span onclick="filterStaples('M')"> M </span>
+            <span onclick="filterStaples('N')"> N </span>
+            <span onclick="filterStaples('O')"> O </span>
+            <span onclick="filterStaples('P')"> P </span>
+            <span onclick="filterStaples('Q')"> Q </span>
+            <span onclick="filterStaples('R')"> R </span>
+            <span onclick="filterStaples('S')"> S </span>
+            <span onclick="filterStaples('T')"> T </span>
+            <span onclick="filterStaples('U')"> U </span>
+            <span onclick="filterStaples('V')"> V </span>
+            <span onclick="filterStaples('W')"> W </span>
+            <span onclick="filterStaples('X')"> X </span>
+            <span onclick="filterStaples('Y')"> Y </span>
+            <span onclick="filterStaples('Z')"> Z </span>
+    
+    </h2>`
+
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+staples+"&misc=yes&sort=name")
+    .then( cardInfo => cardInfo.json() )
+    .then(data => {	
+        //console.log(data);
+        currentCards = data.data;
+  
+        
+        for (b = 0; b < staples.length ; b++) {
+            if (b >= 40){console.log('No more cards!'); return} 
+                else {
+                    createNormalCard(currentCards[b])}} 
+                
+    });
 
 }
+
+
+
+// #######################################################################
+
+// OPEN FILTER BAR
+
+// document.getElementById("filtersBar").addEventListener("click", function(event){
+//     event.preventDefault()
+//     openFilterBar()
+
+
+//   });
+
+
+// function openFilterBar() {
+//     alert('not working yet')
+   
+// }

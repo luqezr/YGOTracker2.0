@@ -10,13 +10,14 @@ function createNormalCard(card, view) {
     let desc3 = desc2.replace('[ Monster Effect ]', ' [ Monster Effect ] <br/>' )
   
     // PARA LEER MEJOR LOS EFECTOS
-
     desc1 = desc3.replace('once per turn.', 'once per turn.<br/>' )
     // desc2 = desc1.replace('once per turn.) ', 'once per turn.) <br/>' )
     desc3 = desc1.replace('.)', '.) <br/>');
-    // desc1 = desc3.replace(/\./g, '. <br/>');
+    desc2 = desc3.replace('●', '<br/> ●'); 
+
+
     // DESCRIPCION FINAL
-    let desc = desc3
+    let desc = desc2
 
 
     if (view) {
