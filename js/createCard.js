@@ -5,19 +5,18 @@ function createNormalCard(card, view) {
     // let desc = card.desc.replace(/\./g, '. <br/>');
 
     // ACOMODAR DESC PARA PENDULOS
-    let desc1 = card.desc.replace('----------------------------------------', ' <br/>');
-    let desc2 = desc1.replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/>' )
-    let desc3 = desc2.replace('[ Monster Effect ]', ' [ Monster Effect ] <br/>' )
+    let desc = card.desc.replace('----------------------------------------', ' <br/>');
+    desc = desc.replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/>' )
+    desc = desc.replace('[ Monster Effect ]', ' [ Monster Effect ] <br/>' )
   
     // PARA LEER MEJOR LOS EFECTOS
-    desc1 = desc3.replace('once per turn.', 'once per turn.<br/>' )
+    desc = desc.replace('once per turn.', 'once per turn.<br/>' )
     // desc2 = desc1.replace('once per turn.) ', 'once per turn.) <br/>' )
-    desc3 = desc1.replace('.)', '.) <br/>');
-    desc2 = desc3.replace('●', '<br/> ●'); 
+    desc = desc.replace('.)', '.) <br/>');
+    desc = desc.replace('●', '<br/> ●'); 
 
 
     // DESCRIPCION FINAL
-    let desc = desc2
 
 
     if (view) {
@@ -652,7 +651,7 @@ function printCardSets(modalId, card) {
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick="searchBySet('${card.card_sets[i].set_name}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
+             <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='searchBySet("${card.card_sets[i].set_name}")' data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td class="tableBody"  onclick="changeCardPicture()"> ${card.card_sets[i].set_code}</td>
              <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
@@ -674,6 +673,7 @@ function createSet(sets) {
     let setImage = setName.replace(/ /g, "_");
     setImage = setImage.replace(/:/g, "_");
     setImage = setImage.replace(/-/g, "_");
+    setImage = setImage.replace(/!/g, "_");
 
 
     cardsSection.innerHTML += `

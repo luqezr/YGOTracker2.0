@@ -51,6 +51,8 @@ main {
 
 .logo {
     background-color: rgb(115, 79, 154);
+    width: 105px;
+    height: 54px;
 }
 
 .navbar-brand :hover {
@@ -771,6 +773,11 @@ footer {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
+.setImageTitle{
+    width: 200px;
+    
+}
+
 .setImage .btn {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -801,12 +808,21 @@ footer {
 }
 
 
-.setLetters{
+.setLetters {
     font-family: CardTitle;
     color: rgb(139, 212, 80);
     font-size: 52pt;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.85);
     text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;*/
+} 
+
+.setLetters span:hover {
+    color: rgb(115, 79, 154);
+    font-size: 60pt;
 }
 
 .setGrid {
@@ -893,11 +909,7 @@ footer {
     }
 
     .setLetters{
-        font-family: CardTitle;
-        color: rgb(139, 212, 80);
         font-size: 32pt;
-        cursor: pointer;
-        text-align: center;
     }
 
     .modal-body .cardHeader img{
@@ -1016,9 +1028,14 @@ footer {
         font-size: 12pt;
         font-weight: lighter;
     }
+
+    .cardInfo {
+        padding: 5px;
+        font-size: 10pt;
+    }
     
     .cardInfo a {
-        font-size: 9pt;
+        font-size: 11pt;
     }
     .iconsSprite{
         width: 0;

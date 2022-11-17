@@ -10,6 +10,8 @@ var text_SetResults1 = " cards from the set "
 var text_SetResults2 = " "
 var text_FormatResults1 = " cards from the format "
 var text_FormatResults2 = " "
+var text_allSets1 = "There are "
+var text_allSets2 = " sets"
 
 
 

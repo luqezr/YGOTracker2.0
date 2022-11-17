@@ -3,7 +3,7 @@ var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
 var thisSet; // Cards for the searched set
-var sets=false; //show true for load more sets button
+var setsStatus=false; //show true for load more sets button
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
@@ -13,8 +13,8 @@ var filteredStaples;
 var titlesSection = document.getElementById("titlesSection")
 var cardsSection = document.getElementById("cardsSection")
 var resultsPerPage = 24
-var setsPerPage = 30
-var printedResults = 20
+var setsPerPage = 24
+var printedResults = 24
 var scrollingValue = 6000; //distance where buttons will show
 
 
@@ -79,7 +79,7 @@ function searchAllSets(value) {
             currentCards = allSets
             console.log('all sets fetched 😎')
             // console.log(allSets)
-            printSets(setsPerPage, allSets, text_CardResults1)
+            printSets(setsPerPage, allSets, text_allSets1+'<span class="greenText">'+allSets.length+'</span>'+text_allSets2)
 
         })
 
@@ -160,7 +160,7 @@ function searchCardsByNameOrDescription(value) {
     // console.log(filteredQueryResults);
     // if (filteredQueryResults.length < 30 ){
 
-    printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+    printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
     // }
 }
 
@@ -194,18 +194,38 @@ function searchBySet(set_name) {
     for (let i = 0; i < allCards.data.length; i++) {
 
         if (allCards.data[i].card_sets) {
-            for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
-                if (allCards.data[i].card_sets[b].set_name === set_name) {
-                    thisSet.push(allCards.data[i])
 
-                }
+            for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
+
+                if (allCards.data[i].id != allCards.data[(i-1).id]){
+                    if (allCards.data[i].card_sets[b].set_name === set_name) {
+                        thisSet.push(allCards.data[i])
+    
+                    }
+                } else {
+                    
+                    alert("duplicate here")
+                    return
+         
             }
+        }
         }
 
 
     }
 
-    printCards(thisSet.length, thisSet, '<span class="greenText">'+thisSet.length+'</span>', text_SetResults1+'<span class="purpleText">'+set_name+'</span> ', text_SetResults2)
+    let setImage = set_name
+    .replace(/ /g, "_")
+    .replace(/:/g, "_")
+    .replace(/-/g, "_")
+    .replace(/!/g, "_")
+
+    
+
+    printCards(resultsPerPage, thisSet, '<span class="greenText">'+thisSet.length+'</span>', text_SetResults1+'<span class="purpleText">'+set_name+'</span> ', text_SetResults2+ `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
+
+
+
 
 
     resetCurrentCards()
@@ -294,6 +314,7 @@ searchButton.addEventListener("click", function getCard(evt) {
 
 function filterSets(letter){
 filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
+
     printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">'+letter+' </span>')
 
     // console.log(filterSets)
@@ -306,6 +327,7 @@ filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(lett
 
 function printCards(howMany, cards, title1, title2, title3) {
 
+    setsStatus = false
     resetCurrentCards()
     currentCards = cards
     cardsSection.innerHTML = ("")
@@ -329,11 +351,13 @@ function printCards(howMany, cards, title1, title2, title3) {
 }
 
 function printSets(howMany, sets, title) {
+
+    setsStatus = true
     cardsSection.innerHTML = ("")
     let cards2print = []
     cards2print = sets
 
-    titlesSection.innerHTML = title + "<span class='greenText'>" + howMany + " </span> cards"
+    titlesSection.innerHTML = title
     // console.log(cards2print)
 
     cardsSection.innerHTML += `
@@ -415,14 +439,14 @@ function changeResolution(id) {
 function printMoreResults(howMany) {
 
     // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
-    if (sets == true) {
+    if (setsStatus == true) {
         for (let i = printedResults; i < (printedResults + howMany); i++) {
 
             try {
                 createSet(currentCards[i])
             } catch (error) {
                 // console.error(error);
-                alert("No more cards!")
+                alert("No more sets!")
                 return
             }
 
@@ -432,7 +456,7 @@ function printMoreResults(howMany) {
 
     } else {
 
-            for (let i = printedResults; i < (printedResults + howMany); i++) {
+            for (let i = printedResults; (i < printedResults + howMany); i++) {
 
                 try {
                     createNormalCard(currentCards[i])
@@ -501,7 +525,8 @@ $(window).scroll(function() {
 
 function filterStaples(letter){
     filteredStaples = currentCards.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
-        printCards(filteredStaples.length, filteredStaples, 'Staples starting with <span class="purpleText">'+letter+' </span>', filteredStaples.length + " cards")
+    currentCards = filteredStaples
+        printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">'+letter+' </span>', filteredStaples.length + " cards")
     
         // console.log(filterSets)
         // FUNCIONA PERO HABRIA QUE AGREGAR EL FILTRO DE LETRAS PARA LAS staples, YA QUE AL CREARLAS NO LO VUELVE A PONER 
@@ -554,7 +579,7 @@ function printStaples(){
   
         
         for (b = 0; b < staples.length ; b++) {
-            if (b >= 40){console.log('No more cards!'); return} 
+            if (b > resultsPerPage){console.log('No more cards!'); return} 
                 else {
                     createNormalCard(currentCards[b])}} 
                 
@@ -580,3 +605,18 @@ function printStaples(){
 //     alert('not working yet')
    
 // }
+
+
+// listen for scroll event and load more images if we reach the bottom of window
+window.addEventListener('scroll',()=>{
+    // console.log("scrolled", window.scrollY) //scrolled from top
+    //  console.log(window.innerHeight) //visible part of screen
+    let loadHeight = (document.documentElement.scrollHeight) 
+    // console.log(document.documentElement.scrollHeight)
+    //  console.log(loadHeight)
+    // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
+    if(window.scrollY + window.innerHeight >= loadHeight){
+        printMoreResults(resultsPerPage)
+    } 
+    // else {alert("No more cards 😓")}
+})
