@@ -95,22 +95,44 @@ function searchAllSets(value) {
 
 // Query YgoOrganization
 
-async function queryYGOrg(card) {
+async function queryYGOrg(cardId, konamId, language) {
     // API URL = https://db.ygoprodeck.com/api/v7/cardinfo.php
-    await fetch(`https://db.ygorganization.com/data/card/${card}`) //use konami id for this, cards[x].misc_info[0].konami_id
+    await fetch(`https://db.ygorganization.com/data/card/${konamId}`) //use konami id for this, cards[x].misc_info[0].konami_id
         .then((response) => response.json())
         .then((data) => {
             ygoorgCard = data;
             // console.log(ygoorgCard); // show card
             console.log('data from YGOrg fetched 😎')
+            console.log(ygoorgCard)
+            changeCardInformation(cardId, language)
         })
 
         .catch((error) => {
             console.log("ups 😢 " + error);
+            alert("No languages for this card yet! 😢")
             return;
             // Code for handling the error
         });
 }
+
+
+function changeCardInformation(cardId, language){
+    let desc = ygoorgCard.cardData[language].effectText        
+    .replace('.)', '.) <br/>')
+    .replace('●', '<br/> ● ')
+    .replace('. ● ', '<br/> ● ')
+    .replace('<br/> <br/>', '<br/>')
+
+    if (ygoorgCard.cardData[language].pendulumEffectText){
+        document.getElementById(`description_${cardId}`).innerHTML = `${ygoorgCard.cardData[language].pendulumEffectText}<br>${desc}`
+     } else {
+        document.getElementById(`description_${cardId}`).innerHTML = `${desc}` }
+
+    document.getElementById(`name_${cardId}`).innerHTML = `${ygoorgCard.cardData[language].name.toUpperCase()}`
+
+}
+
+
 // #######################################################################
 
 // RESET CURRENT CARDS
@@ -159,8 +181,11 @@ function searchCardsByNameOrDescription(value) {
     console.log("Results: " + currentCards.length + " cards")
     // console.log(filteredQueryResults);
     // if (filteredQueryResults.length < 30 ){
-
+    if (resultsPerPage < currentCards.length) {
     printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+        } else {
+             printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+        }
     // }
 }
 
@@ -204,7 +229,7 @@ function searchBySet(set_name) {
                     }
                 } else {
                     
-                    alert("duplicate here")
+                    // alert("duplicate here")
                     return
          
             }
@@ -446,7 +471,7 @@ function printMoreResults(howMany) {
                 createSet(currentCards[i])
             } catch (error) {
                 // console.error(error);
-                alert("No more sets!")
+                console.log("No more sets!")
                 return
             }
 
@@ -462,7 +487,7 @@ function printMoreResults(howMany) {
                     createNormalCard(currentCards[i])
                 } catch (error) {
                     // console.error(error);
-                    alert("No more cards!")
+                    console.log("No more cards!")
                     return
                 }
 
@@ -593,18 +618,13 @@ function printStaples(){
 
 // OPEN FILTER BAR
 
-// document.getElementById("filtersBar").addEventListener("click", function(event){
-//     event.preventDefault()
-//     openFilterBar()
-
-
-//   });
-
-
-// function openFilterBar() {
-//     alert('not working yet')
-   
-// }
+ document.getElementById("filtersBar").addEventListener("click", function(event){
+     event.preventDefault()
+     openFilterBar()
+   });
+ function openFilterBar() {
+ 
+ }
 
 
 // listen for scroll event and load more images if we reach the bottom of window

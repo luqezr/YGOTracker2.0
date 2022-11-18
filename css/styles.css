@@ -2,14 +2,18 @@ img[src*="000webhost"] {
     display: none !important;
 }
 
-body, .fade {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+body,
+.fade {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
- body::-webkit-scrollbar, .fade::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.fade::-webkit-scrollbar {
     display: none;
-    }
+}
 
 body {
     background-color: black;
@@ -28,23 +32,34 @@ main {
 
 }
 
+
+.languageBar span {
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.languageBar i {
+    cursor: pointer;
+}
+
 /* FONTS  */
 
-@font-face { 
+@font-face {
     font-family: CardTitle;
     src: url(/ttf/CardTitle.ttf);
-        }
+}
 
-@font-face { 
+@font-face {
     font-family: CardEffect;
     src: url(/ttf/CardEffect.ttf);
-        }
-        
-@font-face { 
+}
+
+@font-face {
     font-family: CardTable;
     src: url(/ttf/CardTable.ttf);
-        }
-                
+}
+
 /* ####################################################################### */
 
 /* NAV MENU  */
@@ -83,12 +98,13 @@ nav li a,
 }
 
 .custom-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(115, 79, 154, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
-   
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(115, 79, 154, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+
 }
+
 .custom-toggler .navbar-toggler-icon:hover {
-     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(139, 212, 80, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E"); 
-    
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(139, 212, 80, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+
 }
 
 .nav-link {
@@ -124,6 +140,7 @@ nav form button {
     font-size: 32pt;
     padding-left: 5px;
     padding-right: 5px;
+    text-align: center;
 
 }
 
@@ -142,13 +159,15 @@ nav form button {
 
 }
 
-.cardInfo{
+.cardInfo {
     font-family: CardEffect;
     padding: 12px;
     /* text-decoration: none; */
     /* text-transform: capitalize; */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .cardInfo::-webkit-scrollbar {
@@ -184,10 +203,12 @@ nav form button {
 }
 
 
-form input {
+form input,
+#atkAndDef input {
     background-color: rgb(29, 26, 47) !important;
     color: rgb(139, 212, 80) !important;
     font-family: CardEffect;
+    border-radius: .375rem !important;
 }
 
 #searchBar-div span,
@@ -195,7 +216,7 @@ form input {
     /* background-color: rgb(29, 26, 47) !important; */
 
     background-color: rgba(0, 0, 0, 1);
-    color: rgb(150, 95, 212)!important;
+    color: rgb(150, 95, 212) !important;
 }
 
 #searchBar-div button {
@@ -203,8 +224,8 @@ form input {
 
 }
 
-#searchBar-div button:hover{
-   color: rgb(139, 212, 80) !important;
+#searchBar-div button:hover {
+    color: rgb(139, 212, 80) !important;
 
 }
 
@@ -279,18 +300,20 @@ input[type="submit"] {
 
 /* FOOTER */
 footer {
-    background-color: rgba(29, 26, 47, 8.5);
-    color: #ffffff;
+    background-color: rgba(0, 0, 0, 8.5);
+    color: rgb(115, 79, 154);
+    /* font-family: CardTitle; */
+    font-size: 14pt23pt;
     justify-content: center;
     text-align: center;
-    padding: 20px 20px 20px 20px;  
+    padding: 20px 20px 20px 20px;
     position: fixed;
     bottom: 0vh;
     width: 100%;
     transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 0;
     visibility: hidden;
-    
+
 }
 
 /* FIN DEL FOOTER */
@@ -298,6 +321,101 @@ footer {
 
 
 /* ####################################################################### */
+
+/* FILTER BAR */
+
+#filtersModal {
+    text-align: left;
+    font-family: CardEffect;
+    font-size: 15pt;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#filtersModal .modal-header,
+#filtersModal .modal-body,
+#filtersModal .modal-footer {
+    border-color: rgb(139, 212, 80);
+
+}
+
+#filtersModal h5 {
+    color: rgb(150, 95, 212);
+    font-size: 28pt;
+    text-align: center;
+}
+
+#filtersModal .modal-header,
+#filtersModal h5,
+#filtersModal .modal-footer {
+    display: block;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+#filtersModal input {
+
+    border-color: rgb(150, 95, 212)
+}
+
+#filtersModal .modal-footer button {
+
+    background-color: rgb(29, 26, 47);
+    color: rgb(139, 212, 80);
+    margin: 10px;
+    width: 250px;
+    border-color: rgb(150, 95, 212)
+}
+
+#TLRA h4 {
+    font-size: 22pt;
+    color: rgb(150, 95, 212);
+}
+
+#filterBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#TLRA {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#typeAndLevel {
+    display: flex;
+    flex-direction: row;
+}
+
+#type {
+    display: inline;
+}
+
+#levels {
+    display: inline;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#raceAndAttribute {
+    display: flex;
+    flex-direction: row;
+
+}
+
+#atkAndDef {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+#desc {
+    width: 100vh;
+}
 
 /* CARD MODALS */
 
@@ -317,7 +435,7 @@ footer {
     /* width: 80vh !important */
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
-    
+
 }
 
 .modal-content table {
@@ -335,17 +453,19 @@ footer {
 }
 
 
-.table th, .table td{
+.table th,
+.table td {
     padding: 5px 5px 5px 5px;
     font-family: CardTable;
     font-size: 13pt;
     font-weight: 100;
 }
 
-.modal-content table th, .modal-content table td {
+.modal-content table th,
+.modal-content table td {
     margin: 0px !important;
     padding: 0px !important;
-} 
+}
 
 .cardSet {
     color: rgb(139, 212, 80);
@@ -355,6 +475,11 @@ footer {
     color: rgb(150, 95, 212) !important;
 }
 
+.cardSets span {
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 21px;
+}
 
 .scrollspy {
     position: relative;
@@ -375,7 +500,7 @@ footer {
 .modal-dialog {
     /* max-width: fit-content !important; */
     max-width: 95%;
-    
+
 }
 
 .tbody {
@@ -393,20 +518,23 @@ footer {
 .cardHeader img {
     max-width: 380px;
     max-height: 554px;
+    cursor: pointer;
 }
 
 .cardName p {
     /* padding: 0; */
     padding-top: 2vh;
     font-family: CardTable;
-    font-size: 17pt;
+    font-size: 22pt;
     overflow: hidden;
     white-space: nowrap;
     text-align: start;
+    padding: 5px !important;
+    margin: 0px !important;
 
 }
 
-.cardName span {   
+.cardName span {
     font-family: CardEffect;
     font-size: 15pt;
     font-weight: 500;
@@ -414,6 +542,7 @@ footer {
     vertical-align: middle;
 
 }
+
 .cardArchetype span {
     color: rgb(139, 212, 80);
     padding-left: 8px;
@@ -438,10 +567,13 @@ footer {
     justify-content: space-between; */
 }
 
-.cardDescription {
+.cardDescription,
+.cardFormats span,
+.cardFormats a {
     font-size: 16pt;
     font-weight: lighter;
 }
+
 /* 
 .cardDescription span {
 } */
@@ -455,6 +587,7 @@ footer {
     width: 32px;
     height: 32px;
     display: inline-block;
+    vertical-align: middle;
 }
 
 .cardLevel {
@@ -487,7 +620,7 @@ footer {
     background-position: -256px -192px;
 }
 
-.toonMonster{
+.toonMonster {
     background-position: -224px -192px;
 }
 
@@ -729,9 +862,10 @@ footer {
 
 /* Pendulum Scales */
 
-.penScaleRight{
+.penScaleRight {
     background-position: -32px -288px;
 }
+
 .penScaleLeft {
     background-position: 0px -288px;
 }
@@ -773,9 +907,9 @@ footer {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
-.setImageTitle{
+.setImageTitle {
     width: 200px;
-    
+
 }
 
 .setImage .btn {
@@ -788,7 +922,7 @@ footer {
     text-align: center;
 }
 
-.setInfo{
+.setInfo {
     font-size: 16pt;
     color: white;
     text-align: center;
@@ -818,7 +952,7 @@ footer {
     /* display: flex;
     justify-content: center;
     align-items: center;*/
-} 
+}
 
 .setLetters span:hover {
     color: rgb(115, 79, 154);
@@ -869,9 +1003,9 @@ footer {
     color: rgb(139, 212, 80);
     font-size: 70px;
     bottom: 6vh;
-    text-align: center; 
+    text-align: center;
     display: inline-block;
-    border-radius: 4px;    
+    border-radius: 4px;
     transition: background-color 0.3s, opacity 0.5s, visibility 0.5s;
     opacity: 0;
     visibility: hidden;
@@ -887,13 +1021,14 @@ footer {
 
 
 #back2top.show,
-#loadMoreCards.show, #footer.show {
+#loadMoreCards.show,
+#footer.show {
     opacity: 1;
     visibility: visible;
 }
 
 
-@media (max-width: 947px) { 
+@media (max-width: 947px) {
 
     .card {
         width: 150px;
@@ -903,37 +1038,43 @@ footer {
         flex-direction: column;
 
     }
-    .modal-body .cardHeader img{
+
+    .modal-body .cardHeader img {
         width: 320px;
         padding: 1%;
     }
 
-    .setLetters{
+    .setLetters {
         font-size: 32pt;
     }
 
-    .modal-body .cardHeader img{
+    .modal-body .cardHeader img {
         width: 270px;
         padding: 1%;
     }
-    .modal img{
+
+    .modal img {
         width: 180px;
     }
-    
+
     .cardInfo span {
 
         font-size: 11pt;
     }
-    
-    .cardInfo p , .cardSubTitle , .cardInfo table, .setInfo{
+
+    .cardInfo p,
+    .cardSubTitle,
+    .cardInfo table,
+    .setInfo {
         font-size: 12pt !important;
     }
 
-    .modal-body .cardHeader img{
+    .modal-body .cardHeader img {
         width: 320px;
         padding: 1%;
     }
-    .modal img{
+
+    .modal img {
         width: 80px;
     }
 
@@ -941,90 +1082,119 @@ footer {
         padding: 0px;
     }
 
-    .cardName, .cardName p, .cardName span, .cardSubTitle  {
+    .cardName,
+    .cardName p,
+    .cardName span,
+    .cardSubTitle {
         padding: 0;
         margin: 0;
     }
 
-    .modal-body{
+    .modal-body {
         display: flex;
         flex-direction: column;
-        
+
+    }
+
+
+    #titlesSection {
+        font-size: 27pt;
     }
 
 }
 
 
 
-@media (max-width: 490px) { 
+@media (max-width: 490px) {
     .card {
         width: 115px;
     }
 
+
+
     #titlesSection {
-        font-size: 25pt;
+        font-size: 18pt;
     }
 
-    #back2top, #loadMoreCards{
+    #back2top,
+    #loadMoreCards {
         font-size: 40px;
     }
 
+    #filterBar {
+        display: contents;
+    }
 
-    .cardDescription,.cardFormats span  {
+    #typeAndLevel,
+    #raceAndAttribute {
+        flex-direction: column;
+        align-items: center;
+        justify-content: baseline;
+    }
+
+    .cardDescription,
+    .cardFormats span,
+    .cardFormats a {
         font-size: 13pt;
         font-weight: lighter;
         align-items: center;
     }
-    
 
 
-    .table th, .table td{
+
+    .table th,
+    .table td {
         font-size: 10pt;
-        padding:10px;
+        padding: 10px;
     }
 
 }
 
 
-@media (max-width: 390px) { 
-    
-        .setLetters{
-            font-size: 32pt;
-        }
+@media (max-width: 390px) {
+
+    .setLetters {
+        font-size: 32pt;
+    }
 
     .card {
         width: 115px;
     }
 
-    #cardSection{
+    #cardSection {
         justify-content: space-evenly;
         align-items: center;
     }
 
-    .sets{
+    .sets {
         width: 173px;
         max-height: 400px;
         align-items: center;
         justify-content: center;
-        
+
     }
+
     .setGrid {
         max-height: 100%;
         max-width: 100%;
         justify-content: center;
     }
 
-    .setImage button{
+    .setImage button {
         max-width: 160px;
         max-height: 350px;
         height: auto;
     }
+
     .card-img-bottom {
-    
+
         max-height: 330px;
 
     }
-    .cardDescription,.cardFormats span  {
+
+    .cardDescription,
+    .cardFormats span,
+    .cardFormats a {
         font-size: 12pt;
         font-weight: lighter;
     }
@@ -1033,14 +1203,15 @@ footer {
         padding: 5px;
         font-size: 10pt;
     }
-    
+
     .cardInfo a {
         font-size: 11pt;
     }
-    .iconsSprite{
+
+    /* .iconsSprite {
         width: 0;
         height: 0;
-    }
+    } */
 
     .cardHeader {
         display: flex;
@@ -1060,14 +1231,16 @@ footer {
         display: flex;
         flex-direction: row;
         font-size: 12pt;
-    } 
-
-
-    .modal-body .cardHeader img{
-        width: 320px;
-        padding: 1%;
     }
-    .modal img{
+
+
+    .modal-body .cardHeader img {
+        width: 300px;
+        padding: 2%;
+        text-align: center;
+    }
+
+    .modal img {
         width: 80px;
     }
 
@@ -1077,14 +1250,20 @@ footer {
     }
 
 
-    .table th, .table td{
+    .table th,
+    .table td {
         font-size: 9pt
     }
-    
-    .cardInfo p,  .cardSubTitle span {
+
+    .cardInfo p,
+    .cardSubTitle span {
         font-size: 10pt !important;
     }
 
 
+    footer {
+        font-size: 10pt;
+        padding: 10px 10px 10px 10px;
+    }
 
 }
