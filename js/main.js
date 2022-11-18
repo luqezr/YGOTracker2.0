@@ -3,7 +3,7 @@ var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
 var thisSet; // Cards for the searched set
-var setsStatus=false; //show true for load more sets button
+var setsStatus = false; //show true for load more sets button
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
@@ -79,7 +79,7 @@ function searchAllSets(value) {
             currentCards = allSets
             console.log('all sets fetched 😎')
             // console.log(allSets)
-            printSets(setsPerPage, allSets, text_allSets1+'<span class="greenText">'+allSets.length+'</span>'+text_allSets2)
+            printSets(setsPerPage, allSets, text_allSets1 + '<span class="greenText">' + allSets.length + '</span>' + text_allSets2)
 
         })
 
@@ -116,17 +116,18 @@ async function queryYGOrg(cardId, konamId, language) {
 }
 
 
-function changeCardInformation(cardId, language){
-    let desc = ygoorgCard.cardData[language].effectText        
-    .replace('.)', '.) <br/>')
-    .replace('●', '<br/> ● ')
-    .replace('. ● ', '<br/> ● ')
-    .replace('<br/> <br/>', '<br/>')
+function changeCardInformation(cardId, language) {
+    let desc = ygoorgCard.cardData[language].effectText
+        .replace('.)', '.) <br/>')
+        .replace('●', '<br/> ● ')
+        .replace('. ● ', '<br/> ● ')
+        .replace('<br/> <br/>', '<br/>')
 
-    if (ygoorgCard.cardData[language].pendulumEffectText){
+    if (ygoorgCard.cardData[language].pendulumEffectText) {
         document.getElementById(`description_${cardId}`).innerHTML = `${ygoorgCard.cardData[language].pendulumEffectText}<br>${desc}`
-     } else {
-        document.getElementById(`description_${cardId}`).innerHTML = `${desc}` }
+    } else {
+        document.getElementById(`description_${cardId}`).innerHTML = `${desc}`
+    }
 
     document.getElementById(`name_${cardId}`).innerHTML = `${ygoorgCard.cardData[language].name.toUpperCase()}`
 
@@ -182,10 +183,10 @@ function searchCardsByNameOrDescription(value) {
     // console.log(filteredQueryResults);
     // if (filteredQueryResults.length < 30 ){
     if (resultsPerPage < currentCards.length) {
-    printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
-        } else {
-             printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
-        }
+        printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+    } else {
+        printCards(currentCards.length, currentCards, text_CardResults1, currentCards.length, text_CardResults2)
+    }
     // }
 }
 
@@ -205,7 +206,7 @@ function searchByArchetype(value) {
 
     resetCurrentCards()
     searchByExactValue("archetype", value)
-    printCards(currentCards.length, currentCards, '<span class="greenText">'+currentCards.length+'</span>', text_Archetype1+'<span class="purpleText">'+value+'</span> ' , text_Archetype2)
+    printCards(currentCards.length, currentCards, '<span class="greenText">' + currentCards.length + '</span>', text_Archetype1 + '<span class="purpleText">' + value + '</span> ', text_Archetype2)
 
 
 
@@ -222,39 +223,50 @@ function searchBySet(set_name) {
 
             for (let b = 0; b < allCards.data[i].card_sets.length; b++) {
 
-                if (allCards.data[i].id != allCards.data[(i-1).id]){
-                    if (allCards.data[i].card_sets[b].set_name === set_name) {
-                        thisSet.push(allCards.data[i])
-    
+
+                if (allCards.data[i].card_sets[b].set_name === set_name) {
+                    // if (thisSet.length) {
+                    //     if (allCards.data[i].name == thisSet[thisSet.length - 1].name) {
+
+                    //         console.log("card not pushed")
+                    //         return
+
+                    //     }
+                    // } else {
+                    //     console.log("card pushed")
+                    thisSet.push(allCards.data[i])
+
+                    if (thisSet[thisSet.length - 1] === allCards.data[i]) {
+                        break
+                        // console.log(thisSet[thisSet.length - 1])
                     }
-                } else {
-                    
-                    // alert("duplicate here")
-                    return
-         
+
+                    // }
+
+                }
             }
-        }
+
         }
 
 
     }
 
     let setImage = set_name
-    .replace(/ /g, "_")
-    .replace(/:/g, "_")
-    .replace(/-/g, "_")
-    .replace(/!/g, "_")
-
-    
-
-    printCards(resultsPerPage, thisSet, '<span class="greenText">'+thisSet.length+'</span>', text_SetResults1+'<span class="purpleText">'+set_name+'</span> ', text_SetResults2+ `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
+        .replace(/ /g, "_")
+        .replace(/:/g, "_")
+        .replace(/-/g, "_")
+        .replace(/!/g, "_")
 
 
+
+    printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
 
 
 
     resetCurrentCards()
     currentCards = thisSet
+
+
 
 }
 
@@ -275,9 +287,9 @@ function searchByFormat(format) {
 
     }
 
-    printCards(resultsPerPage, thisFormat, '<span class="greenText">'+thisFormat.length+'</span>'+text_FormatResults1, '<span class="purpleText">'+format+'</span>', text_FormatResults2)
+    printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<span class="purpleText">' + format + '</span>', text_FormatResults2)
 
-    console.log(thisFormat.length+ ' cards from the format '+format)
+    console.log(thisFormat.length + ' cards from the format ' + format)
     resetCurrentCards()
     currentCards = thisFormat
 
@@ -337,10 +349,10 @@ searchButton.addEventListener("click", function getCard(evt) {
 
 // FILTER SETS BY STARTING LETTER
 
-function filterSets(letter){
-filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
+function filterSets(letter) {
+    filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
 
-    printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">'+letter+' </span>')
+    printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">' + letter + ' </span>')
 
     // console.log(filterSets)
 
@@ -357,7 +369,7 @@ function printCards(howMany, cards, title1, title2, title3) {
     currentCards = cards
     cardsSection.innerHTML = ("")
 
-    titlesSection.innerHTML = title1 +title2 + title3
+    titlesSection.innerHTML = title1 + title2 + title3
     // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {
@@ -442,18 +454,18 @@ function writeTitle(title, howmany) {
 
 
 function changeResolution(id) {
-        // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
-        var width = window.screen.width
-        var height = window.screen.height
-        // console.log(width+"px width and "+ height + "px height")
+    // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
+    var width = window.screen.width
+    var height = window.screen.height
+    // console.log(width+"px width and "+ height + "px height")
 
-        // MOVE:
-        // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
-        // COPY:
-        // jQuery("#NodesToMove").appendTo('#DestinationContainerNode')
-        jQuery( `#cardName_${id}`).detach().appendTo( `#cardHeader_${id}`)
-        jQuery( `#cardSubTitle_${id}`).detach().appendTo( `#cardHeader_${id}`)
-        
+    // MOVE:
+    // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
+    // COPY:
+    // jQuery("#NodesToMove").appendTo('#DestinationContainerNode')
+    jQuery(`#cardName_${id}`).detach().appendTo(`#cardHeader_${id}`)
+    jQuery(`#cardSubTitle_${id}`).detach().appendTo(`#cardHeader_${id}`)
+
 }
 
 
@@ -465,7 +477,7 @@ function printMoreResults(howMany) {
 
     // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
     if (setsStatus == true) {
-        for (let i = printedResults; i < (printedResults + howMany); i++) {
+        for (let i = printedResults; i < (printedResults + howMany) && i < currentCards.length; i++) {
 
             try {
                 createSet(currentCards[i])
@@ -481,18 +493,19 @@ function printMoreResults(howMany) {
 
     } else {
 
-            for (let i = printedResults; (i < printedResults + howMany); i++) {
+        for (let i = printedResults;
+            (i < printedResults + howMany && i < currentCards.length); i++) {
 
-                try {
-                    createNormalCard(currentCards[i])
-                } catch (error) {
-                    // console.error(error);
-                    console.log("No more cards!")
-                    return
-                }
-
-
+            try {
+                createNormalCard(currentCards[i])
+            } catch (error) {
+                // console.error(error);
+                console.log("No more cards!")
+                return
             }
+
+
+        }
 
     }
     printedResults = printedResults + howMany
@@ -548,21 +561,21 @@ $(window).scroll(function() {
 
 // #######################################################################
 
-function filterStaples(letter){
+function filterStaples(letter) {
     filteredStaples = currentCards.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
     currentCards = filteredStaples
-        printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">'+letter+' </span>', filteredStaples.length + " cards")
-    
-        // console.log(filterSets)
-        // FUNCIONA PERO HABRIA QUE AGREGAR EL FILTRO DE LETRAS PARA LAS staples, YA QUE AL CREARLAS NO LO VUELVE A PONER 
+    printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">' + letter + ' </span>', filteredStaples.length + " cards")
 
-    }
+    // console.log(filterSets)
+    // FUNCIONA PERO HABRIA QUE AGREGAR EL FILTRO DE LETRAS PARA LAS staples, YA QUE AL CREARLAS NO LO VUELVE A PONER 
+
+}
 
 // Print Staples
 
-function printStaples(){
+function printStaples() {
     currentCards = staples
-    titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"    
+    titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
     cardsSection.innerHTML = ("")
 
     cardsSection.innerHTML += `
@@ -596,19 +609,23 @@ function printStaples(){
     
     </h2>`
 
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id="+staples+"&misc=yes&sort=name")
-    .then( cardInfo => cardInfo.json() )
-    .then(data => {	
-        //console.log(data);
-        currentCards = data.data;
-  
-        
-        for (b = 0; b < staples.length ; b++) {
-            if (b > resultsPerPage){console.log('No more cards!'); return} 
-                else {
-                    createNormalCard(currentCards[b])}} 
-                
-    });
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + staples + "&misc=yes&sort=name")
+        .then(cardInfo => cardInfo.json())
+        .then(data => {
+            //console.log(data);
+            currentCards = data.data;
+
+
+            for (b = 0; b < staples.length; b++) {
+                if (b > resultsPerPage) {
+                    console.log('No more cards!');
+                    return
+                } else {
+                    createNormalCard(currentCards[b])
+                }
+            }
+
+        });
 
 }
 
@@ -618,25 +635,26 @@ function printStaples(){
 
 // OPEN FILTER BAR
 
- document.getElementById("filtersBar").addEventListener("click", function(event){
-     event.preventDefault()
-     openFilterBar()
-   });
- function openFilterBar() {
- 
- }
+document.getElementById("filtersBar").addEventListener("click", function(event) {
+    event.preventDefault()
+    openFilterBar()
+});
+
+function openFilterBar() {
+
+}
 
 
 // listen for scroll event and load more images if we reach the bottom of window
-window.addEventListener('scroll',()=>{
+window.addEventListener('scroll', () => {
     // console.log("scrolled", window.scrollY) //scrolled from top
     //  console.log(window.innerHeight) //visible part of screen
-    let loadHeight = (document.documentElement.scrollHeight) 
+    let loadHeight = (document.documentElement.scrollHeight)
     // console.log(document.documentElement.scrollHeight)
     //  console.log(loadHeight)
     // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
-    if(window.scrollY + window.innerHeight >= loadHeight){
+    if (window.scrollY + window.innerHeight >= loadHeight) {
         printMoreResults(resultsPerPage)
-    } 
+    }
     // else {alert("No more cards 😓")}
 })

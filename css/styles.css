@@ -1113,7 +1113,7 @@ footer {
 
 
     #titlesSection {
-        font-size: 18pt;
+        font-size: 25pt;
     }
 
     #back2top,
@@ -1230,7 +1230,7 @@ footer {
     .cardHeader .cardSubTitle {
         display: flex;
         flex-direction: row;
-        font-size: 12pt;
+        font-size: 14pt;
     }
 
 
