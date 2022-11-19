@@ -258,9 +258,11 @@ function searchBySet(set_name) {
         .replace(/!/g, "_")
 
 
-
-    printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
-
+    if (thisSet.length < 9) {
+        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `, "aloneCard")
+    } else {
+        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
+    }
 
 
     resetCurrentCards()
@@ -362,7 +364,7 @@ function filterSets(letter) {
 
 // PRINT IN SCREEN
 
-function printCards(howMany, cards, title1, title2, title3) {
+function printCards(howMany, cards, title1, title2, title3, view) {
 
     setsStatus = false
     resetCurrentCards()
@@ -376,6 +378,8 @@ function printCards(howMany, cards, title1, title2, title3) {
         try {
             if (howMany < 7) {
                 createNormalCard(currentCards[i], "aloneCard")
+            } else if (view) {
+                createNormalCard(currentCards[i], view)
             } else {
                 createNormalCard(currentCards[i])
             }
@@ -617,7 +621,7 @@ function printStaples() {
 
 
             for (b = 0; b < staples.length; b++) {
-                if (b > resultsPerPage) {
+                if (b > resultsPerPage - 1) {
                     console.log('No more cards!');
                     return
                 } else {

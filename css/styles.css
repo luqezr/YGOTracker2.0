@@ -421,6 +421,7 @@ footer {
 
 .card {
     width: 230px;
+    height: 323px;
     padding: 6px 8px 6px 8px;
     background-color: rgba(29, 26, 47, 0.55);
 }
@@ -937,6 +938,7 @@ footer {
 .sets {
     width: min-content;
     width: 250px;
+    height: 609px;
     background-color: rgba(0, 0, 0, 0.85);
     margin: 15px 5px 15px 5px;
 }
@@ -1031,7 +1033,8 @@ footer {
 @media (max-width: 947px) {
 
     .card {
-        width: 150px;
+        width: 160px;
+        height: 220px;
     }
 
     .cardHeader {
@@ -1105,12 +1108,24 @@ footer {
 
 
 
-@media (max-width: 490px) {
+@media (max-width: 663px) {
     .card {
-        width: 115px;
+        width: 152px;
     }
 
 
+    .sets {
+        width: 226px;
+        height: 500px;
+    }
+
+    .sets a {
+        font-size: 17pt;
+    }
+
+    .sets img {
+        max-height: auto !important;
+    }
 
     #titlesSection {
         font-size: 25pt;
@@ -1151,14 +1166,20 @@ footer {
 }
 
 
-@media (max-width: 390px) {
+@media (max-width: 479px) {
+
+    .sets {
+        width: 182px;
+        height: 400px;
+    }
 
     .setLetters {
         font-size: 32pt;
     }
 
     .card {
-        width: 115px;
+        width: 113px;
+        height: 152px;
     }
 
     #cardSection {
@@ -1264,6 +1285,25 @@ footer {
     footer {
         font-size: 10pt;
         padding: 10px 10px 10px 10px;
+    }
+
+}
+
+
+@media (max-width: 357px) {
+    .sets {
+        width: 156px;
+        height: 400px;
+    }
+
+    .sets img {
+        width: 130px;
+    }
+
+
+    .card {
+        width: 109px;
+        height: 152px;
     }
 
 }
