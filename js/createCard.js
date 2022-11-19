@@ -18,76 +18,27 @@ function createNormalCard(card, view) {
     // DESCRIPCION FINAL
 
 
+    let nextCard = currentCards[getIndex(card.id, "right")]
+    let previousCard
+
+
+    if (getIndex(card.id, "right") == 1) {
+        // console.log("no previous card")
+        previousCard = card
+    } else {
+        previousCard = currentCards[getIndex(card.id, "left")]
+    }
+    // console.log(previousCard)
+    // console.log(nextCard)
+
+
     if (view) {
         cardsSection.innerHTML += `        
-
-            <div class="modal-body aloneCard">
-            <div class="cardHeader">
+        <div class="modal-content " >
+        <div class="modal-body " id="aloneCard">
+          <div class="cardHeader" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
-              <img src="${card.card_images[0].image_url}" alt="${card.name}" >  
-            </div>
-            <div id="cardHeader_${card.id}"> </div>
-            </div>
-            <div class="cardInfo  scrollspy">
-              <span class="cardName" >
-                <span id="cardName_${card.id}">
-                <p id="name_${card.id}">${card.name.toUpperCase()}</p>
-                </span>
-              </span>
-              <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-                <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" style="cursor: pointer"> </span>
-                <span> ID : ${card.id} </span>
-                <br>
-                <span id="releaseDateOCG_${card.id}"></span>
-                <span id="releaseDateTCG_${card.id}"> </span>
-              </p>
-              <p class="cardDescription" id="description_${card.id}">
-                ${desc} 
-              </p>
-              <p class="cardFormats"> 
-              <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
-              <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
-              <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
-              <br>
-              <span id='cardFormats_${card.id}' class="cardFormats" >Card Formats :</span>
-              </p>
-
-              <span class="languageBar" >
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'es' )"> ES </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'en' )"> EN </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'de' )"> DE </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'fr' )"> FR </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'it' )"> IT </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ja' )"> JA </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
-              <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
-              </span>
-              <br>
-              <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
-              <br>
-              </p>
-            </div>   
-
-    `
-
-    } else {
-
-
-
-        cardsSection.innerHTML += `
-  <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}"" style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
-  </div>
-
-  
-
-  <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content" >
-        <div class="modal-body" >
-          <div class="cardHeader">
-            <div> 
-            <img src="${card.card_images[0].image_url}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}">
+            <img src="${card.card_images[0].image_url}" alt="${card.name}"  >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -131,6 +82,77 @@ function createNormalCard(card, view) {
             <br>
             </p>
           </div>   
+
+        </div>
+      </div>
+
+
+    `
+
+    } else {
+
+
+
+        cardsSection.innerHTML += `
+  <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
+  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+  </div>
+
+  
+
+  <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="thisCard_${card.id}">
+      <div class="modal-content" >
+        <div class="modal-body"  >
+          <div class="cardHeader">
+            <div> 
+            <img src="${card.card_images[0].image_url}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <i class="bi bi-caret-left" style="font-size:30px" class="card"data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+            <i class="bi bi-caret-right" style="font-size:30px" class="card"data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
+            </div>
+            <div id="cardHeader_${card.id}"> </div>
+          </div>
+          <div class="cardInfo  scrollspy">
+              <span class="cardName" >
+              <span id="cardName_${card.id}">
+              <p id="name_${card.id}">${card.name.toUpperCase()}</p>
+              </span>
+            </span>
+            <p class="cardSubTitle" id="cardSubTitle_${card.id}">
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
+              <span> ID : ${card.id} </span>
+              <br>
+              <span id="releaseDateOCG_${card.id}"> </span>
+              <span id="releaseDateTCG_${card.id}"> </span>
+            </p>
+            <p class="cardDescription" id="description_${card.id}">
+              ${desc} 
+            </p>
+            <p class="cardFormats"> 
+            <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
+            <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
+            <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
+            <br>
+            <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
+            </p>
+
+            <span class="languageBar" >
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'es' )"> ES </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'en' )"> EN </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'de' )"> DE </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'fr' )"> FR </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'it' )"> IT </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ja' )"> JA </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
+            </span>
+            
+            <br>
+            <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
+            <br>
+            </p>
+          </div>   
+
         </div>
       </div>
     </div>   
@@ -700,10 +722,10 @@ function createSet(sets) {
     let setDate = sets.tcg_date
     let setQuantity = sets.num_of_cards
 
-    let setImage = setName.replace(/ /g, "_");
-    setImage = setImage.replace(/:/g, "_");
-    setImage = setImage.replace(/-/g, "_");
-    setImage = setImage.replace(/!/g, "_");
+    let setImage = setName.replace(/ /g, "_")
+        .replace(/:/g, "_")
+        .replace(/-/g, "_")
+        .replace(/!/g, "_");
 
 
     cardsSection.innerHTML += `

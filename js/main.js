@@ -10,11 +10,12 @@ var query;
 var filteredQueryResults;
 var filteredSets;
 var filteredStaples;
-var titlesSection = document.getElementById("titlesSection")
-var cardsSection = document.getElementById("cardsSection")
-var resultsPerPage = 24
-var setsPerPage = 24
-var printedResults = 24
+var titlesSection = document.getElementById("titlesSection");
+var cardsSection = document.getElementById("cardsSection");
+var cardIndex;
+var resultsPerPage = 24;
+var setsPerPage = 24;
+var printedResults = 24;
 var scrollingValue = 6000; //distance where buttons will show
 
 
@@ -55,7 +56,7 @@ function queryYGOPD() {
             // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
-            printCards(resultsPerPage, currentCards, text_NewestCards1, '', text_NewestCards2)
+            printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
 
         })
 
@@ -204,6 +205,7 @@ function searchByExactValue(field, value) {
 
 function searchByArchetype(value) {
 
+    window.scrollTo(0, 0);
     resetCurrentCards()
     searchByExactValue("archetype", value)
     printCards(currentCards.length, currentCards, '<span class="greenText">' + currentCards.length + '</span>', text_Archetype1 + '<span class="purpleText">' + value + '</span> ', text_Archetype2)
@@ -215,6 +217,9 @@ function searchByArchetype(value) {
 // FIND BY SET 
 
 function searchBySet(set_name) {
+
+    // window.scrollTo(0, 0);
+
     let thisSet = []
 
     for (let i = 0; i < allCards.data.length; i++) {
@@ -249,6 +254,7 @@ function searchBySet(set_name) {
         }
 
 
+
     }
 
     let setImage = set_name
@@ -270,11 +276,13 @@ function searchBySet(set_name) {
 
 
 
+
 }
 
 // FIND BY FORMATT 
 
 function searchByFormat(format) {
+    window.scrollTo(0, 0);
     let thisFormat = []
 
     for (let i = 0; i < allCards.data.length; i++) {
@@ -475,13 +483,14 @@ function changeResolution(id) {
 
 // #######################################################################
 
-// MORE RESULTS
+// LOAD MORE CARDS RESULTS
 
 function printMoreResults(howMany) {
 
     // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
     if (setsStatus == true) {
-        for (let i = printedResults; i < (printedResults + howMany) && i < currentCards.length; i++) {
+        for (let i = printedResults;
+            (i < printedResults + howMany && i < currentCards.length); i++) {
 
             try {
                 createSet(currentCards[i])
@@ -498,8 +507,8 @@ function printMoreResults(howMany) {
     } else {
 
         for (let i = printedResults;
+            // (i < printedResults + howMany); i++) {
             (i < printedResults + howMany && i < currentCards.length); i++) {
-
             try {
                 createNormalCard(currentCards[i])
             } catch (error) {
@@ -662,3 +671,23 @@ window.addEventListener('scroll', () => {
     }
     // else {alert("No more cards 😓")}
 })
+
+
+// NAVIGATE CARDS
+
+function getIndex(cardId, orientation) {
+
+    cardIndex = currentCards.findIndex(object => {
+        return object.id === cardId;
+    });
+
+    // console.log(index + 1); // 👉️ Position of card
+
+    if (orientation == 'right') {
+        return cardIndex + 1
+        // console.log(cardIndex + 1)
+    } else if (orientation == 'left') {
+        return cardIndex - 1
+        // console.log(cardIndex - 1)
+    }
+}

@@ -1,7 +1,7 @@
 // PAGE
 
-var text_CardResults1 = "Card results : "
-var text_CardResults2 = " "
+var text_CardResults1 = "Card results : <span class='greenText'>"
+var text_CardResults2 = "</span>"
 var text_NewestCards1 = "Newest Cards "
 var text_NewestCards2 = ""
 var text_Archetype1 = " cards from the Archetype "

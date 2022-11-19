@@ -138,8 +138,7 @@ nav form button {
     width: 100% !important;
     font-family: CardTitle;
     font-size: 32pt;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 10px 10px 10px 10px;
     text-align: center;
 
 }
@@ -246,6 +245,7 @@ input {
     /* background-color: #f1f1f1; */
     padding: 7px;
     font-size: 16px;
+    border-color: rgb(150, 95, 212) !important;
 }
 
 input[type="text"] {
@@ -260,9 +260,32 @@ input[type="submit"] {
     cursor: pointer;
 }
 
+.input-group-text {
+
+    border-color: rgb(150, 95, 212) !important;
+}
+
+
+::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(139, 212, 80, 0.6) !important;
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: rgba(139, 212, 80, 0.6) !important;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(139, 212, 80, 0.6) !important;
+}
+
 .autocomplete-items {
     position: absolute;
-    border: 1px solid #d4d4d4;
+    border: 1px solid rgb(150, 95, 212);
     border-bottom: none;
     border-top: none;
     z-index: 99;
@@ -272,6 +295,7 @@ input[type="submit"] {
     top: 100%;
     left: 0;
     right: 0;
+    border-color: rgb(150, 95, 212);
 }
 
 .autocomplete-items div {
@@ -279,7 +303,7 @@ input[type="submit"] {
     cursor: pointer;
     background-color: rgb(29, 26, 47);
     color: rgb(139, 212, 80);
-    border-bottom: 1px solid #d4d4d4;
+    border-bottom: 1px solid rgb(150, 95, 212);
     font-family: CardEffect;
 }
 
@@ -436,6 +460,8 @@ footer {
     /* width: 80vh !important */
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
+    margin: 10px;
+    /* height: 510px; */
 
 }
 
@@ -487,6 +513,7 @@ footer {
     overflow: auto;
     height: auto;
     width: 100%;
+    /* padding-bottom: 30px; */
 }
 
 .modal-body {
@@ -494,7 +521,7 @@ footer {
     justify-content: space-evenly;
     /* width: 100%; */
     /* width: 8vh !important; */
-    max-height: 95vh;
+    max-height: 92vh;
 
 }
 
@@ -517,8 +544,8 @@ footer {
 }
 
 .cardHeader img {
-    max-width: 380px;
-    max-height: 554px;
+    max-width: 337px;
+    max-height: 459px;
     cursor: pointer;
 }
 
@@ -938,7 +965,7 @@ footer {
 .sets {
     width: min-content;
     width: 250px;
-    height: 609px;
+    height: 555px;
     background-color: rgba(0, 0, 0, 0.85);
     margin: 15px 5px 15px 5px;
 }
@@ -1037,13 +1064,19 @@ footer {
         height: 220px;
     }
 
+
+    .aloneCard {
+        max-height: 72vh;
+    }
+
+
     .cardHeader {
         flex-direction: column;
 
     }
 
     .modal-body .cardHeader img {
-        width: 320px;
+        width: 242;
         padding: 1%;
     }
 
@@ -1107,7 +1140,6 @@ footer {
 }
 
 
-
 @media (max-width: 663px) {
     .card {
         width: 152px;
@@ -1125,6 +1157,10 @@ footer {
 
     .sets img {
         max-height: auto !important;
+    }
+
+    .modal-header img {
+        width: 230px;
     }
 
     #titlesSection {
@@ -1163,6 +1199,11 @@ footer {
         padding: 10px;
     }
 
+
+    .aloneCard {
+        max-height: 72vh;
+    }
+
 }
 
 
@@ -1175,6 +1216,10 @@ footer {
 
     .setLetters {
         font-size: 32pt;
+    }
+
+    .modal-body {
+        align-items: center;
     }
 
     .card {
@@ -1304,6 +1349,12 @@ footer {
     .card {
         width: 109px;
         height: 152px;
+    }
+
+    .modal-body .cardHeader img {
+        width: 240px;
+        padding: 2%;
+        text-align: center;
     }
 
 }
