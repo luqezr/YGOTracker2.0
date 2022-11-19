@@ -107,8 +107,10 @@ function createNormalCard(card, view) {
           <div class="cardHeader">
             <div> 
             <img src="${card.card_images[0].image_url}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
-            <i class="bi bi-caret-left" style="font-size:30px" class="card"data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <i class="bi bi-caret-right" style="font-size:30px" class="card"data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
+            <div class="cardArrows">
+                <i class="bi bi-caret-left"  class="card"data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+                <i class="bi bi-caret-right" class="card"data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
+            </div>
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>

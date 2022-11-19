@@ -169,6 +169,20 @@ nav form button {
     /* Firefox */
 }
 
+.cardArrows {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 30pt;
+    padding: 10px;
+    color: rgb(139, 212, 80);
+}
+
+.cardArrows i:hover {
+    color: rgb(150, 95, 212);
+    cursor: pointer;
+}
+
 .cardInfo::-webkit-scrollbar {
     display: none;
 }
