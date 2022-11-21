@@ -28,6 +28,11 @@ function createNormalCard(card, view) {
     } else {
         previousCard = currentCards[getIndex(card.id, "left")]
     }
+
+    if (currentCards[getIndex(card.id, "right")] == undefined) {
+        console.log("no next card")
+        nextCard = card
+    }
     // console.log(previousCard)
     // console.log(nextCard)
 

@@ -15,7 +15,7 @@ var cardsSection = document.getElementById("cardsSection");
 var cardIndex;
 var resultsPerPage = 24;
 var setsPerPage = 24;
-var printedResults = 24;
+var printedResults = resultsPerPage;
 var scrollingValue = 6000; //distance where buttons will show
 
 
@@ -57,6 +57,7 @@ function queryYGOPD() {
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
+            printedResults = resultsPerPage
 
         })
 
@@ -177,6 +178,7 @@ function sortCards(value) {
 function searchCardsByNameOrDescription(value) {
     // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
     resetCurrentCards()
+    printedResults = resultsPerPage
     query = value.toLowerCase();
     currentCards = allCards.data.filter((card) =>
         `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
@@ -206,6 +208,7 @@ function searchByExactValue(field, value) {
 function searchByArchetype(value) {
 
     window.scrollTo(0, 0);
+    printedResults = resultsPerPage
     resetCurrentCards()
     searchByExactValue("archetype", value)
     printCards(currentCards.length, currentCards, '<span class="greenText">' + currentCards.length + '</span>', text_Archetype1 + '<span class="purpleText">' + value + '</span> ', text_Archetype2)
@@ -218,8 +221,8 @@ function searchByArchetype(value) {
 
 function searchBySet(set_name) {
 
-    // window.scrollTo(0, 0);
-
+    window.scrollTo(0, 0);
+    printedResults = resultsPerPage
     let thisSet = []
 
     for (let i = 0; i < allCards.data.length; i++) {
@@ -283,6 +286,7 @@ function searchBySet(set_name) {
 
 function searchByFormat(format) {
     window.scrollTo(0, 0);
+    printedResults = resultsPerPage
     let thisFormat = []
 
     for (let i = 0; i < allCards.data.length; i++) {
@@ -490,7 +494,8 @@ function printMoreResults(howMany) {
     // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
     if (setsStatus == true) {
         for (let i = printedResults;
-            (i < printedResults + howMany && i < currentCards.length); i++) {
+            // (i < printedResults + howMany && i < currentCards.length); i++) {
+            i < printedResults + howMany; i++) {
 
             try {
                 createSet(currentCards[i])
@@ -500,6 +505,7 @@ function printMoreResults(howMany) {
                 return
             }
 
+            printedResults = printedResults + howMany
 
         }
 
@@ -508,20 +514,26 @@ function printMoreResults(howMany) {
 
         for (let i = printedResults;
             // (i < printedResults + howMany); i++) {
-            (i < printedResults + howMany && i < currentCards.length); i++) {
+            i < printedResults + howMany; i++) {
             try {
                 createNormalCard(currentCards[i])
             } catch (error) {
                 // console.error(error);
                 console.log("No more cards!")
-                return
+
             }
 
 
         }
 
+        printedResults = printedResults + howMany
+
+
     }
-    printedResults = printedResults + howMany
+
+
+    console.log(printedResults)
+
 }
 
 

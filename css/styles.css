@@ -666,6 +666,23 @@ footer {
     background-position: -224px -192px;
 }
 
+.spiritMonster {
+    background-position: -256px -192px;
+}
+
+
+.unionMonster {
+    background-position: -288px -192px;
+}
+
+.flipEffectMonster {
+    background-position: -192px -192px;
+}
+
+.tunerMonster {
+    background-position: -96px -224px;
+}
+
 .ritualMonster {
     background-position: -64px 0px;
 }
