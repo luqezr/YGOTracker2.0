@@ -169,6 +169,7 @@ nav form button {
     /* Firefox */
 }
 
+
 .cardArrows {
     display: flex;
     align-items: center;
@@ -182,6 +183,13 @@ nav form button {
     color: rgb(150, 95, 212);
     cursor: pointer;
 }
+
+.arrowsMobile{
+    display: none;
+}
+
+
+
 
 .cardInfo::-webkit-scrollbar {
     display: none;
@@ -588,6 +596,7 @@ footer {
 .cardArchetype span {
     color: rgb(139, 212, 80);
     padding-left: 8px;
+    padding-right: 8px;
 }
 
 .cardArchetype span:hover {
@@ -1029,6 +1038,7 @@ footer {
 
 .greenText {
     color: rgb(139, 212, 80);
+    text-decoration: none;
 }
 
 .greenText a {
@@ -1095,6 +1105,21 @@ footer {
         height: 220px;
     }
 
+    .cardArrows{
+        display: none;
+    }
+
+    .arrowsMobile{
+    display: inline-block !important;
+    font-size: 30pt;
+    padding: 10px;
+    color: rgb(139, 212, 80);
+    }
+
+    .arrowsMobile:hover {
+        color: rgb(150, 95, 212);
+        cursor: pointer;
+    }
 
     .aloneCard {
         max-height: 72vh;
@@ -1103,6 +1128,8 @@ footer {
 
     .cardHeader {
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
     }
 
@@ -1135,6 +1162,8 @@ footer {
     .setInfo {
         font-size: 12pt !important;
     }
+
+  
 
     .modal-body .cardHeader img {
         width: 320px;
