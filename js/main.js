@@ -710,3 +710,4 @@ function searchCardsByNameOrDescription(value) {
     // FILTER CARDS 
 
     // Check this https://codepen.io/piotrek/pen/mXpRmQ
+    // also this lonefy.vscode-JS-CSS-HTML-formatter
