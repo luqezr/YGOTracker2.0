@@ -710,3 +710,28 @@ function getIndex(cardId, orientation) {
 
 // Check this https://codepen.io/piotrek/pen/mXpRmQ
 // also this lonefy.vscode-JS-CSS-HTML-formatter
+
+// 👉https://www.javatpoint.com/oprweb/test.jsp?filename=how-to-get-all-checked-checkbox-value-in-javascript3
+
+function getCheckboxValues() {
+    var markedCheckbox = document.getElementsByName('checkbox');
+    for (var checkbox of markedCheckbox) {
+        if (checkbox.checked)
+            console.log(checkbox.value);
+    }
+
+}
+
+function runFilters() {
+    var descForm = document.getElementById('descForm').value
+    var atkForm = document.getElementById('atkForm').value
+    var defForm = document.getElementById('defForm').value
+    console.log(descForm)
+    console.log(atkForm)
+    console.log(defForm)
+}
+
+document.getElementById('filterButton').onclick = function() {
+    getCheckboxValues()
+    runFilters()
+}

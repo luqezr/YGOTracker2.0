@@ -43,7 +43,7 @@ function createNormalCard(card, view) {
         <div class="modal-body " id="aloneCard">
           <div class="cardHeader" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
-            <img src="${card.card_images[0].image_url}" alt="${card.name}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" onerror="this.src='../media/noimage.webp'" alt="${card.name}"  >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -100,7 +100,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url}" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url}" onerror="this.src='../media/noimage.webp'" alt="${card.name}" >
   </div>
 
   
@@ -110,9 +110,9 @@ function createNormalCard(card, view) {
       <div class="modal-content" >
         <div class="modal-body"  >
           <div class="cardHeader">
-            <div> 
+            <div class="cardHeaderDiv"> 
             <i class="bi bi-caret-left arrowsMobile"  class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}"  onerror="this.src='../media/noimage.webp'" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
             <i class="bi bi-caret-right arrowsMobile" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -423,7 +423,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-    // console.log(cardRace)
+        // console.log(cardRace)
 
 
     if (cardAttribute == "light") {
@@ -714,7 +714,7 @@ function printCardSets(modalId, card) {
            <tr>
              <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='searchBySet("${card.card_sets[i].set_name}")'  data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
-             <td class="tableBody"  onclick="changeCardPicture()"> ${card.card_sets[i].set_code}</td>
+             <td class="tableBody greenText" style="cursor: pointer" onclick="changeCardPicture(${card.id}, '${card.card_sets[i].set_code}')"> ${card.card_sets[i].set_code}</td>
              <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
            </tr>
     
@@ -768,4 +768,8 @@ function createSet(sets) {
         </div>
 	
   `
+}
+
+function changeCardPicture(cardId, cardSetCode) {
+    document.getElementById(`img_${cardId}`).src = `https://static-7.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
 }

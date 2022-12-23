@@ -1110,7 +1110,7 @@ footer {
     .cardSubTitle,
     .cardInfo table,
     .setInfo {
-        font-size: 12pt !important;
+        font-size: 14pt !important;
     }
     .modal-body .cardHeader img {
         width: 320px;
@@ -1185,6 +1185,13 @@ footer {
     }
     .aloneCard {
         max-height: 72vh;
+    }
+}
+
+@media (max-width: 543px) {
+    .cardHeaderDiv {
+        display: flex;
+        align-items: center;
     }
 }
 
