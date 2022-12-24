@@ -308,7 +308,7 @@ function whichType(modalId, type, card) {
           <span> <span class="iconsSprite trapCard"></span> ${card.type.toUpperCase()} </span>
           `
         } else if (type == "Skill Card") {
-            console.log("skill card")
+            // console.log("skill card")
             document.getElementById(modalId).innerHTML += `
             <span> <span class="iconsSprite skillCard"></span> ${card.type.toUpperCase()} </span>
             `
@@ -423,7 +423,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-        // console.log(cardRace)
+    // console.log(cardRace)
 
 
     if (cardAttribute == "light") {

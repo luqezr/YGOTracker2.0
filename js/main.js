@@ -49,11 +49,11 @@ function queryYGOPD() {
         .then((data) => {
             allCards = data;
             currentCards = allCards.data
-                // console.log(allCards.data); // show all cards
-                // // .replaceAll('. ', '.\n');  ACAAAAA
-                // for (let i = 0; i < allCards.data.length; i++) { 
-                //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
-                // }
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
@@ -61,11 +61,11 @@ function queryYGOPD() {
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 // SEARCH ALL SETS FROM YGOPD
@@ -80,16 +80,16 @@ function searchAllSets(value) {
             resetCurrentCards()
             currentCards = allSets
             console.log('all sets fetched 😎')
-                // console.log(allSets)
+            // console.log(allSets)
             printSets(setsPerPage, allSets, text_allSets1 + '<span class="greenText">' + allSets.length + '</span>' + text_allSets2)
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 
 
 
@@ -109,12 +109,12 @@ async function queryYGOrg(cardId, konamId, language) {
             changeCardInformation(cardId, language)
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        alert("No languages for this card yet! 😢")
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            alert("No languages for this card yet! 😢")
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -183,8 +183,8 @@ function searchCardsByNameOrDescription(value) {
     currentCards = allCards.data.filter((card) =>
         `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
     console.log("Results: " + currentCards.length + " cards")
-        // console.log(filteredQueryResults);
-        // if (filteredQueryResults.length < 30 ){
+    // console.log(filteredQueryResults);
+    // if (filteredQueryResults.length < 30 ){
     if (resultsPerPage < currentCards.length) {
         printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2) //https://codepen.io/piotrek/pen/mXpRmQ
     } else {
@@ -198,7 +198,7 @@ function searchByExactValue(field, value) {
 
     resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
-        // console.log(filteredCards)
+    // console.log(filteredCards)
 }
 
 // SEARCH BY SOME VALUE, FOR EXAMPLE
@@ -384,7 +384,7 @@ function printCards(howMany, cards, title1, title2, title3, view) {
     cardsSection.innerHTML = ("")
 
     titlesSection.innerHTML = title1 + title2 + title3
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {
         try {
@@ -411,7 +411,7 @@ function printSets(howMany, sets, title) {
     cards2print = sets
 
     titlesSection.innerHTML = title
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     cardsSection.innerHTML += `
             <h2 class='setLetters'>
@@ -473,7 +473,7 @@ function changeResolution(id) {
     // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
     var width = window.screen.width
     var height = window.screen.height
-        // console.log(width+"px width and "+ height + "px height")
+    // console.log(width+"px width and "+ height + "px height")
 
     // MOVE:
     // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
@@ -675,9 +675,9 @@ window.addEventListener('scroll', () => {
     // console.log("scrolled", window.scrollY) //scrolled from top
     //  console.log(window.innerHeight) //visible part of screen
     let loadHeight = (document.documentElement.scrollHeight)
-        // console.log(document.documentElement.scrollHeight)
-        //  console.log(loadHeight)
-        // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
+    // console.log(document.documentElement.scrollHeight)
+    //  console.log(loadHeight)
+    // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
     if (window.scrollY + window.innerHeight >= loadHeight) {
         printMoreResults(resultsPerPage)
     }
@@ -697,10 +697,10 @@ function getIndex(cardId, orientation) {
 
     if (orientation == 'right') {
         return cardIndex + 1
-            // console.log(cardIndex + 1)
+        // console.log(cardIndex + 1)
     } else if (orientation == 'left') {
         return cardIndex - 1
-            // console.log(cardIndex - 1)
+        // console.log(cardIndex - 1)
     }
 }
 
@@ -718,20 +718,45 @@ function getCheckboxValues() {
     for (var checkbox of markedCheckbox) {
         if (checkbox.checked)
             console.log(checkbox.value);
+        // filteredQueryResults = currentCards.filter(card => card.def == defForm)
+        // currentCards = filteredQueryResults
     }
 
 }
 
 function runFilters() {
+
+    // when adding other formats this value should be changed to whatever the format is 
+    currentCards = allCards.data
+
     var descForm = document.getElementById('descForm').value
     var atkForm = document.getElementById('atkForm').value
     var defForm = document.getElementById('defForm').value
-    console.log(descForm)
-    console.log(atkForm)
-    console.log(defForm)
+    // console.log(descForm)
+    // console.log(atkForm)
+    // console.log(defForm)
+    if (descForm != '') {
+        filteredQueryResults = currentCards.filter((card) =>
+            `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(descForm));
+        currentCards = filteredQueryResults
+    }
+
+    if (atkForm != '') {
+        filteredQueryResults = currentCards.filter(card => card.atk == atkForm)
+        currentCards = filteredQueryResults
+    }
+
+    if (defForm != '') {
+        filteredQueryResults = currentCards.filter(card => card.def == defForm)
+        currentCards = filteredQueryResults
+    }
+
 }
 
 document.getElementById('filterButton').onclick = function() {
     getCheckboxValues()
     runFilters()
+    currentCards = filteredQueryResults
+    printCards(resultsPerPage, filteredQueryResults, '<span class="purpleText">' + filteredQueryResults.length + ' </span> cards fit your criteria ')
+
 }
