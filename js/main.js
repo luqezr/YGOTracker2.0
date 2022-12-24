@@ -714,13 +714,47 @@ function getIndex(cardId, orientation) {
 // 👉https://www.javatpoint.com/oprweb/test.jsp?filename=how-to-get-all-checked-checkbox-value-in-javascript3
 
 function getCheckboxValues() {
-    var markedCheckbox = document.getElementsByName('checkbox');
-    for (var checkbox of markedCheckbox) {
-        if (checkbox.checked)
+    var markedCheckboxType = document.getElementsByClassName('typeOfMonsterCard');
+    var markedCheckboxAttribute = document.getElementsByClassName('attributeOfMonsterCard');
+    var markedCheckboxLevel = document.getElementsByClassName('levelOfCard');
+    var markedCheckboxRace = document.getElementsByClassName('raceOfMonsterCard');
+
+    for (var checkbox of markedCheckboxType) {
+        if (checkbox.checked) {
             console.log(checkbox.value);
-        // filteredQueryResults = currentCards.filter(card => card.def == defForm)
-        // currentCards = filteredQueryResults
+            filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
+            currentCards = filteredQueryResults
+        }
     }
+
+    for (var checkbox of markedCheckboxAttribute) {
+        if (checkbox.checked) {
+            console.log(checkbox.value);
+            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
+            currentCards = filteredQueryResults
+        }
+
+    }
+
+    for (var checkbox of markedCheckboxLevel) {
+        if (checkbox.checked) {
+            console.log(checkbox.value);
+            filteredQueryResults = currentCards.filter(card => card.level == checkbox.value)
+            currentCards = filteredQueryResults
+
+        }
+    }
+
+
+    for (var checkbox of markedCheckboxRace) {
+        if (checkbox.checked) {
+            console.log(checkbox.value);
+            filteredQueryResults = currentCards.filter(card => card.race == checkbox.value)
+            currentCards = filteredQueryResults
+
+        }
+    }
+
 
 }
 
