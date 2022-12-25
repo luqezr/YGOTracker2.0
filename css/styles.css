@@ -714,31 +714,39 @@ footer {
 }
 
 .normalSpell {
-    background-position: 0px -96px;
+    background-position: -384px -288px;
 }
 
 .fieldSpell {
-    background-position: -64px -96px;
+    background-position: -224px -288px;
 }
 
 .equipSpell {
-    background-position: -96x -96px;
+    background-position: -256px -288px;
 }
 
 .quickPlaySpell {
-    background-position: -160px -96px;
+    background-position: -320px -288px;
 }
 
 .ritualSpell {
-    background-position: -192px -96px;
+    background-position: -352px -288px;
 }
 
-.continuous {
-    background-position: -128px -96px;
+.continuousSpell {
+    background-position: -288px -288px;
+}
+
+.normalTrap {
+    background-position: -480px -288px;
+}
+
+.continuousTrap {
+    background-position: -448px -288px;
 }
 
 .counterTrap {
-    background-position: -32px -96px;
+    background-position: -416px -288px;
 }
 
 .trapCard {
@@ -1068,60 +1076,75 @@ footer {
         width: 160px;
         height: 220px;
     }
+
     .cardArrows {
         display: none;
     }
+
     .arrowsMobile {
         display: inline-block !important;
         font-size: 30pt;
         padding: 10px;
         color: rgb(139, 212, 80);
     }
+
     .arrowsMobile:hover {
         color: rgb(150, 95, 212);
         cursor: pointer;
     }
+
     .aloneCard {
         max-height: 72vh;
     }
+
     .cardHeader {
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
+
     .modal-body .cardHeader img {
         width: 242;
         padding: 1%;
     }
+
     .setLetters {
         font-size: 32pt;
     }
+
     .modal-body .cardHeader img {
         width: 270px;
         padding: 1%;
     }
+
     .modal img {
         width: 180px;
     }
+
     .cardInfo span {
         font-size: 11pt;
     }
+
     .cardInfo p,
     .cardSubTitle,
     .cardInfo table,
     .setInfo {
         font-size: 14pt !important;
     }
+
     .modal-body .cardHeader img {
         width: 320px;
         padding: 1%;
     }
+
     .modal img {
         width: 80px;
     }
+
     table {
         padding: 0px;
     }
+
     .cardName,
     .cardName p,
     .cardName span,
@@ -1129,10 +1152,12 @@ footer {
         padding: 0;
         margin: 0;
     }
+
     .modal-body {
         display: flex;
         flex-direction: column;
     }
+
     #titlesSection {
         font-size: 27pt;
     }
@@ -1142,35 +1167,44 @@ footer {
     .card {
         width: 152px;
     }
+
     .sets {
         width: 226px;
         height: 500px;
     }
+
     .sets a {
         font-size: 17pt;
     }
+
     .sets img {
         max-height: auto !important;
     }
+
     .modal-header img {
         width: 230px;
     }
+
     #titlesSection {
         font-size: 25pt;
     }
+
     #back2top,
     #loadMoreCards {
         font-size: 40px;
     }
+
     #filterBar {
         display: contents;
     }
+
     #typeAndLevel,
     #raceAndAttribute {
         flex-direction: column;
         align-items: center;
         justify-content: baseline;
     }
+
     .cardDescription,
     .cardFormats span,
     .cardFormats a {
@@ -1178,11 +1212,13 @@ footer {
         font-weight: lighter;
         align-items: center;
     }
+
     .table th,
     .table td {
         font-size: 10pt;
         padding: 10px;
     }
+
     .aloneCard {
         max-height: 72vh;
     }
@@ -1200,52 +1236,64 @@ footer {
         width: 182px;
         height: 400px;
     }
+
     .setLetters {
         font-size: 32pt;
     }
+
     .modal-body {
         align-items: center;
     }
+
     .card {
         width: 113px;
         height: 152px;
     }
+
     #cardSection {
         justify-content: space-evenly;
         align-items: center;
     }
+
     .sets {
         width: 173px;
         max-height: 400px;
         align-items: center;
         justify-content: center;
     }
+
     .setGrid {
         max-height: 100%;
         max-width: 100%;
         justify-content: center;
     }
+
     .setImage button {
         max-width: 160px;
         max-height: 350px;
         height: auto;
     }
+
     .card-img-bottom {
         max-height: 330px;
     }
+
     .cardDescription,
     .cardFormats span,
     .cardFormats a {
         font-size: 12pt;
         font-weight: lighter;
     }
+
     .cardInfo {
         padding: 5px;
         font-size: 10pt;
     }
+
     .cardInfo a {
         font-size: 11pt;
     }
+
     /* .iconsSprite {
         width: 0;
         height: 0;
@@ -1255,37 +1303,45 @@ footer {
         flex-direction: row;
         align-items: center;
     }
+
     .cardHeader span {
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         font-size: 9pt;
     }
+
     .cardHeader .cardSubTitle {
         display: flex;
         flex-direction: row;
         font-size: 14pt;
     }
+
     .modal-body .cardHeader img {
         width: 300px;
         padding: 2%;
         text-align: center;
     }
+
     .modal img {
         width: 80px;
     }
+
     .table {
         justify-content: center;
         padding: 0px;
     }
+
     .table th,
     .table td {
         font-size: 9pt
     }
+
     .cardInfo p,
     .cardSubTitle span {
         font-size: 10pt !important;
     }
+
     footer {
         font-size: 10pt;
         padding: 10px 10px 10px 10px;
@@ -1297,13 +1353,16 @@ footer {
         width: 156px;
         height: 400px;
     }
+
     .sets img {
         width: 130px;
     }
+
     .card {
         width: 109px;
         height: 152px;
     }
+
     .modal-body .cardHeader img {
         width: 240px;
         padding: 2%;

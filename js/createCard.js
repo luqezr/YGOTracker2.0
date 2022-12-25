@@ -5,14 +5,17 @@ function createNormalCard(card, view) {
     // let desc = card.desc.replace(/\./g, '. <br/>');
 
     let desc = card.desc
-        .replace('----------------------------------------', ' <br/> ')
-        .replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/> ')
-        .replace('[ Monster Effect ]', '[ Monster Effect ] <br/> ')
         .replace('once per turn.', 'once per turn.<br/> ')
+        .replace('----------------------------------------', ' ')
+        .replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/> ')
+        .replace('[ Monster Effect ]', '<br/> [ Monster Effect ] <br/> ')
+        // .replace('. [', '.<br/> [')
         .replace('.)', '.) <br/>')
-        .replace('●', '<br/> ● ')
-        .replace('. ● ', '<br/> ● ')
+        // .replace('●', '<br/> ● ')
+        .replace('. ●', '.<br/> ● ')
+        .replace('.●', '.<br/> ● ')
         .replace('<br/> <br/>', '<br/>')
+        .replace('.<br/> <br/>', '<br/>')
 
 
     // DESCRIPCION FINAL
@@ -637,15 +640,27 @@ function whichRace(modalId, race, card) {
     `
     }
 
-    if (cardRace == "normal") {
+    if (cardRace == "normal" && card.type == "Spell Card") {
         document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite normalSpell"></span>  ${card.race.toUpperCase()} </span>
     `
     }
-
-    if (cardRace == "continuous") {
+    if (cardRace == "normal" && card.type == "Trap Card") {
         document.getElementById(modalId).innerHTML += `
-    <span> <span class="iconsSprite continuous"></span>  ${card.race.toUpperCase()} </span>
+    <span> <span class="iconsSprite normalTrap"></span>  ${card.race.toUpperCase()} </span>
+    `
+    }
+
+    if (cardRace == "continuous" && card.type == "Spell Card") {
+        document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite continuousSpell"></span>  ${card.race.toUpperCase()} </span>
+    `
+    }
+
+
+    if (cardRace == "continuous" && card.type == "Trap Card") {
+        document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite continuousTrap"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 

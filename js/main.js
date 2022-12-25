@@ -739,7 +739,7 @@ function getCheckboxValues() {
     for (var checkbox of markedCheckboxLevel) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => card.level == checkbox.value)
+            filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
             currentCards = filteredQueryResults
 
         }
@@ -749,6 +749,14 @@ function getCheckboxValues() {
     for (var checkbox of markedCheckboxRace) {
         if (checkbox.checked) {
             console.log(checkbox.value);
+            // if (checkbox.value == "Normal Spell" || checkbox.value == "Continuous Spell") {
+            //     console.log("spell")
+            //     filteredQueryResults = currentCards.filter(card => card.race == checkbox.value.replace(" Spell", "") && card.type == "Spell Card")
+            //     // filteredQueryResults = allCards.data.filter(card => (card.race == 'Continuous' && card.type == 'Spell Card'))
+            // } else if (checkbox.value == "Normal Trap" || checkbox.value == "Continuous Trap") {
+            //     console.log("trap")
+            //     filteredQueryResults = currentCards.filter(card => card.race == checkbox.value.replace(" Trap", "") && card.type == "Trap Card")
+            // }
             filteredQueryResults = currentCards.filter(card => card.race == checkbox.value)
             currentCards = filteredQueryResults
 
@@ -760,8 +768,6 @@ function getCheckboxValues() {
 
 function runFilters() {
 
-    // when adding other formats this value should be changed to whatever the format is 
-    currentCards = allCards.data
 
     var descForm = document.getElementById('descForm').value
     var atkForm = document.getElementById('atkForm').value
@@ -785,12 +791,30 @@ function runFilters() {
         currentCards = filteredQueryResults
     }
 
+
+
 }
 
 document.getElementById('filterButton').onclick = function() {
+    // when adding other formats this value should be changed to whatever the format is 
+    currentCards = allCards.data
     getCheckboxValues()
     runFilters()
     currentCards = filteredQueryResults
     printCards(resultsPerPage, filteredQueryResults, '<span class="purpleText">' + filteredQueryResults.length + ' </span> cards fit your criteria ')
+    resetFilters()
+}
 
+function resetFilters() {
+
+    let getcheckboxes = document.getElementsByName('checkbox');
+
+    for (var i = 0; i < getcheckboxes.length; i++) {
+
+        getcheckboxes[i].checked = false;
+    }
+
+    descForm.value = ''
+    atkForm.value = ''
+    defForm.value = ''
 }

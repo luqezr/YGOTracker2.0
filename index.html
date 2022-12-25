@@ -121,6 +121,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
 
                                     <h4 class="mr-sm-2" for="inlineFormCustomSelect">TYPE</h4>
                                     <div id="type">
+                                        <!-- MONSTERS -->
 
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Normal Monster" id="NormalMonster">
@@ -202,6 +203,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                             <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Token" id="Token">
                                             <label class="form-check-label" for="Token"><span class="iconsSprite tokenMonster"></span> Token </label>
                                         </div>
+
                                     </div>
                                 </form>
 
@@ -265,6 +267,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
 
                                     <h4 class="mr-sm-2" for="inlineFormCustomSelect">RACE</h4>
                                     <div id="race">
+                                        <!-- MONSTERS -->
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input raceOfMonsterCard" type="checkbox" name="checkbox" id="Aqua" value="Aqua">
                                             <label class="form-check-label" for="Aqua"><span class="iconsSprite aqua"></span> Aqua </label>
@@ -365,6 +368,49 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                             <input class="form-check-input raceOfMonsterCard" type="checkbox" name="checkbox" id="Zombie" value="Zombie">
                                             <label class="form-check-label" for="Zombie"><span class="iconsSprite zombie"></span> Zombie </label>
                                         </div>
+
+                                        <!-- SPELLS -->
+
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell" type="checkbox" name="checkbox" id="NormalSpell" value="Normal Spell">
+                                            <label class="form-check-label " for="NormalSpell"><span class="iconsSprite normalSpell"></span> Normal Spell</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="ContinuousSpell" value="Continuous Spell">
+                                            <label class="form-check-label" for="ContinuousSpell"> <span class="iconsSprite continuousSpell"></span> Continuous Spell</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Field" value="Field">
+                                            <label class="form-check-label" for="Field"> <span class="iconsSprite fieldSpell"></span> Field Spell</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Quick-Play" value="Quick-Play">
+                                            <label class="form-check-label" for="Quick-Play"><span class="iconsSprite quickPlaySpell"></span> Quick-Play Spell</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Ritual" value="Ritual">
+                                            <label class="form-check-label" for="Ritual"><span class="iconsSprite ritualSpell"></span> Ritual Spell</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Equip" value="Equip">
+                                            <label class="form-check-label" for="Equip"><span class="iconsSprite equipSpell"></span> Equip Spell </label>
+                                        </div>
+                                        <!-- TRAPS -->
+                                        <br>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfTrap " type="checkbox" name="checkbox" id="NormalTrap" value="Normal Trap">
+                                            <label class="form-check-label" for="NormalTrap"> <span class="iconsSprite normalTrap"></span> Normal Trap</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfTrap " type="checkbox" name="checkbox" id="ContinuousTrap" value="Continuous Trap">
+                                            <label class="form-check-label" for="ContinuousTrap"><span class="iconsSprite continuousTrap"></span> Continuous Trap</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input raceOfTrap counterTrap" type="checkbox" name="checkbox" id="Counter" value="Counter">
+                                            <label class="form-check-label" for="Counter"><span class="iconsSprite counterTrap"></span> Counter Trap</label>
+                                        </div>
+
                                     </div>
                                 </form>
 
@@ -424,6 +470,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
 
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset</button>
                         <button type="button" class="btn btn-secondary" id="filterButton" data-bs-dismiss="modal">Filter</button>
                     </div>
                 </div>
