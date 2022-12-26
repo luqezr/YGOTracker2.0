@@ -713,40 +713,53 @@ function getIndex(cardId, orientation) {
 
 // 👉https://www.javatpoint.com/oprweb/test.jsp?filename=how-to-get-all-checked-checkbox-value-in-javascript3
 
+
+function resetFilters() {
+    let getcheckboxes = document.getElementsByName('checkbox');
+    for (var i = 0; i < getcheckboxes.length; i++) {
+        getcheckboxes[i].checked = false;
+    }
+    descForm.value = ''
+    atkForm.value = ''
+    defForm.value = ''
+}
+
 function getCheckboxValues() {
-    var markedCheckboxType = document.getElementsByClassName('typeOfMonsterCard');
-    var markedCheckboxAttribute = document.getElementsByClassName('attributeOfMonsterCard');
-    var markedCheckboxLevel = document.getElementsByClassName('levelOfCard');
-    var markedCheckboxRace = document.getElementsByClassName('raceOfMonsterCard');
+    let markedCheckboxType = document.getElementsByClassName('typeOfMonsterCard');
+    let markedCheckboxAttribute = document.getElementsByClassName('attributeOfMonsterCard');
+    let markedCheckboxLevel = document.getElementsByClassName('levelOfCard');
+    let markedCheckboxRace = document.getElementsByClassName('raceOfMonsterCard');
 
-    for (var checkbox of markedCheckboxType) {
+
+
+    for (let checkbox of markedCheckboxType) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
-            currentCards = filteredQueryResults
+            filteredQueryResults = allCards.data.filter(card => card.type == checkbox.value)
+            currentCards = currentCards.concat(filteredQueryResults)
         }
     }
 
-    for (var checkbox of markedCheckboxAttribute) {
+    for (let checkbox of markedCheckboxAttribute) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
-            currentCards = filteredQueryResults
+            filteredQueryResults = allCards.data.filter(card => card.attribute == checkbox.value)
+            currentCards.push(filteredQueryResults)
         }
 
     }
 
-    for (var checkbox of markedCheckboxLevel) {
+    for (let checkbox of markedCheckboxLevel) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-            currentCards = filteredQueryResults
+            filteredQueryResults = allCards.data.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            currentCards.push(filteredQueryResults)
 
         }
     }
 
 
-    for (var checkbox of markedCheckboxRace) {
+    for (let checkbox of markedCheckboxRace) {
         if (checkbox.checked) {
             console.log(checkbox.value);
             // if (checkbox.value == "Normal Spell" || checkbox.value == "Continuous Spell") {
@@ -758,7 +771,7 @@ function getCheckboxValues() {
             //     filteredQueryResults = currentCards.filter(card => card.race == checkbox.value.replace(" Trap", "") && card.type == "Trap Card")
             // }
             filteredQueryResults = currentCards.filter(card => card.race == checkbox.value)
-            currentCards = filteredQueryResults
+            currentCards.push(filteredQueryResults)
 
         }
     }
@@ -769,25 +782,25 @@ function getCheckboxValues() {
 function runFilters() {
 
 
-    var descForm = document.getElementById('descForm').value
-    var atkForm = document.getElementById('atkForm').value
-    var defForm = document.getElementById('defForm').value
+    let descForm = document.getElementById('descForm').value
+    let atkForm = document.getElementById('atkForm').value
+    let defForm = document.getElementById('defForm').value
     // console.log(descForm)
     // console.log(atkForm)
     // console.log(defForm)
     if (descForm != '') {
-        filteredQueryResults = currentCards.filter((card) =>
+        filteredQueryResults = allCards.data.filter((card) =>
             `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(descForm));
         currentCards = filteredQueryResults
     }
 
     if (atkForm != '') {
-        filteredQueryResults = currentCards.filter(card => card.atk == atkForm)
+        filteredQueryResults = allCards.data.filter(card => card.atk == atkForm)
         currentCards = filteredQueryResults
     }
 
     if (defForm != '') {
-        filteredQueryResults = currentCards.filter(card => card.def == defForm)
+        filteredQueryResults = allCards.data.filter(card => card.def == defForm)
         currentCards = filteredQueryResults
     }
 
@@ -797,24 +810,12 @@ function runFilters() {
 
 document.getElementById('filterButton').onclick = function() {
     // when adding other formats this value should be changed to whatever the format is 
-    currentCards = allCards.data
+    currentCards = []
     getCheckboxValues()
     runFilters()
-    currentCards = filteredQueryResults
-    printCards(resultsPerPage, filteredQueryResults, '<span class="purpleText">' + filteredQueryResults.length + ' </span> cards fit your criteria ')
+    // currentCards = {
+    //     ...currentCards
+    // };
+    printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> cards fit your criteria ', "", "")
     resetFilters()
-}
-
-function resetFilters() {
-
-    let getcheckboxes = document.getElementsByName('checkbox');
-
-    for (var i = 0; i < getcheckboxes.length; i++) {
-
-        getcheckboxes[i].checked = false;
-    }
-
-    descForm.value = ''
-    atkForm.value = ''
-    defForm.value = ''
 }
