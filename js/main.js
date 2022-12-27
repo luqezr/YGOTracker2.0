@@ -8,6 +8,7 @@ var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var query;
 var filteredQueryResults;
+var currentFilteredResults;
 var filteredSets;
 var filteredStaples;
 var titlesSection = document.getElementById("titlesSection");
@@ -735,16 +736,16 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxType) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = allCards.data.filter(card => card.type == checkbox.value)
-            currentCards = currentCards.concat(filteredQueryResults)
+            filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
+            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
         }
     }
 
     for (let checkbox of markedCheckboxAttribute) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = allCards.data.filter(card => card.attribute == checkbox.value)
-            currentCards.push(filteredQueryResults)
+            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
+            currentFilteredResults = currentCards.concat(filteredQueryResults)
         }
 
     }
@@ -752,8 +753,8 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxLevel) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            filteredQueryResults = allCards.data.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-            currentCards.push(filteredQueryResults)
+            filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            currentFilteredResults = currentCards.concat(filteredQueryResults)
 
         }
     }
@@ -762,16 +763,8 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxRace) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            // if (checkbox.value == "Normal Spell" || checkbox.value == "Continuous Spell") {
-            //     console.log("spell")
-            //     filteredQueryResults = currentCards.filter(card => card.race == checkbox.value.replace(" Spell", "") && card.type == "Spell Card")
-            //     // filteredQueryResults = allCards.data.filter(card => (card.race == 'Continuous' && card.type == 'Spell Card'))
-            // } else if (checkbox.value == "Normal Trap" || checkbox.value == "Continuous Trap") {
-            //     console.log("trap")
-            //     filteredQueryResults = currentCards.filter(card => card.race == checkbox.value.replace(" Trap", "") && card.type == "Trap Card")
-            // }
             filteredQueryResults = currentCards.filter(card => card.race == checkbox.value)
-            currentCards.push(filteredQueryResults)
+            currentFilteredResults = currentCards.concat(filteredQueryResults)
 
         }
     }
@@ -789,18 +782,24 @@ function runFilters() {
     // console.log(atkForm)
     // console.log(defForm)
     if (descForm != '') {
-        filteredQueryResults = allCards.data.filter((card) =>
-            `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(descForm));
-        currentCards = filteredQueryResults
+
+        if (currentFilteredResults != undefined) {
+            filteredQueryResults = currentFilteredResults.filter((card) =>
+                `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(descForm));
+        } else {
+            filteredQueryResults = currentCards.filter((card) =>
+                `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(descForm));
+            currentCards = filteredQueryResults
+        }
     }
 
     if (atkForm != '') {
-        filteredQueryResults = allCards.data.filter(card => card.atk == atkForm)
+        filteredQueryResults = currentCards.filter(card => card.atk == atkForm)
         currentCards = filteredQueryResults
     }
 
     if (defForm != '') {
-        filteredQueryResults = allCards.data.filter(card => card.def == defForm)
+        filteredQueryResults = currentCards.filter(card => card.def == defForm)
         currentCards = filteredQueryResults
     }
 
@@ -810,12 +809,15 @@ function runFilters() {
 
 document.getElementById('filterButton').onclick = function() {
     // when adding other formats this value should be changed to whatever the format is 
-    currentCards = []
+    currentCards = allCards.data
+    currentFilteredResults = []
     getCheckboxValues()
     runFilters()
-    // currentCards = {
-    //     ...currentCards
-    // };
-    printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> cards fit your criteria ', "", "")
     resetFilters()
+    currentCards = currentFilteredResults
+    if (currentCards == undefined) {
+        currentCards = allCards.data
+    }
+    printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> cards fit your criteria ', "", "")
+
 }
