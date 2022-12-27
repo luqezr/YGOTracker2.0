@@ -679,7 +679,8 @@ window.addEventListener('scroll', () => {
         // console.log(document.documentElement.scrollHeight)
         //  console.log(loadHeight)
         // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
-    if (window.scrollY + window.innerHeight >= loadHeight) {
+        // console.log(loadHeight)
+    if (window.scrollY + window.innerHeight >= loadHeight - 100) {
         printMoreResults(resultsPerPage)
     }
     // else {alert("No more cards 😓")}
@@ -783,7 +784,6 @@ function getCheckboxValues() {
 
                     if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
                         let value = checkbox.value.replace(' Spell', '')
-                        console.log(value)
                         filteredQueryResults = currentFilteredResults.filter(card => (card.race == value && card.type == 'Spell Card'))
                         currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
                     } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
@@ -798,11 +798,11 @@ function getCheckboxValues() {
 
 
             } else {
+
                 if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
 
                     if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
                         let value = checkbox.value.replace(' Spell', '')
-                        console.log(value)
                         filteredQueryResults = currentCards.filter(card => (card.race == value && card.type == 'Spell Card'))
                         currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
                     } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
@@ -869,7 +869,7 @@ function runFilters() {
 
 document.getElementById('filterButton').onclick = function() {
     // when adding other formats this value should be changed to whatever the format is 
-    currentCards = allCards.data
+    // currentCards = allCards.data
     currentFilteredResults = []
     getCheckboxValues()
     runFilters()

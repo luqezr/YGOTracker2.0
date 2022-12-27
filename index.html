@@ -40,14 +40,27 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
             <!-- Navbar content -->
             <div class="container-fluid ">
                 <a class="navbar-brand" onclick="
-                printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)"><img src="/media/logo.webp" alt="logo" class="logo"></a>
+                printCards(resultsPerPage, allCards.data, text_allCards1, '', text_allCards2)"><img src="/media/logo.webp" alt="logo" class="logo"></a>
                 <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon "></span>
                 </button>
                 <div class="collapse navbar-collapse flex-grow-0" id="navbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto ">
+
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">All Cards</a>
+                            <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage, allCards.data, text_allCards1, '', text_allCards2)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">All Cards</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" aria-current="page" style="cursor: pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Formats</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('TCG')">TCG</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('OCG')">OCG</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('GOAT')">GOAT</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('Edison')">Edison</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('OCG GOAT')">OCG GOAT</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('Common Charity')">Common Charity</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByFormat('Duel Links')">Duel Links</li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="printStaples()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Staples</a>
@@ -56,7 +69,9 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                             <a class="nav-link" aria-current="page" onclick="searchAllSets()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Sets</a>
                         </li>
                     </ul>
+
                 </div>
+
 
                 <!-- <form class="d-flex w-100 d-inline-block" action="" id="searchForm" name="search" role="search" id="searchBar">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="card_name" name="fname" type="text" class="form-control search-menu" autofocus
@@ -111,7 +126,6 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                 <div class="modal-content ">
                     <div class="modal-header" data-bs-dismiss="modal">
                         <h5 class="modal-title" id="exampleModalLabel">Filter </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="filterBar">
 

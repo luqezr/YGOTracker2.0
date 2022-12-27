@@ -18,7 +18,7 @@ function createNormalCard(card, view) {
         .replace('.<br/> <br/>', '<br/>')
 
 
-    // DESCRIPCION FINAL
+
 
 
     let nextCard = currentCards[getIndex(card.id, "right")]

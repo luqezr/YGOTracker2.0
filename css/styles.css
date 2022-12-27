@@ -2,6 +2,10 @@ img[src*="000webhost"] {
     display: none !important;
 }
 
+.sticky-top {
+    z-index: 100;
+}
+
 body,
 .fade {
     -ms-overflow-style: none;
@@ -66,13 +70,19 @@ main {
 
 .logo {
     background-color: rgb(115, 79, 154);
-    width: 105px;
-    height: 54px;
+    width: 105px !important;
+    height: 54px !important;
 }
 
 .navbar-brand :hover {
     background-color: rgb(139, 212, 80);
     transition: 0.3s;
+}
+
+.dropdown-toggle::after {
+    border-top: 0.1em solid;
+    border-right: 0.1em solid transparent;
+    border-left: 0.1em solid transparent;
 }
 
 nav,
@@ -83,6 +93,7 @@ nav li a,
     color: white;
     font-family: CardTitle;
     font-size: 24pt;
+    cursor: pointer;
 }
 
 .dropdown-menu :hover {
@@ -367,7 +378,7 @@ footer {
     font-family: CardEffect;
     font-size: 15pt;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 #filtersModal .modal-header,
