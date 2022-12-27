@@ -779,11 +779,24 @@ function getCheckboxValues() {
         if (checkbox.checked) {
             console.log(checkbox.value);
             if (currentFilteredResults[0]) {
+                if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
 
-                // ADD VERIFICATION FOR SPELL AND TRAP NORMAL AND CONTINUOUS 
+                    if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
+                        let value = checkbox.value.replace(' Spell', '')
+                        console.log(value)
+                        filteredQueryResults = currentFilteredResults.filter(card => (card.race == value && card.type == 'Spell Card'))
+                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+                    } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
+                        let value = checkbox.value.replace(' Trap', '')
+                        filteredQueryResults = currentFilteredResults.filter(card => (card.race == value && card.type == 'Trap Card'))
+                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+                    }
+                } else {
+                    filteredQueryResults = currentFilteredResults.filter(card => card.race == checkbox.value)
+                    currentFilteredResults = filteredQueryResults
+                }
 
-                filteredQueryResults = currentFilteredResults.filter(card => card.race == checkbox.value)
-                currentFilteredResults = filteredQueryResults
+
             } else {
                 if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
 
