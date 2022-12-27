@@ -47,7 +47,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                 <div class="collapse navbar-collapse flex-grow-0" id="navbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ml-auto ">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage,allCards.data,title )" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">All Cards</a>
+                            <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">All Cards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="printStaples()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Staples</a>
@@ -157,7 +157,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Pendulum Normal Monster" id="PendulumNormalMonster">
-                                            <label class="form-check-label" for="PendulumNormalMonster"><span class="iconsSprite pendulumMonster"></span> Pendulum Normal </label>
+                                            <label class="form-check-label" for="PendulumNormalMonster"><span class="iconsSprite pendulumNormalMonster"></span> Pendulum Normal </label>
                                         </div>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Pendulum Effect Monster" id="PendulumEffectMonster">
@@ -202,6 +202,10 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Token" id="Token">
                                             <label class="form-check-label" for="Token"><span class="iconsSprite tokenMonster"></span> Token </label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input typeOfMonsterCard checkboxType" type="checkbox" name="checkbox" value="Skill Card" id="skillCard">
+                                            <label class="form-check-label" for="skillCard"><span class="iconsSprite skillCard"></span> Skill Card </label>
                                         </div>
 
                                     </div>
@@ -370,44 +374,45 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                         </div>
 
                                         <!-- SPELLS -->
-
+                                        <br>
                                         <br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell" type="checkbox" name="checkbox" id="NormalSpell" value="Normal Spell">
+                                            <input class="form-check-input raceOfMonsterCard" type="checkbox" name="checkbox" id="NormalSpell" value="Normal Spell">
                                             <label class="form-check-label " for="NormalSpell"><span class="iconsSprite normalSpell"></span> Normal Spell</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="ContinuousSpell" value="Continuous Spell">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="ContinuousSpell" value="Continuous Spell">
                                             <label class="form-check-label" for="ContinuousSpell"> <span class="iconsSprite continuousSpell"></span> Continuous Spell</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Field" value="Field">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="Field" value="Field">
                                             <label class="form-check-label" for="Field"> <span class="iconsSprite fieldSpell"></span> Field Spell</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Quick-Play" value="Quick-Play">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="Quick-Play" value="Quick-Play">
                                             <label class="form-check-label" for="Quick-Play"><span class="iconsSprite quickPlaySpell"></span> Quick-Play Spell</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Ritual" value="Ritual">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="Ritual" value="Ritual">
                                             <label class="form-check-label" for="Ritual"><span class="iconsSprite ritualSpell"></span> Ritual Spell</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfSpell " type="checkbox" name="checkbox" id="Equip" value="Equip">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="Equip" value="Equip">
                                             <label class="form-check-label" for="Equip"><span class="iconsSprite equipSpell"></span> Equip Spell </label>
                                         </div>
                                         <!-- TRAPS -->
                                         <br>
+                                        <br>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfTrap " type="checkbox" name="checkbox" id="NormalTrap" value="Normal Trap">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="NormalTrap" value="Normal Trap">
                                             <label class="form-check-label" for="NormalTrap"> <span class="iconsSprite normalTrap"></span> Normal Trap</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfTrap " type="checkbox" name="checkbox" id="ContinuousTrap" value="Continuous Trap">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="ContinuousTrap" value="Continuous Trap">
                                             <label class="form-check-label" for="ContinuousTrap"><span class="iconsSprite continuousTrap"></span> Continuous Trap</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input raceOfTrap counterTrap" type="checkbox" name="checkbox" id="Counter" value="Counter">
+                                            <input class="form-check-input raceOfMonsterCard " type="checkbox" name="checkbox" id="Counter" value="Counter">
                                             <label class="form-check-label" for="Counter"><span class="iconsSprite counterTrap"></span> Counter Trap</label>
                                         </div>
 
@@ -420,11 +425,11 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                     <div id="attribute">
 
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input attributeOfMonsterCard" type="checkbox" name="DARK" id="DARK" value="DARK">
+                                            <input class="form-check-input attributeOfMonsterCard" type="checkbox" name="checkbox" id="DARK" value="DARK">
                                             <label class="form-check-label" for="DARK"><span class="iconsSprite dark"></span> DARK </label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input attributeOfMonsterCard" type="checkbox" name="DIVINE" id="DIVINE" value="DIVINE">
+                                            <input class="form-check-input attributeOfMonsterCard" type="checkbox" name="checkbox" id="DIVINE" value="DIVINE">
                                             <label class="form-check-label" for="DIVINE"><span class="iconsSprite divine"></span> DIVINE </label>
                                         </div>
                                         <div class="form-check form-check-inline">
