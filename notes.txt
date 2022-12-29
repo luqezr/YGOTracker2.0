@@ -38,8 +38,7 @@ mostrar info sobre una carta => allCards.data[<<n° de carta>>]
 --------  TIPOS DE EFECTOS    ---------
 #######################################
 
-CHANGES SOMETHING
-
+MODIFIES CARD
 Change attribute
 Change type
 Change level
@@ -47,30 +46,36 @@ Change Battle position
 Change ATK/DEF
 
 
-DRAW/ADD
-
+HAND/DECK MANIPULATION
 Add a card
-
+Draw a card
+Discard a card
+Send from field to GY
+Send from deck to GY
+Send from ED to GY
+Banish from deck
+Return to hand
 
 REMOVAL
+Destroy card
+Destroy Monster
+Destroy Spell
 
-
-
-Affects your opponent
-Draw card
+ATTACK RELATED
 Direct attack
 Stop attack
 Battle again
 Battle Phase related
 Piercing damage
 
-Gamble
-Inflict LP
+AFFECTS PLAYERS
+Affects your opponent
+Reduce LP
 Recovers LP
 LP related
-Destroy card
-Destroy Monster
-Destroy Spell
+Gamble
+
+TYPE RELATED
 Tribute related
 Ritual related
 Fusion related
@@ -79,18 +84,22 @@ XYZ related
 Link related 
 Pendulum related
 Token related
-Discard
+Union related
+Counters related
+
+
+
+SPECIAL SUMMON
 Special Summon
 Special Summon from deck
 Special summon from ED
 Special summon from hand
 Special summon from GY
 Special summon from Banish
-Send to GY
-Send from deck to GY
-Send from ED to GY
-Banish related
-Banish from deck
+
+NEGATIONS
 Negate activations
 Negate effects
-Return to hand
+
+
+

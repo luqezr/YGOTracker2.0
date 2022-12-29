@@ -103,7 +103,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url}" id="img_${card.id}"  onerror="this.src='../media/noimage.webp'" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url}" id="img2_${card.id}"  onerror="this.src='../media/noimage.webp'" alt="${card.name}" >
   </div>
 
   
@@ -429,7 +429,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-    // console.log(cardRace)
+        // console.log(cardRace)
 
 
     if (cardAttribute == "light") {
@@ -801,7 +801,7 @@ function correctCardImage(cardId) {
         if (this.height < 30) {
             console.log("changing image")
             document.getElementById(`img_${cardId}`).src = '../media/noimage.webp'
-            console.log(document.getElementById(`img_${cardId}`).src)
+            document.getElementById(`img2_${cardId}`).src = '../media/noimage.webp'
         }
     }
     img.src = document.getElementById(`img_${cardId}`).src
