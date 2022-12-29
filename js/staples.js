@@ -1,4 +1,6 @@
-var staples = [
+var staples
+
+var staplesRaw = [
     //A
     86066372, //ACCESSCODE TALKER 
     21044178, //ABYSS DWELLER

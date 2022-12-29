@@ -31,3 +31,66 @@ Bootstrap
 
 mostrar konami id de una carta => allCards.data[<<n° de carta>>].misc_info[0].konami_id 
 mostrar info sobre una carta => allCards.data[<<n° de carta>>] 
+
+
+
+#######################################
+--------  TIPOS DE EFECTOS    ---------
+#######################################
+
+CHANGES SOMETHING
+
+Change attribute
+Change type
+Change level
+Change Battle position
+Change ATK/DEF
+
+
+DRAW/ADD
+
+Add a card
+
+
+REMOVAL
+
+
+
+Affects your opponent
+Draw card
+Direct attack
+Stop attack
+Battle again
+Battle Phase related
+Piercing damage
+
+Gamble
+Inflict LP
+Recovers LP
+LP related
+Destroy card
+Destroy Monster
+Destroy Spell
+Tribute related
+Ritual related
+Fusion related
+Synchro related
+XYZ related
+Link related 
+Pendulum related
+Token related
+Discard
+Special Summon
+Special Summon from deck
+Special summon from ED
+Special summon from hand
+Special summon from GY
+Special summon from Banish
+Send to GY
+Send from deck to GY
+Send from ED to GY
+Banish related
+Banish from deck
+Negate activations
+Negate effects
+Return to hand

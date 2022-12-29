@@ -50,11 +50,11 @@ function queryYGOPD() {
         .then((data) => {
             allCards = data;
             currentCards = allCards.data
-                // console.log(allCards.data); // show all cards
-                // // .replaceAll('. ', '.\n');  ACAAAAA
-                // for (let i = 0; i < allCards.data.length; i++) { 
-                //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
-                // }
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
@@ -62,11 +62,11 @@ function queryYGOPD() {
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 // SEARCH ALL SETS FROM YGOPD
@@ -81,16 +81,16 @@ function searchAllSets(value) {
             resetCurrentCards()
             currentCards = allSets
             console.log('all sets fetched 😎')
-                // console.log(allSets)
+            // console.log(allSets)
             printSets(setsPerPage, allSets, text_allSets1 + '<span class="greenText">' + allSets.length + '</span>' + text_allSets2)
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 
 
 
@@ -110,12 +110,12 @@ async function queryYGOrg(cardId, konamId, language) {
             changeCardInformation(cardId, language)
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        alert("No languages for this card yet! 😢")
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            alert("No languages for this card yet! 😢")
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -184,8 +184,8 @@ function searchCardsByNameOrDescription(value) {
     currentCards = allCards.data.filter((card) =>
         `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
     console.log("Results: " + currentCards.length + " cards")
-        // console.log(filteredQueryResults);
-        // if (filteredQueryResults.length < 30 ){
+    // console.log(filteredQueryResults);
+    // if (filteredQueryResults.length < 30 ){
     if (resultsPerPage < currentCards.length) {
         printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2) //https://codepen.io/piotrek/pen/mXpRmQ
     } else {
@@ -199,7 +199,7 @@ function searchByExactValue(field, value) {
 
     resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
-        // console.log(filteredCards)
+    // console.log(filteredCards)
 }
 
 // SEARCH BY SOME VALUE, FOR EXAMPLE
@@ -302,8 +302,21 @@ function searchByFormat(format) {
 
     }
 
-    printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<span class="purpleText">' + format + '</span>', text_FormatResults2)
+    if (format == "Common Charity") {
+        printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://ygoprodeck.com/article/common-charity-format-which-cards-are-available-237477" target="_blank">' + format + '</a>', text_FormatResults2)
 
+    }
+    if (format == "GOAT") {
+        printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://www.formatlibrary.com/formats/goat" target="_blank">' + format + '</a>', text_FormatResults2)
+
+    }
+    if (format == "Edison") {
+        printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://www.formatlibrary.com/formats/edison" target="_blank">' + format + '</a>', text_FormatResults2)
+
+    } else {
+
+        printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<span class="purpleText" >' + format + '</span>', text_FormatResults2)
+    }
     console.log(thisFormat.length + ' cards from the format ' + format)
     resetCurrentCards()
     currentCards = thisFormat
@@ -385,7 +398,7 @@ function printCards(howMany, cards, title1, title2, title3, view) {
     cardsSection.innerHTML = ("")
 
     titlesSection.innerHTML = title1 + title2 + title3
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {
         try {
@@ -412,7 +425,7 @@ function printSets(howMany, sets, title) {
     cards2print = sets
 
     titlesSection.innerHTML = title
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     cardsSection.innerHTML += `
             <h2 class='setLetters'>
@@ -474,7 +487,7 @@ function changeResolution(id) {
     // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
     var width = window.screen.width
     var height = window.screen.height
-        // console.log(width+"px width and "+ height + "px height")
+    // console.log(width+"px width and "+ height + "px height")
 
     // MOVE:
     // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
@@ -588,9 +601,9 @@ $(window).scroll(function() {
 // #######################################################################
 
 function filterStaples(letter) {
-    filteredStaples = currentCards.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
-    currentCards = filteredStaples
-    printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">' + letter + ' </span>', filteredStaples.length + " cards")
+    filteredStaples = staples.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
+    // currentCards = filteredStaples
+    printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">' + letter + ' </span>', filteredStaples.length + ' cards <br> ' + text_allFilters, '')
 
     // console.log(filterSets)
     // FUNCIONA PERO HABRIA QUE AGREGAR EL FILTRO DE LETRAS PARA LAS staples, YA QUE AL CREARLAS NO LO VUELVE A PONER 
@@ -600,49 +613,22 @@ function filterStaples(letter) {
 // Print Staples
 
 function printStaples() {
-    currentCards = staples
+    currentCards = staplesRaw
     titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
     cardsSection.innerHTML = ("")
 
-    cardsSection.innerHTML += `
-    <h2 class='setLetters'>
+    cardsSection.innerHTML += text_allFilters
 
-            <span onclick="filterStaples('A')"> A </span>
-            <span onclick="filterStaples('B')"> B </span>
-            <span onclick="filterStaples('C')"> C </span>
-            <span onclick="filterStaples('D')"> D </span>
-            <span onclick="filterStaples('F')"> F </span>
-            <span onclick="filterStaples('G')"> G </span>
-            <span onclick="filterStaples('H')"> H </span>
-            <span onclick="filterStaples('I')"> I </span>
-            <span onclick="filterStaples('J')"> J </span>
-            <span onclick="filterStaples('K')"> K </span>
-            <span onclick="filterStaples('L')"> L </span>
-            <span onclick="filterStaples('M')"> M </span>
-            <span onclick="filterStaples('N')"> N </span>
-            <span onclick="filterStaples('O')"> O </span>
-            <span onclick="filterStaples('P')"> P </span>
-            <span onclick="filterStaples('Q')"> Q </span>
-            <span onclick="filterStaples('R')"> R </span>
-            <span onclick="filterStaples('S')"> S </span>
-            <span onclick="filterStaples('T')"> T </span>
-            <span onclick="filterStaples('U')"> U </span>
-            <span onclick="filterStaples('V')"> V </span>
-            <span onclick="filterStaples('W')"> W </span>
-            <span onclick="filterStaples('X')"> X </span>
-            <span onclick="filterStaples('Y')"> Y </span>
-            <span onclick="filterStaples('Z')"> Z </span>
-    
-    </h2>`
-
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + staples + "&misc=yes&sort=name")
+    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + staplesRaw + "&misc=yes&sort=name")
         .then(cardInfo => cardInfo.json())
         .then(data => {
             //console.log(data);
             currentCards = data.data;
 
+            staples = data.data
 
-            for (b = 0; b < staples.length; b++) {
+
+            for (b = 0; b < staplesRaw.length; b++) {
                 if (b > resultsPerPage - 1) {
                     console.log('No more cards!');
                     return
@@ -676,10 +662,10 @@ window.addEventListener('scroll', () => {
     // console.log("scrolled", window.scrollY) //scrolled from top
     //  console.log(window.innerHeight) //visible part of screen
     let loadHeight = (document.documentElement.scrollHeight)
-        // console.log(document.documentElement.scrollHeight)
-        //  console.log(loadHeight)
-        // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
-        // console.log(loadHeight)
+    // console.log(document.documentElement.scrollHeight)
+    //  console.log(loadHeight)
+    // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
+    // console.log(loadHeight)
     if (window.scrollY + window.innerHeight >= loadHeight - 100) {
         printMoreResults(resultsPerPage)
     }
@@ -699,10 +685,10 @@ function getIndex(cardId, orientation) {
 
     if (orientation == 'right') {
         return cardIndex + 1
-            // console.log(cardIndex + 1)
+        // console.log(cardIndex + 1)
     } else if (orientation == 'left') {
         return cardIndex - 1
-            // console.log(cardIndex - 1)
+        // console.log(cardIndex - 1)
     }
 }
 
@@ -827,9 +813,9 @@ function runFilters() {
     let descForm = document.getElementById('descForm').value
     let atkForm = document.getElementById('atkForm').value
     let defForm = document.getElementById('defForm').value
-        // console.log(descForm)
-        // console.log(atkForm)
-        // console.log(defForm)
+    // console.log(descForm)
+    // console.log(atkForm)
+    // console.log(defForm)
     if (descForm != '') {
 
         if (currentFilteredResults[0]) {
