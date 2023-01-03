@@ -50,11 +50,11 @@ function queryYGOPD() {
         .then((data) => {
             allCards = data;
             currentCards = allCards.data
-                // console.log(allCards.data); // show all cards
-                // // .replaceAll('. ', '.\n');  ACAAAAA
-                // for (let i = 0; i < allCards.data.length; i++) { 
-                //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
-                // }
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
@@ -62,11 +62,11 @@ function queryYGOPD() {
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 // SEARCH ALL SETS FROM YGOPD
@@ -81,16 +81,16 @@ function searchAllSets(value) {
             resetCurrentCards()
             currentCards = allSets
             console.log('all sets fetched 😎')
-                // console.log(allSets)
+            // console.log(allSets)
             printSets(setsPerPage, allSets, text_allSets1 + '<span class="greenText">' + allSets.length + '</span>' + text_allSets2)
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 
 
 
@@ -110,12 +110,12 @@ async function queryYGOrg(cardId, konamId, language) {
             changeCardInformation(cardId, language)
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        alert("No languages for this card yet! 😢")
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            alert("No languages for this card yet! 😢")
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -184,8 +184,8 @@ function searchCardsByNameOrDescription(value) {
     currentCards = allCards.data.filter((card) =>
         `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
     console.log("Results: " + currentCards.length + " cards")
-        // console.log(filteredQueryResults);
-        // if (filteredQueryResults.length < 30 ){
+    // console.log(filteredQueryResults);
+    // if (filteredQueryResults.length < 30 ){
     if (resultsPerPage < currentCards.length) {
         printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2) //https://codepen.io/piotrek/pen/mXpRmQ
     } else {
@@ -199,7 +199,7 @@ function searchByExactValue(field, value) {
 
     resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
-        // console.log(filteredCards)
+    // console.log(filteredCards)
 }
 
 // SEARCH BY SOME VALUE, FOR EXAMPLE
@@ -405,7 +405,7 @@ function printCards(howMany, cards, title1, title2, title3, view) {
     cardsSection.innerHTML = ("")
 
     titlesSection.innerHTML = title1 + title2 + title3
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {
         try {
@@ -432,7 +432,7 @@ function printSets(howMany, sets, title) {
     cards2print = sets
 
     titlesSection.innerHTML = title
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     cardsSection.innerHTML += `
             <h2 class='setLetters'>
@@ -494,7 +494,7 @@ function changeResolution(id) {
     // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
     var width = window.screen.width
     var height = window.screen.height
-        // console.log(width+"px width and "+ height + "px height")
+    // console.log(width+"px width and "+ height + "px height")
 
     // MOVE:
     // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
@@ -609,7 +609,7 @@ $(window).scroll(function() {
 
 function filterStaples(letter) {
     filteredStaples = staples.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
-        // currentCards = filteredStaples
+    // currentCards = filteredStaples
     printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">' + letter + ' </span>', filteredStaples.length + ' cards <br> ' + text_allFilters, '')
 
     // console.log(filterSets)
@@ -669,10 +669,10 @@ window.addEventListener('scroll', () => {
     // console.log("scrolled", window.scrollY) //scrolled from top
     //  console.log(window.innerHeight) //visible part of screen
     let loadHeight = (document.documentElement.scrollHeight)
-        // console.log(document.documentElement.scrollHeight)
-        //  console.log(loadHeight)
-        // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
-        // console.log(loadHeight)
+    // console.log(document.documentElement.scrollHeight)
+    //  console.log(loadHeight)
+    // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
+    // console.log(loadHeight)
     if (window.scrollY + window.innerHeight >= loadHeight - 100) {
         printMoreResults(resultsPerPage)
     }
@@ -692,10 +692,10 @@ function getIndex(cardId, orientation) {
 
     if (orientation == 'right') {
         return cardIndex + 1
-            // console.log(cardIndex + 1)
+        // console.log(cardIndex + 1)
     } else if (orientation == 'left') {
         return cardIndex - 1
-            // console.log(cardIndex - 1)
+        // console.log(cardIndex - 1)
     }
 }
 
@@ -725,7 +725,9 @@ function getCheckboxValues() {
     let markedCheckboxLevel = document.getElementsByClassName('levelOfCard');
     let markedCheckboxRace = document.getElementsByClassName('raceOfMonsterCard');
     let markedCheckboxFormat = document.getElementsByClassName('formatForm');
-
+    let descForm = document.getElementById('descForm').value
+    let atkForm = document.getElementById('atkForm').value
+    let defForm = document.getElementById('defForm').value
 
 
     for (let checkbox of markedCheckboxFormat) {
@@ -734,24 +736,27 @@ function getCheckboxValues() {
             searchByFormat(checkbox.value, '')
             filteredQueryResults = currentCards
             currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            currentCards = currentFilteredResults
         }
     }
 
     for (let checkbox of markedCheckboxType) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-
-            if (currentFilteredResults[0]) {
-                if (checkbox.value == 'Ritual Monster') {
-                    filteredQueryResults = currentCards.filter(card => card.type == checkbox.value || card.type == 'Ritual Effect Monster')
-                    currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                }
+            if (checkbox.value == 'Ritual Monster') {
+                filteredQueryResults = currentCards.filter(card => card.type == checkbox.value || card.type == 'Ritual Effect Monster')
+                console.log(filteredQueryResults)
+                currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             } else {
                 filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
+                console.log(filteredQueryResults)
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             }
         }
+        console.log(currentFilteredResults)
     }
+
+    console.log(currentFilteredResults)
 
     for (let checkbox of markedCheckboxAttribute) {
         if (checkbox.checked) {
@@ -767,6 +772,9 @@ function getCheckboxValues() {
 
     }
 
+
+    console.log(currentFilteredResults)
+
     for (let checkbox of markedCheckboxLevel) {
         if (checkbox.checked) {
             console.log(checkbox.value);
@@ -780,6 +788,9 @@ function getCheckboxValues() {
 
         }
     }
+
+
+    console.log(currentFilteredResults)
 
 
     for (let checkbox of markedCheckboxRace) {
@@ -825,17 +836,9 @@ function getCheckboxValues() {
     }
 
 
-}
-
-function runFilters() {
+    console.log(currentFilteredResults)
 
 
-    let descForm = document.getElementById('descForm').value
-    let atkForm = document.getElementById('atkForm').value
-    let defForm = document.getElementById('defForm').value
-        // console.log(descForm)
-        // console.log(atkForm)
-        // console.log(defForm)
     if (descForm != '') {
 
         if (currentFilteredResults[0]) {
@@ -848,7 +851,7 @@ function runFilters() {
             currentFilteredResults = filteredQueryResults
         }
     }
-
+    console.log(currentFilteredResults)
     if (atkForm != '') {
         if (currentFilteredResults[0]) {
             filteredQueryResults = currentFilteredResults.filter(card => card.atk == atkForm)
@@ -858,6 +861,8 @@ function runFilters() {
             currentFilteredResults = filteredQueryResults
         }
     }
+
+    console.log(currentFilteredResults)
 
     if (defForm != '') {
         if (currentFilteredResults[0]) {
@@ -873,14 +878,15 @@ function runFilters() {
 
 }
 
+
 document.getElementById('filterButton').onclick = function() {
     // when adding other formats this value should be changed to whatever the format is 
     // currentCards = allCards.data
     currentFilteredResults = []
     getCheckboxValues()
-    runFilters()
     resetFilters()
     currentCards = currentFilteredResults.sort(sortBy("name"))
+    console.log(currentCards)
     if (!currentCards[0]) {
         currentCards = allCards.data
     }
