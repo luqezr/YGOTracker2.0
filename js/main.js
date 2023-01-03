@@ -310,20 +310,18 @@ function searchByFormat(format, onlyFormat) {
         if (format == "Common Charity") {
             printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://ygoprodeck.com/article/common-charity-format-which-cards-are-available-237477" target="_blank">' + format + '</a>', text_FormatResults2)
 
-        }
-        if (format == "GOAT") {
+        } else if (format.includes("GOAT")) {
             printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://www.formatlibrary.com/formats/goat" target="_blank">' + format + '</a>', text_FormatResults2)
 
-        }
-        if (format == "Edison") {
+        } else if (format == "Edison") {
             printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<a class="purpleText" href="https://www.formatlibrary.com/formats/edison" target="_blank">' + format + '</a>', text_FormatResults2)
 
         } else {
-
             printCards(resultsPerPage, thisFormat, '<span class="greenText">' + thisFormat.length + '</span>' + text_FormatResults1, '<span class="purpleText" >' + format + '</span>', text_FormatResults2)
         }
 
     }
+
     console.log(thisFormat.length + ' cards from the format ' + format)
     resetCurrentCards()
     currentCards = thisFormat
@@ -753,16 +751,16 @@ function getCheckboxValues() {
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             }
         }
-        console.log(currentFilteredResults)
+        // console.log(currentFilteredResults)
     }
 
-    console.log(currentFilteredResults)
+    // console.log(currentFilteredResults)
 
     for (let checkbox of markedCheckboxAttribute) {
         if (checkbox.checked) {
             console.log(checkbox.value);
             filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
-            console.log(filteredQueryResults)
+            // console.log(filteredQueryResults)
             currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
         }
     }
@@ -774,7 +772,7 @@ function getCheckboxValues() {
         if (checkbox.checked) {
             console.log(checkbox.value);
             filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-            console.log(filteredQueryResults)
+            // console.log(filteredQueryResults)
             currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
         }
     }
@@ -826,7 +824,7 @@ function getCheckboxValues() {
     }
 
 
-    console.log(currentFilteredResults)
+    // console.log(currentFilteredResults)
 
 
     if (descForm != '') {
@@ -841,7 +839,7 @@ function getCheckboxValues() {
             currentFilteredResults = filteredQueryResults
         }
     }
-    console.log(currentFilteredResults)
+    // console.log(currentFilteredResults)
     if (atkForm != '') {
         if (currentFilteredResults[0]) {
             filteredQueryResults = currentFilteredResults.filter(card => card.atk == atkForm)
@@ -852,7 +850,7 @@ function getCheckboxValues() {
         }
     }
 
-    console.log(currentFilteredResults)
+    // console.log(currentFilteredResults)
 
     if (defForm != '') {
         if (currentFilteredResults[0]) {
