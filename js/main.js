@@ -761,15 +761,10 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxAttribute) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            if (currentFilteredResults[0]) {
-                filteredQueryResults = currentFilteredResults.filter(card => card.attribute == checkbox.value)
-                currentFilteredResults = filteredQueryResults
-            } else {
-                filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
-                currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-            }
+            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
+            console.log(filteredQueryResults)
+            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
         }
-
     }
 
 
@@ -778,14 +773,9 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxLevel) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            if (currentFilteredResults[0]) {
-                filteredQueryResults = currentFilteredResults.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-                currentFilteredResults = filteredQueryResults
-            } else {
-                filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-                currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-            }
-
+            filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            console.log(filteredQueryResults)
+            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
         }
     }
 
