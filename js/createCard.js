@@ -46,7 +46,7 @@ function createNormalCard(card, view) {
         <div class="modal-body " id="aloneCard">
           <div class="cardHeader" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}" onerror="this.src='../media/noimage.webp'" alt="${card.name}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -103,7 +103,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url}" id="img2_${card.id}"  onerror="this.src='../media/noimage.webp'" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url}" id="img2_${card.id}" alt="${card.name}" >
   </div>
 
   
@@ -115,7 +115,7 @@ function createNormalCard(card, view) {
           <div class="cardHeader">
             <div class="cardHeaderDiv"> 
             <i class="bi bi-caret-left arrowsMobile"  class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}"  onerror="this.src='../media/noimage.webp'" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
             <i class="bi bi-caret-right arrowsMobile" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -201,7 +201,7 @@ function createNormalCard(card, view) {
         changeResolution(card.id)
     }
 
-    correctCardImage(card.id)
+    // correctCardImage(card.id)
 
 }
 
@@ -429,7 +429,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-        // console.log(cardRace)
+    // console.log(cardRace)
 
 
     if (cardAttribute == "light") {

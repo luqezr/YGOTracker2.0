@@ -101,5 +101,10 @@ NEGATIONS
 Negate activations
 Negate effects
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+HTML Error al cargar imagen
+onerror="this.src='../media/noimage.webp'"
 
 

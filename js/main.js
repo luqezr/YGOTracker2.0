@@ -23,6 +23,8 @@ var scrollingValue = 6000; //distance where buttons will show
 // start webpage
 window.onload = startWebPage();
 
+
+
 function startWebPage() {
     if (lang == undefined || lang == null) {
         // setting default language to english...
@@ -733,10 +735,36 @@ function getCheckboxValues() {
             console.log(checkbox.value);
             searchByFormat(checkbox.value, '')
             filteredQueryResults = currentCards
-            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-            currentCards = currentFilteredResults
+            console.log(currentCards)
+            // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            // currentCards = currentFilteredResults
         }
     }
+
+
+    for (let checkbox of markedCheckboxAttribute) {
+        if (checkbox.checked) {
+            console.log(checkbox.value);
+            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
+            console.log(filteredQueryResults)
+            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+        }
+    }
+
+
+    for (let checkbox of markedCheckboxLevel) {
+        if (checkbox.checked) {
+            console.log(checkbox.value);
+            // if (currentFilteredResults[0] && !(checkbox.checked)) { // aca hay que agregar una verificacion de que si no hay otra cosa tildada dentro del mismo grupo filtre en currentfilteredresults, porque si hay otra tildada no va a buscar multiples cosas del mismo tipo
+            filteredQueryResults = currentFilteredResults.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            // } else {
+            // filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            // }
+        }
+    }
+
 
     for (let checkbox of markedCheckboxType) {
         if (checkbox.checked) {
@@ -754,28 +782,6 @@ function getCheckboxValues() {
         // console.log(currentFilteredResults)
     }
 
-    // console.log(currentFilteredResults)
-
-    for (let checkbox of markedCheckboxAttribute) {
-        if (checkbox.checked) {
-            console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => card.attribute == checkbox.value)
-            // console.log(filteredQueryResults)
-            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-        }
-    }
-
-
-    console.log(currentFilteredResults)
-
-    for (let checkbox of markedCheckboxLevel) {
-        if (checkbox.checked) {
-            console.log(checkbox.value);
-            filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-            // console.log(filteredQueryResults)
-            currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-        }
-    }
 
 
     console.log(currentFilteredResults)
@@ -784,42 +790,23 @@ function getCheckboxValues() {
     for (let checkbox of markedCheckboxRace) {
         if (checkbox.checked) {
             console.log(checkbox.value);
-            if (currentFilteredResults[0]) {
-                if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
 
-                    if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
-                        let value = checkbox.value.replace(' Spell', '')
-                        filteredQueryResults = currentFilteredResults.filter(card => (card.race == value && card.type == 'Spell Card'))
-                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                    } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
-                        let value = checkbox.value.replace(' Trap', '')
-                        filteredQueryResults = currentFilteredResults.filter(card => (card.race == value && card.type == 'Trap Card'))
-                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                    }
-                } else {
-                    filteredQueryResults = currentFilteredResults.filter(card => card.race == checkbox.value)
-                    currentFilteredResults = filteredQueryResults
-                }
-
-
-            } else {
-
-                if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
-
-                    if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
-                        let value = checkbox.value.replace(' Spell', '')
-                        filteredQueryResults = currentCards.filter(card => (card.race == value && card.type == 'Spell Card'))
-                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                    } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
-                        let value = checkbox.value.replace(' Trap', '')
-                        filteredQueryResults = currentCards.filter(card => (card.race == value && card.type == 'Trap Card'))
-                        currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                    }
-                } else {
-                    filteredQueryResults = currentCards.filter(card => (card.race == checkbox.value))
+            if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
+                if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
+                    let value = checkbox.value.replace(' Spell', '')
+                    filteredQueryResults = currentCards.filter(card => (card.race == value && card.type == 'Spell Card'))
+                    currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+                } else if (checkbox.value == 'Normal Trap' || checkbox.value == 'Continuous Trap') {
+                    let value = checkbox.value.replace(' Trap', '')
+                    filteredQueryResults = currentCards.filter(card => (card.race == value && card.type == 'Trap Card'))
                     currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
                 }
+            } else {
+                filteredQueryResults = currentCards.filter(card => card.race == checkbox.value)
+                currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             }
+
+
         }
     }
 
