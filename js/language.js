@@ -12,7 +12,7 @@ var text_FormatResults1 = " cards from the format "
 var text_FormatResults2 = " "
 var text_allSets1 = "There are "
 var text_allSets2 = " sets"
-var text_allCards1 = "All cards from A to Z"
+var text_allCards1 = "All cards from newer to older"
 var text_allCards2 = ""
 
 
