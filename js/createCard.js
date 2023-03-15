@@ -201,7 +201,7 @@ function createNormalCard(card, view) {
         changeResolution(card.id)
     }
 
-    // correctCardImage(card.id)
+    correctCardImage(card.id)
 
 }
 
@@ -429,7 +429,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-    // console.log(cardRace)
+        // console.log(cardRace)
 
 
     if (cardAttribute == "light") {
@@ -793,12 +793,10 @@ function changeCardPicture(cardId, cardSetCode) {
 }
 
 function correctCardImage(cardId) {
-
-
     const img = new Image();
     img.onload = function() {
         // alert(this.width + 'x' + this.height);
-        if (this.height < 30) {
+        if (this.height < this.width) {
             console.log("changing image")
             document.getElementById(`img_${cardId}`).src = '../media/noimage.webp'
             document.getElementById(`img2_${cardId}`).src = '../media/noimage.webp'
