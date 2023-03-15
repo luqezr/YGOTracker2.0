@@ -89,9 +89,9 @@ function searchAllSets(value) {
         })
 
         .catch((error) => {
+            // Code for handling the error
             console.log("ups 😢 " + error);
             return;
-            // Code for handling the error
         });
 
 
