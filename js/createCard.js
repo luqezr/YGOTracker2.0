@@ -113,7 +113,7 @@ function createNormalCard(card, view) {
       <div class="modal-content" >
         <div class="modal-body"  >
           <div class="cardHeader">
-            <div class="cardHeaderDiv"> 
+            <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile"  class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
             <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
             <i class="bi bi-caret-right arrowsMobile" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
@@ -195,6 +195,7 @@ function createNormalCard(card, view) {
     hasOcgReleaseDate(card.id, card)
     hasTcgReleaseDate(card.id, card)
     checkCardFormats(card)
+    hasAlternativeArt(card.id, card)
 
     // CHECK RESOLUTION 
     if (window.screen.width < 400) {
@@ -429,7 +430,7 @@ function whichType(modalId, type, card) {
 
 function whichAttribute(modalId, card) {
     let cardAttribute = card.attribute.toLowerCase()
-        // console.log(cardRace)
+    // console.log(cardRace)
 
 
     if (cardAttribute == "light") {
@@ -699,6 +700,39 @@ function whichRace(modalId, race, card) {
 
 
 
+}
+
+
+
+function hasAlternativeArt(modalId, card) {
+    if (card.card_images.length > 1) {
+        document.getElementById(`cardHeaderDiv_${modalId}`).innerHTML += ` <button type="button" onclick="changeCardArtwork(${modalId})" class="btn btn-dark">Change Art</button> `
+        console.log("card " + card.name + " has alt art")
+    }
+
+}
+
+function changeCardArtwork(cardId) {
+    console.log("changing artowrk for " + cardId)
+    // Search for card in CurrentCards and check how many artworks it has 
+    let cardsWithAltArtworks = currentCards.filter(card => card.card_images.length > 1)
+    console.log(cardsWithAltArtworks)
+    let currentCardAltArtworksLenght = 1
+    for (let i = 0; i < cardsWithAltArtworks.length; i++) {
+        // Loop artworks here 
+        // console.log(cardsWithAltArtworks[i].card_images[1])
+        // if (cardsWithAltArtworks.length > 2) {
+        //     currentCardAltArtworksLenght++
+        //     document.getElementById(`img_${cardId}`).src = cardsWithAltArtworks[i].card_images[currentCardAltArtworksLenght].image_url
+
+        // } else {
+        let filterCurrentArtwork = currentCards.filter(card => card.id == cardId)
+        console.log(filterCurrentArtwork)
+        document.getElementById(`img_${cardId}`).src = cardsWithAltArtworks[i].card_images[filterCurrentArtwork.length].image_url
+        // El problema es que tengo que filtrar la carta de currentCardAltArtworks y poner la que coincide con el id seleccionado
+        // }
+        // 
+    }
 }
 
 

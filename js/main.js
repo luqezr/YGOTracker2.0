@@ -553,7 +553,7 @@ function printMoreResults(howMany) {
     }
 
 
-    console.log(printedResults)
+    // console.log(printedResults)
 
 }
 
