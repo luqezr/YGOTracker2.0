@@ -44,7 +44,7 @@ function createNormalCard(card, view) {
         cardsSection.innerHTML += `        
         <div class="modal-content " >
         <div class="modal-body " id="aloneCard">
-          <div class="cardHeader" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
+          <div class="cardHeader" id="cardHeaderDiv_${card.id}" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
             <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  >
             </div>
@@ -713,26 +713,21 @@ function hasAlternativeArt(modalId, card) {
 }
 
 function changeCardArtwork(cardId) {
-    console.log("changing artowrk for " + cardId)
+    // console.log("changing artowrk for " + cardId)
     // Search for card in CurrentCards and check how many artworks it has 
     let cardsWithAltArtworks = currentCards.filter(card => card.card_images.length > 1)
-    console.log(cardsWithAltArtworks)
-    let currentCardAltArtworksLenght = 1
-    for (let i = 0; i < cardsWithAltArtworks.length; i++) {
-        // Loop artworks here 
-        // console.log(cardsWithAltArtworks[i].card_images[1])
-        // if (cardsWithAltArtworks.length > 2) {
-        //     currentCardAltArtworksLenght++
-        //     document.getElementById(`img_${cardId}`).src = cardsWithAltArtworks[i].card_images[currentCardAltArtworksLenght].image_url
+    // Loop artworks here 
+    let filterCurrentArtwork = cardsWithAltArtworks.filter(card => card.id == cardId)
+    // console.log(filterCurrentArtwork[0])
+    if (filterCurrentArtwork[0].card_images[filterCurrentArtwork[0].card_images.length - 1].image_url == document.getElementById(`img_${cardId}`).src) {
+        document.getElementById(`img_${cardId}`).src = filterCurrentArtwork[0].card_images[0].image_url
+    } else {
+        let cardCurrentId = document.getElementById(`img_${cardId}`).src.replace(".jpg", "")
+            .replace("https://images.ygoprodeck.com/images/cards/", "")
 
-        // } else {
-        let filterCurrentArtwork = currentCards.filter(card => card.id == cardId)
-        console.log(filterCurrentArtwork)
-        document.getElementById(`img_${cardId}`).src = cardsWithAltArtworks[i].card_images[filterCurrentArtwork.length].image_url
-        // El problema es que tengo que filtrar la carta de currentCardAltArtworks y poner la que coincide con el id seleccionado
-        // }
-        // 
+        document.getElementById(`img_${cardId}`).src = `https://images.ygoprodeck.com/images/cards/${Number(cardCurrentId) +1}.jpg`
     }
+
 }
 
 
