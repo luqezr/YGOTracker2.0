@@ -675,6 +675,7 @@ window.addEventListener('scroll', () => {
     // console.log(loadHeight)
     if (window.scrollY + window.innerHeight >= loadHeight - 100) {
         printMoreResults(resultsPerPage)
+
     }
     // else {alert("No more cards 😓")}
 })
@@ -898,3 +899,26 @@ $(document).on('show.bs.modal', '.modal', function() {
         };
     }
 })
+
+
+// SHOW RANDOM CARDS 
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+var randomCards = []
+
+function searchRandomCards(howMany) {
+
+    // console.log(getRandomInt(currentCards.length));
+    for (i = 0; i < currentCards.length; i++) {
+
+        randomCards.push(currentCards[getRandomInt(currentCards.length)])
+
+    }
+    // console.log(randomCards)
+    currentCards = randomCards
+    printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> Random cards! ', "", "")
+
+}
