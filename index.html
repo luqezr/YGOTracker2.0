@@ -50,6 +50,21 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="printCards(resultsPerPage, allCards.data, text_allCards1, '', text_allCards2)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">All Cards</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" onclick="searchAllSets()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Sets</a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link dropdown-toggle" aria-current="page" style="cursor: pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Banlist</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('ban_tcg')">TCG</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('ban_ocg')">OCG</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('ban_goat')">GOAT</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('ban_edison')">Edison</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('ban_goat')">OCG GOAT</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('Common Charity')">Common Charity</li>
+                                <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="searchByBanlist('Duel Links')">Duel Links</li>
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle" aria-current="page" style="cursor: pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Formats</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,9 +79,6 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="printStaples()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Staples</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" onclick="searchAllSets()" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Sets</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="searchRandomCards(resultsPerPage)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Random</a>

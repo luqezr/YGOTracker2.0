@@ -922,3 +922,39 @@ function searchRandomCards(howMany) {
     printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> Random cards! ', "", "")
 
 }
+
+
+function searchByBanlist(banlist) {
+
+    window.scrollTo(0, 0);
+    printedResults = resultsPerPage
+    let thisBanlist = []
+
+    for (let i = 0; i < allCards.data.length; i++) {
+
+        if (allCards.data[i].banlist_info) {
+            console.log("banlist exist")
+
+            for (let b = 0; b < allCards.data[i].banlist_info.length; b++) {
+
+                // Verificar que banlist esta pidiendo y mostrar esa, falta definir què info de la carta agregara 
+                if (allCards.data[i].banlist_info[b].ban_tcg === banlist) {
+
+                    thisBanlist.push(allCards.data[i])
+                    console.log(thisBanlist)
+                    if (thisBanlist[thisBanlist.length - 1] === allCards.data[i]) {
+                        break
+                        // console.log(thisSet[thisSet.length - 1])
+                    }
+
+                    // }
+
+                }
+            }
+
+        }
+
+    }
+
+    // console.log(thisBanlist)
+}

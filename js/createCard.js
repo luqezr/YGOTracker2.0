@@ -62,8 +62,7 @@ function createNormalCard(card, view) {
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
               <span id="releaseDateTCG_${card.id}"> </span>
-              <br>
-              <span id="betaName_${card.id}">Beta Name:  </span>
+              <span id="betaName_${card.id}">  </span>
             </p>
             <p class="cardDescription" id="description_${card.id}">
               ${desc} 
@@ -138,8 +137,7 @@ function createNormalCard(card, view) {
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
               <span id="releaseDateTCG_${card.id}"> </span>
-              <br>
-              <span id="betaName_${card.id}">Beta Name: </span>
+              <span id="betaName_${card.id}"> </span>
             </p>
             <p class="cardDescription" id="description_${card.id}">
               ${desc} 
@@ -214,7 +212,7 @@ function createNormalCard(card, view) {
 function checkBetaName(card) {
 
     if (card.misc_info[0].beta_name) {
-        document.getElementById(`betaName_${card.id}`).innerHTML += `${card.misc_info[0].beta_name}`
+        document.getElementById(`betaName_${card.id}`).innerHTML += `Beta Name: ${card.misc_info[0].beta_name}`
     }
 
 }
