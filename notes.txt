@@ -23,7 +23,7 @@ Request cards from certain period => https://db.ygoprodeck.com/api/v7/cardinfo.p
 #######################################
 
 Bootstrap 
-
+Find active modal https://stackoverflow.com/questions/63674507/find-the-active-bootstrap-modal-using-javascript
 
 #######################################
 --------------    APP    --------------

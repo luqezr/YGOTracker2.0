@@ -114,12 +114,12 @@ function createNormalCard(card, view) {
         <div class="modal-body"  >
           <div class="cardHeader">
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
-            <i class="bi bi-caret-left arrowsMobile"  class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+            <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
             <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
-            <i class="bi bi-caret-right arrowsMobile" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
+            <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
-                <i class="bi bi-caret-left"  class="card arrowsDesktop" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-                <i class="bi bi-caret-right" class="card arrowsDesktop" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
+                <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+                <i class="bi bi-caret-right" class="card arrowsDesktop" id="nextCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
             </div>
             </div>
             <div id="cardHeader_${card.id}"> </div>

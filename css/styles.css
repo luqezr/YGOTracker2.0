@@ -1347,6 +1347,10 @@ footer {
         width: 80px;
     }
 
+    .iconsSprite {
+        transform: scale(.8);
+    }
+
     .table {
         justify-content: center;
         padding: 0px;
@@ -1372,6 +1376,10 @@ footer {
     .sets {
         width: 156px;
         height: 400px;
+    }
+
+    .iconsSprite {
+        transform: scale(.7);
     }
 
     .sets img {

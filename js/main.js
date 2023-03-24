@@ -868,3 +868,33 @@ document.getElementById('filterButton').onclick = function() {
     printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> cards fit your criteria ', "", "")
 
 }
+
+// KEY NAVIGATION 
+
+$(document).on('show.bs.modal', '.modal', function() {
+
+    // console.log(this)
+    if (this.id) {
+        let thisModal = this.id.replace('card_', '')
+        document.onkeydown = function(e) {
+            switch (e.keyCode) {
+                case 37:
+                    // alert('left');
+                    // console.log(thisModal)
+                    document.getElementById(`previousCard_${thisModal}`).click();
+                    break;
+                case 38:
+                    // alert('up');
+                    break;
+                case 39:
+                    // alert('right');
+                    // console.log(thisModal)
+                    document.getElementById(`nextCard_${thisModal}`).click();
+                    break;
+                case 40:
+                    // alert('down');
+                    break;
+            }
+        };
+    }
+})
