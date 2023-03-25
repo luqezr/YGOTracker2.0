@@ -40,7 +40,7 @@ function createNormalCard(card, view) {
     // console.log(nextCard)
 
 
-    if (view) {
+    if (view == 'aloneCard') {
         cardsSection.innerHTML += `        
         <div class="modal-content " >
         <div class="modal-body " id="aloneCard">
@@ -98,6 +98,75 @@ function createNormalCard(card, view) {
 
     `
 
+    } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection') {
+        document.getElementById(view).innerHTML += `
+  <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
+  <img src="${card.card_images[0].image_url_small}" id="img2_${card.id}" alt="${card.name}" class="smallCard" >
+  </div>
+
+  <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="thisCard_${card.id}">
+      <div class="modal-content" >
+        <div class="modal-body"  >
+          <div class="cardHeader">
+            <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
+            <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
+            <div class="cardArrows">
+                <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
+                <i class="bi bi-caret-right" class="card arrowsDesktop" id="nextCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
+            </div>
+            </div>
+            <div id="cardHeader_${card.id}"> </div>
+          </div>
+          <div class="cardInfo  scrollspy">
+              <span class="cardName" >
+              <span id="cardName_${card.id}">
+              <p id="name_${card.id}">${card.name.toUpperCase()}</p>
+              </span>
+            </span>
+            <p class="cardSubTitle" id="cardSubTitle_${card.id}">
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
+              <span> ID : ${card.id} </span>
+              <br>
+              <span id="releaseDateOCG_${card.id}"> </span>
+              <span id="releaseDateTCG_${card.id}"> </span>
+              <span id="betaName_${card.id}"> </span>
+            </p>
+            <p class="cardDescription" id="description_${card.id}">
+              ${desc} 
+            </p>
+            <p class="cardFormats"> 
+            <a href='https://yugipedia.com/wiki/${card.id}' target="_blank" class='greenText'> Yugipedia </a> / 
+            <a href='https://www.db.yugioh-card.com/yugiohdb/card_search.action?ope=2&cid=${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Konami Database </a> / 
+            <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
+            <br>
+            <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
+            </p>
+
+            <span class="languageBar" >
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'es' )"> ES </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'en' )"> EN </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'de' )"> DE </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'fr' )"> FR </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'it' )"> IT </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ja' )"> JA </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
+            <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
+            </span>
+            
+            <br>
+            <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
+            <br>
+            </p>
+          </div>   
+
+        </div>
+      </div>
+    </div>   
+  </div>
+  `
     } else {
 
 

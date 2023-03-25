@@ -929,32 +929,89 @@ function searchByBanlist(banlist) {
     window.scrollTo(0, 0);
     printedResults = resultsPerPage
     let thisBanlist = []
+    let bannedCards = []
+    let limitedCards = []
+    let semiLimitedCards = []
+
 
     for (let i = 0; i < allCards.data.length; i++) {
+
 
         if (allCards.data[i].banlist_info) {
             console.log("banlist exist")
 
-            for (let b = 0; b < allCards.data[i].banlist_info.length; b++) {
-
+            if (banlist == 'ban_tcg') {
                 // Verificar que banlist esta pidiendo y mostrar esa, falta definir què info de la carta agregara 
-                if (allCards.data[i].banlist_info[b].ban_tcg === banlist) {
-
+                if (allCards.data[i].banlist_info.ban_tcg) {
                     thisBanlist.push(allCards.data[i])
-                    console.log(thisBanlist)
-                    if (thisBanlist[thisBanlist.length - 1] === allCards.data[i]) {
-                        break
-                        // console.log(thisSet[thisSet.length - 1])
+                    // console.log(thisBanlist)
+                    if (allCards.data[i].banlist_info.ban_tcg == 'Banned') {
+                        bannedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_tcg == 'Limited') {
+                        limitedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_tcg == 'Semi-Limited') {
+                        semiLimitedCards.push(allCards.data[i])
                     }
-
-                    // }
-
+                }
+            } else if (banlist == 'ban_ocg') {
+                if (allCards.data[i].banlist_info.ban_ocg) {
+                    thisBanlist.push(allCards.data[i])
+                    // console.log(thisBanlist)
+                    if (allCards.data[i].banlist_info.ban_ocg == 'Banned') {
+                        bannedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_ocg == 'Limited') {
+                        limitedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_ocg == 'Semi-Limited') {
+                        semiLimitedCards.push(allCards.data[i])
+                    }
+                }
+            } else if (banlist == 'ban_goat') {
+                if (allCards.data[i].banlist_info.ban_goat) {
+                    thisBanlist.push(allCards.data[i])
+                    // console.log(thisBanlist)
+                    if (allCards.data[i].banlist_info.ban_goat == 'Banned') {
+                        bannedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_goat == 'Limited') {
+                        limitedCards.push(allCards.data[i])
+                    } else if (allCards.data[i].banlist_info.ban_goat == 'Semi-Limited') {
+                        semiLimitedCards.push(allCards.data[i])
+                    }
                 }
             }
-
         }
 
     }
 
-    // console.log(thisBanlist)
+    console.log(thisBanlist)
+    console.log(bannedCards)
+    console.log(limitedCards)
+    console.log(semiLimitedCards)
+    // PRINT CARDS 
+    cardsSection.innerHTML = `
+    <div id="banSection" class="container-fluid row cardSection">
+    <h3>BAN CARDS</h3>
+    </div>
+    <div id="limitedSection" class="container-fluid row cardSection">
+    <h3>LIMITED CARDS</h3>
+    </div>
+    <div id="semiLimitedSection" class="container-fluid row cardSection">
+    <h3>SEMI-LIMITED CARDS</h3>
+    </div>
+    `
+    for (let i = 0; i < bannedCards.length; i++) {
+        createNormalCard(bannedCards[i], 'banSection')
+    }
+    for (let i = 0; i < limitedCards.length; i++) {
+        createNormalCard(limitedCards[i], 'limitedSection')
+    }
+    for (let i = 0; i < semiLimitedCards.length; i++) {
+        createNormalCard(semiLimitedCards[i], 'semiLimitedSection')
+    }
+
+    currentCards = thisBanlist
+    printedResults = thisBanlist.length
+    // createNormalCard(card, view)
+
+
+
 }
