@@ -139,7 +139,8 @@ nav form button {
 
 /* TITLES SECTION  */
 
-#titlesSection {
+#titlesSection,
+.banlistTitle {
     /* background-color: rgba(218, 218, 218, 0.85); */
     background-color: rgba(0, 0, 0, 0.85);
     /* color: rgb(150,95,212); */
@@ -149,6 +150,34 @@ nav form button {
     font-size: 32pt;
     padding: 10px 10px 10px 10px;
     text-align: center;
+}
+
+/* LOADER SECTION  */
+
+.loader-wrapper {
+    width: 100% !important;
+    height: 100vh !important;
+    position: absolute !important;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(0, 0, 0);
+}
+
+.loader {
+    position: absolute;
+    z-index: 1;
+    top: 50vh;
+    left: auto;
+    background-color: rgb(0, 0, 0);
+}
+
+.loader p {
+    font-size: 23pt;
 }
 
 

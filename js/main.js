@@ -13,6 +13,7 @@ var filteredSets;
 var filteredStaples;
 var titlesSection = document.getElementById("titlesSection");
 var cardsSection = document.getElementById("cardsSection");
+var loaderSection = document.getElementById("loaderSection");
 var cardIndex;
 var resultsPerPage = 24;
 var setsPerPage = 24;
@@ -20,21 +21,34 @@ var printedResults = resultsPerPage;
 var scrollingValue = 6000; //distance where buttons will show
 
 
-// start webpage
-window.onload = startWebPage();
 
+// start webpage
+$(window).on("load", function() {
+
+    startWebPage();
+
+});
 
 
 function startWebPage() {
+
     if (lang == undefined || lang == null) {
         // setting default language to english...
         lang = "en";
         // hacer un query a la db de todas las cartas
     }
-    queryYGOPD();
+    load(queryYGOPD);
+
+
 
 }
 
+async function load(what, parameter1, parameter2) {
+
+    loaderSection.style.display = 'flex';
+    await what(parameter1, parameter2)
+    $(".loader-wrapper").fadeOut("slow");
+}
 
 // #######################################################################
 
@@ -43,9 +57,9 @@ function startWebPage() {
 // Query ALL Yugiohprodeck DB
 
 // async function queryYGOPD() {
-function queryYGOPD() {
+async function queryYGOPD() {
     // https://db.ygoprodeck.com/api/v7/cardinfo.php
-    const response = fetch(
+    await fetch(
             "https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new"
         )
         .then((response) => response.json())
@@ -72,9 +86,9 @@ function queryYGOPD() {
 }
 
 // SEARCH ALL SETS FROM YGOPD
-function searchAllSets(value) {
+async function searchAllSets(value) {
 
-    const response = fetch(
+    await fetch(
             "https://db.ygoprodeck.com/api/v7/cardsets.php"
         )
         .then((response) => response.json())
@@ -108,7 +122,7 @@ async function queryYGOrg(cardId, konamId, language) {
             ygoorgCard = data;
             // console.log(ygoorgCard); // show card
             console.log('data from YGOrg fetched 😎')
-            console.log(ygoorgCard)
+            // console.log(ygoorgCard)
             changeCardInformation(cardId, language)
         })
 
@@ -305,7 +319,7 @@ function searchByFormat(format, onlyFormat) {
     }
 
     if (onlyFormat != undefined) {
-        console.log('searching only format')
+        // console.log('searching only format')
 
     } else {
 
@@ -619,14 +633,14 @@ function filterStaples(letter) {
 
 // Print Staples
 
-function printStaples() {
+async function printStaples() {
     currentCards = staplesRaw
     titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
     cardsSection.innerHTML = ("")
 
     cardsSection.innerHTML += text_allFilters
 
-    fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + staplesRaw + "&misc=yes&sort=name")
+    await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + staplesRaw + "&misc=yes&sort=name")
         .then(cardInfo => cardInfo.json())
         .then(data => {
             //console.log(data);
@@ -776,7 +790,7 @@ function getCheckboxValues() {
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             } else {
                 filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
-                console.log(filteredQueryResults)
+                // console.log(filteredQueryResults)
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             }
         }
@@ -785,12 +799,12 @@ function getCheckboxValues() {
 
 
 
-    console.log(currentFilteredResults)
+    // console.log(currentFilteredResults)
 
 
     for (let checkbox of markedCheckboxRace) {
         if (checkbox.checked) {
-            console.log(checkbox.value);
+            // console.log(checkbox.value);
 
             if (checkbox.value.includes("Spell") || checkbox.value.includes("Trap")) {
                 if (checkbox.value == 'Normal Spell' || checkbox.value == 'Continuous Spell') {
@@ -862,7 +876,7 @@ document.getElementById('filterButton').onclick = function() {
     getCheckboxValues()
     resetFilters()
     currentCards = currentFilteredResults.sort(sortBy("name"))
-    console.log(currentCards)
+    // console.log(currentCards)
     if (!currentCards[0]) {
         currentCards = allCards.data
     }
@@ -911,6 +925,7 @@ var randomCards = []
 
 function searchRandomCards(howMany) {
 
+
     // console.log(getRandomInt(currentCards.length));
     for (i = 0; i < currentCards.length; i++) {
 
@@ -926,7 +941,8 @@ function searchRandomCards(howMany) {
 
 function searchByBanlist(banlist) {
 
-    window.scrollTo(0, 0);
+    titlesSection.innerHTML = ` `
+    // window.scrollTo(0, 0);
     printedResults = resultsPerPage
     let thisBanlist = []
     let bannedCards = []
@@ -938,7 +954,7 @@ function searchByBanlist(banlist) {
 
 
         if (allCards.data[i].banlist_info) {
-            console.log("banlist exist")
+            // console.log("banlist exist")
 
             if (banlist == 'ban_tcg') {
                 // Verificar que banlist esta pidiendo y mostrar esa, falta definir què info de la carta agregara 
@@ -980,24 +996,35 @@ function searchByBanlist(banlist) {
             }
         }
 
+
+
     }
 
-    console.log(thisBanlist)
-    console.log(bannedCards)
-    console.log(limitedCards)
-    console.log(semiLimitedCards)
+    // await searchbanlist()
+
+
+    // console.log(thisBanlist)
+    // console.log(bannedCards)
+    // console.log(limitedCards)
+    // console.log(semiLimitedCards)
     // PRINT CARDS 
     cardsSection.innerHTML = `
-    <div id="banSection" class="container-fluid row cardSection">
-    <h3>BAN CARDS</h3>
+    <div id="banSection" class="container-fluid row cardSection banlistTitle" >
+    <div><span class="iconsSprite banned"></span> BANNED CARDS <span class="iconsSprite banned"></span></div>
     </div>
-    <div id="limitedSection" class="container-fluid row cardSection">
-    <h3>LIMITED CARDS</h3>
+    <div id="limitedSection" class="container-fluid row cardSection banlistTitle">
+    <div><span class="iconsSprite limited"></span> LIMITED CARDS <span class="iconsSprite limited"></span></div>
     </div>
-    <div id="semiLimitedSection" class="container-fluid row cardSection">
-    <h3>SEMI-LIMITED CARDS</h3>
+    <div id="semiLimitedSection" class="container-fluid row cardSection banlistTitle">
+    <div><span class="iconsSprite semi-limited"></span> SEMI-LIMITED CARDS <span class="iconsSprite semi-limited"></span></div>
     </div>
     `
+    thisBanlist.sort(sortBy(`name`))
+    bannedCards.sort(sortBy(`name`))
+    limitedCards.sort(sortBy(`name`))
+    semiLimitedCards.sort(sortBy(`name`))
+
+
     for (let i = 0; i < bannedCards.length; i++) {
         createNormalCard(bannedCards[i], 'banSection')
     }
@@ -1008,9 +1035,12 @@ function searchByBanlist(banlist) {
         createNormalCard(semiLimitedCards[i], 'semiLimitedSection')
     }
 
+
     currentCards = thisBanlist
     printedResults = thisBanlist.length
     // createNormalCard(card, view)
+
+    $(".loader-wrapper").fadeOut("slow");
 
 
 

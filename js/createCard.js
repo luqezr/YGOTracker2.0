@@ -46,7 +46,7 @@ function createNormalCard(card, view) {
         <div class="modal-body " id="aloneCard">
           <div class="cardHeader" id="cardHeaderDiv_${card.id}" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  >
+            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  >
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
@@ -101,7 +101,7 @@ function createNormalCard(card, view) {
     } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection') {
         document.getElementById(view).innerHTML += `
   <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url_small}" id="img2_${card.id}" alt="${card.name}" class="smallCard" >
+  <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
   </div>
 
   <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,7 +111,7 @@ function createNormalCard(card, view) {
           <div class="cardHeader">
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
             <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -173,7 +173,7 @@ function createNormalCard(card, view) {
 
         cardsSection.innerHTML += `
   <div class="card"data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
-  <img src="${card.card_images[0].image_url}" id="img2_${card.id}" alt="${card.name}" >
+  <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" >
   </div>
 
   
@@ -185,7 +185,7 @@ function createNormalCard(card, view) {
           <div class="cardHeader">
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy' data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
             <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -786,7 +786,7 @@ function whichRace(modalId, race, card) {
 function hasAlternativeArt(modalId, card) {
     if (card.card_images.length > 1) {
         document.getElementById(`cardHeaderDiv_${modalId}`).innerHTML += ` <button type="button" onclick="changeCardArtwork(${modalId})" class="btn btn-dark">Change Art</button> `
-        console.log("card " + card.name + " has alt art")
+        // console.log("card " + card.name + " has alt art")
     }
 
 }
@@ -872,7 +872,7 @@ function createSet(sets) {
             <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="searchBySet('${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
-                <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
+                <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
             
               </button>
             </div>
@@ -884,7 +884,7 @@ function createSet(sets) {
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modalImage">
                   
-                  <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}' alt="${setName}" class="close" data-dismiss="modal">
+                  <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}' alt="${setName}" class="close" data-dismiss="modal">
 
                 </div>
               </div>
