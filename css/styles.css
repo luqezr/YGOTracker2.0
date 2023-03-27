@@ -238,9 +238,6 @@ nav form button {
     color: white;
 }
 
-.smallCard {
-    width: 100px;
-}
 
 
 /* ####################################################################### */
@@ -506,9 +503,14 @@ footer {
 }
 
 .smallcard {
-    width: 100px;
+    width: 107px;
     /* height: 323px; */
     /* padding: 6px 8px 6px 8px; */
+}
+
+.smallCard {
+    width: 99px;
+    padding: 2px;
 }
 
 .modal {
@@ -1137,7 +1139,7 @@ footer {
 #back2top,
 #loadMoreCards {
     color: rgb(139, 212, 80);
-    font-size: 70px;
+    font-size: 50px;
     bottom: 6vh;
     text-align: center;
     display: inline-block;
@@ -1259,6 +1261,14 @@ footer {
         width: 152px;
     }
 
+    .smallCard {
+        width: 60px;
+    }
+
+    .smallcard {
+        width: 58px;
+    }
+
     .sets {
         width: 226px;
         height: 500px;
@@ -1316,6 +1326,15 @@ footer {
 }
 
 @media (max-width: 543px) {
+
+    .smallCard {
+        width: 57px;
+    }
+
+    .smallcard {
+        width: 59px;
+    }
+
     .cardHeaderDiv {
         display: flex;
         align-items: center;
@@ -1337,8 +1356,8 @@ footer {
     }
 
     .card {
-        width: 113px;
-        height: 152px;
+        width: 94px;
+        height: 118px;
     }
 
     #cardSection {
@@ -1447,6 +1466,14 @@ footer {
     .sets {
         width: 156px;
         height: 400px;
+    }
+
+    .smallCard {
+        width: 36px;
+    }
+
+    .smallcard {
+        width: 38px;
     }
 
     .iconsSprite {

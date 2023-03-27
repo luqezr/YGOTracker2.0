@@ -47,7 +47,7 @@ async function load(what, parameter1, parameter2) {
 
     loaderSection.style.display = 'flex';
     await what(parameter1, parameter2)
-    $(".loader-wrapper").fadeOut("slow");
+    $(".loader-wrapper").fadeOut("fast");
 }
 
 // #######################################################################
@@ -217,6 +217,8 @@ function searchByExactValue(field, value) {
     currentCards = allCards.data.filter((card) => card[field] === value)
     // console.log(filteredCards)
 }
+
+
 
 // SEARCH BY SOME VALUE, FOR EXAMPLE
 // searchByExactValue("archetype", "Branded") 
@@ -575,16 +577,16 @@ function printMoreResults(howMany) {
 // LOAD MORE CARDS BUTTON
 
 
-var moreCardsbtn = $('#loadMoreCards');
+// var moreCardsbtn = $('#loadMoreCards');
 
 
-$(window).scroll(function() {
-    if ($(window).scrollTop() > 300) {
-        moreCardsbtn.addClass('show');
-    } else {
-        moreCardsbtn.removeClass('show');
-    }
-});
+// $(window).scroll(function() {
+//     if ($(window).scrollTop() > 300) {
+//         moreCardsbtn.addClass('show');
+//     } else {
+//         moreCardsbtn.removeClass('show');
+//     }
+// });
 
 
 // BACK TO TOP BUTTON
@@ -939,9 +941,8 @@ function searchRandomCards(howMany) {
 }
 
 
-function searchByBanlist(banlist) {
+function searchByBanlist(banlist, title) {
 
-    titlesSection.innerHTML = ` `
     // window.scrollTo(0, 0);
     printedResults = resultsPerPage
     let thisBanlist = []
@@ -993,6 +994,14 @@ function searchByBanlist(banlist) {
                         semiLimitedCards.push(allCards.data[i])
                     }
                 }
+            } else if (banlist == 'ban_edison') {
+                if (EDISONBannedCards.includes(allCards.data[i].name)) {
+                    bannedCards.push(allCards.data[i])
+                } else if (EDISONLimitedCards.includes(allCards.data[i].name)) {
+                    limitedCards.push(allCards.data[i])
+                } else if (EDISONSemiLimitedCards.includes(allCards.data[i].name)) {
+                    semiLimitedCards.push(allCards.data[i])
+                }
             }
         }
 
@@ -1008,17 +1017,19 @@ function searchByBanlist(banlist) {
     // console.log(limitedCards)
     // console.log(semiLimitedCards)
     // PRINT CARDS 
+
+    titlesSection.innerHTML = `${text_banlist1}${title}${text_banlist2}`
     cardsSection.innerHTML = `
     <div id="banSection" class="container-fluid row cardSection banlistTitle" >
-    <div><span class="iconsSprite banned"></span> BANNED CARDS <span class="iconsSprite banned"></span></div>
+    <div><span class="iconsSprite banned"></span>BANNED CARDS<span class="iconsSprite banned"></span></div>
     </div>
     <div id="limitedSection" class="container-fluid row cardSection banlistTitle">
-    <div><span class="iconsSprite limited"></span> LIMITED CARDS <span class="iconsSprite limited"></span></div>
+    <div><span class="iconsSprite limited"></span>LIMITED CARDS<span class="iconsSprite limited"></span></div>
     </div>
     <div id="semiLimitedSection" class="container-fluid row cardSection banlistTitle">
-    <div><span class="iconsSprite semi-limited"></span> SEMI-LIMITED CARDS <span class="iconsSprite semi-limited"></span></div>
+    <div><span class="iconsSprite semi-limited"></span>SEMI-LIMITED CARDS<span class="iconsSprite semi-limited"></span></div>
     </div>
-    `
+    º`
     thisBanlist.sort(sortBy(`name`))
     bannedCards.sort(sortBy(`name`))
     limitedCards.sort(sortBy(`name`))
@@ -1040,8 +1051,149 @@ function searchByBanlist(banlist) {
     printedResults = thisBanlist.length
     // createNormalCard(card, view)
 
-    $(".loader-wrapper").fadeOut("slow");
+    // $(".loader-wrapper").fadeOut("slow");
 
 
 
 }
+
+var EDISONBannedCards = [
+    `Black Luster Soldier - Envoy of the Beginning`,
+    `Chaos Emperor Dragon - Evoy of the End`,
+    `Cyber Jar`,
+    `Cyber-Stein`,
+    `Dark Magician of Chaos`,
+    `Dark Strike Fighter`,
+    `Destiny HERO - Disk Commander`,
+    `Fiber Jar`,
+    `Magical Scientist`,
+    `Magician of Faith`,
+    `Makyura the Destructor`,
+    `Sinister Serpent`,
+    `Thousand-Eyes Restrict`,
+    `Tribe-Infecting Virus`,
+    `Tsukuyomi`,
+    `Victory Dragon`,
+    `Witch of the Black Forest`,
+    `​Yata-Garasu`,
+    `Butterfly Dagger - Elma`,
+    `Card of Safe Return`,
+    `Change of Heart`,
+    `Confiscation`,
+    `Dark Hole`,
+    `Delinquent Duo`,
+    `Dimension Fusion`,
+    `Graceful Charity`,
+    `Harpie's Feather Duster`,
+    `Last Will`,
+    `Monster Reborn`,
+    `Metamorphosis`,
+    `Mirage of Nightmare`,
+    `Painful Choice`,
+    `Pot of Greed`,
+    `Premature Burial`,
+    `Raigeki`,
+    `Snatch Steal`,
+    `The Forceful Sentry`,
+    `Crush Card Virus`,
+    `Exchange of the Spirit`,
+    `Imperial Order`,
+    `Last Turn`,
+    `Ring of Destruction`,
+    `​Time Seal`
+]
+
+var EDISONLimitedCards = [
+    `​Black Rose Dragon`,
+    `Blackwing - Gale the Whirlwind`,
+    `Brionac, Dragon of the Ice Barrier`,
+    `Card Trooper`,
+    `Chaos Sorcerer`,
+    `Dark Armed Dragon`,
+    `Elemental Hero Stratos`,
+    `Exodia the Forbidden One`,
+    `Gladiator Beast Bestiari`,
+    `Gorz the Emissary of Darkness`,
+    `Goyo Guardian`,
+    `Left Arm of the Forbidden One`,
+    `Left Leg of the Forbidden One`,
+    `Lumina, Lightsworn Summoner`,
+    `Marshmallon`,
+    `Mezuki`,
+    `Mind Master`,
+    `Morphing Jar`,
+    `Necroface`,
+    `Necro Gardna`,
+    `Neo-Spacian Grand Mole`,
+    `Night Assailant`,
+    `Plaguespreader Zombie`,
+    `Rescue Cat`,
+    `Right Arm of the Forbidden One`,
+    `Right Leg of the Forbidden One`,
+    `Sangan`,
+    `Snipe Hunter`,
+    `Spirit Reaper`,
+    `Summoner Monk`,
+    `Tragoedia​`,
+    `Advanced Ritual Art`,
+    `Allure of Darkness`,
+    `Brain Control`,
+    `Burial from a Different Dimension`,
+    `Card Destruction`,
+    `Charge of the Light Brigade`,
+    `Cold Wave`,
+    `Destiny Draw`,
+    `Emergency Teleport`,
+    `Foolish Burial`,
+    `Future Fusion`,
+    `Giant Trunade`,
+    `Heavy Storm`,
+    `Level Limit - Area B`,
+    `Limiter Removal`,
+    `Megamorph`,
+    `Mind Control`,
+    `Monster Gate`,
+    `Mystical Space Typhoon`,
+    `One for One`,
+    `Overload Fusion`,
+    `Reasoning`,
+    `Reinforcement of the Army`,
+    `Scapegoat`,
+    `Swords of Revealing Light​`,
+    `Call of the Haunted`,
+    `Ceasefire`,
+    `Gravity Bind`,
+    `Magic Cylinder`,
+    `Magical Explosion`,
+    `Mind Crush`,
+    `Mirror Force`,
+    `Ojama Trio`,
+    `Return from the Different Dimension`,
+    `Solemn Judgment`,
+    `The Transmigration Prophecy`,
+    `Torrential Tribute`,
+    `Trap Dustshoot`,
+    `Wall of Revealing Light`
+]
+
+var EDISONSemiLimitedCards = [
+    `Cyber Dragon`,
+    `Dandylion`,
+    `Demise, King of Armageddon`,
+    `Destiny HERO - Malicious`,
+    `Goblin Zombie`,
+    `Honest`,
+    `Judgment Dragon`,
+    `Lonefire Blossom`,
+    `Treeborn Frog`,
+    `Black Whirlwind`,
+    `Chain Strike`,
+    `Gold Sarcophagus`,
+    `Magical Stone Excavation`,
+    `United We Stand`,
+    `Bottomless Trap Hole`,
+    `Royal Decree`,
+    `Royal Oppression`,
+    `Skill Drain `,
+    `​Ultimate Offering`
+]

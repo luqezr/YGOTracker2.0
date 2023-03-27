@@ -57,7 +57,7 @@ function createNormalCard(card, view) {
               </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="load(searchByArchetype,'${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
               <span> ID : ${card.id} </span>
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
@@ -127,7 +127,7 @@ function createNormalCard(card, view) {
               </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="load(searchByArchetype,'${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
               <span> ID : ${card.id} </span>
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
@@ -201,7 +201,7 @@ function createNormalCard(card, view) {
               </span>
             </span>
             <p class="cardSubTitle" id="cardSubTitle_${card.id}">
-              <span class="cardArchetype" id="archetype_${card.id}" onclick="searchByArchetype('${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
+              <span class="cardArchetype" id="archetype_${card.id}" onclick="load(searchByArchetype,'${card.archetype}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> </span>
               <span> ID : ${card.id} </span>
               <br>
               <span id="releaseDateOCG_${card.id}"> </span>
@@ -290,7 +290,7 @@ function checkCardFormats(card) {
 
     for (let i = 0; i < card.misc_info[0].formats.length; i++) {
 
-        document.getElementById(`cardFormats_${card.id}`).innerHTML += `<span class='cardFormat greenText' id="format_${card.id}" onclick="searchByFormat('${card.misc_info[0].formats[i]}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> ${card.misc_info[0].formats[i]} </span>`
+        document.getElementById(`cardFormats_${card.id}`).innerHTML += `<span class='cardFormat greenText' id="format_${card.id}" onclick="load(searchByFormat,'${card.misc_info[0].formats[i]}')" data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer"> ${card.misc_info[0].formats[i]} </span>`
 
         if (i < card.misc_info[0].formats.length && i < (card.misc_info[0].formats.length - 1)) {
             document.getElementById(`cardFormats_${card.id}`).innerHTML += `/`
@@ -838,7 +838,7 @@ function printCardSets(modalId, card) {
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
-             <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='searchBySet("${card.card_sets[i].set_name}")'  data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
+             <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='load(searchBySet,"${card.card_sets[i].set_name}")'  data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td class="tableBody greenText" style="cursor: pointer" onclick="changeCardPicture(${card.id}, '${card.card_sets[i].set_code}')"> ${card.card_sets[i].set_code}</td>
              <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
@@ -869,7 +869,7 @@ function createSet(sets) {
 
             <div class="setImage"> 
             <div class='cardInfo'>
-            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="searchBySet('${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
+            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="load(searchBySet,'${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
             </div>
               <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
                 <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 

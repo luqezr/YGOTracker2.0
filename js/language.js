@@ -14,6 +14,16 @@ var text_allSets1 = "There are "
 var text_allSets2 = " sets"
 var text_allCards1 = "All cards from newer to older"
 var text_allCards2 = ""
+var text_banlist1 = "Banlist for "
+var text_banlist2 = " format"
+var text_banlistTCG = "TCG"
+var text_banlistOCG = "OCG"
+var text_banlistGOAT = "GOAT"
+var text_banlistEDISON = "EDISON"
+
+
+
+
 
 
 var text_allFilters = `
