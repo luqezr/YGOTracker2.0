@@ -530,10 +530,7 @@ function printMoreResults(howMany) {
 
     // AGREGAR VERIFICACION CON URL, CUANDO SEA /SETS sets=true
     if (setsStatus == true) {
-        for (let i = printedResults;
-            // (i < printedResults + howMany && i < currentCards.length); i++) {
-            i < printedResults + howMany; i++) {
-
+        for (let i = printedResults; i < printedResults + howMany; i++) {
             try {
                 createSet(currentCards[i])
             } catch (error) {
@@ -542,16 +539,14 @@ function printMoreResults(howMany) {
                 return
             }
 
-            printedResults = printedResults + howMany
 
         }
+        printedResults = printedResults + howMany
 
 
     } else {
 
-        for (let i = printedResults;
-            // (i < printedResults + howMany); i++) {
-            i < printedResults + howMany; i++) {
+        for (let i = printedResults; i < printedResults + howMany; i++) {
             try {
                 createNormalCard(currentCards[i])
             } catch (error) {
