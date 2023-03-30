@@ -1015,16 +1015,27 @@ function searchByBanlist(banlist, title) {
 
     titlesSection.innerHTML = `${text_banlist1}${title}${text_banlist2}`
     cardsSection.innerHTML = `
-    <div id="banSection" class="container-fluid row cardSection banlistTitle" >
-    <div><span class="iconsSprite banned"></span>BANNED CARDS<span class="iconsSprite banned"></span></div>
+    <div id="banCardsSection"> 
+        <div id="banSection" class="container-fluid row cardSection" >
+            <div class="banlistTitle">
+                <span class="iconsSprite banned"></span>BANNED CARDS<span class="iconsSprite banned">
+                </span>
+            </div>
+        </div>
+        <div id="limitedSection" class="container-fluid row cardSection ">
+            <div class="banlistTitle">
+                <span class="iconsSprite limited "></span>LIMITED CARDS<span class="iconsSprite limited">
+                </span>
+            </div>
+        </div>
+        <div id="semiLimitedSection" class="container-fluid row cardSection">
+            <div class="banlistTitle">
+                <span class="iconsSprite semi-limited"></span>SEMI-LIMITED CARDS<span class="iconsSprite semi-limited">
+                </span>
+            </div>
+        </div>
     </div>
-    <div id="limitedSection" class="container-fluid row cardSection banlistTitle">
-    <div><span class="iconsSprite limited"></span>LIMITED CARDS<span class="iconsSprite limited"></span></div>
-    </div>
-    <div id="semiLimitedSection" class="container-fluid row cardSection banlistTitle">
-    <div><span class="iconsSprite semi-limited"></span>SEMI-LIMITED CARDS<span class="iconsSprite semi-limited"></span></div>
-    </div>
-    º`
+    `
     thisBanlist.sort(sortBy(`name`))
     bannedCards.sort(sortBy(`name`))
     limitedCards.sort(sortBy(`name`))

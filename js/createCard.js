@@ -25,7 +25,7 @@ function createNormalCard(card, view) {
     let previousCard
 
 
-    if (getIndex(card.id, "right") == 1) {
+    if (getIndex(card.id, "right") == 1 || previousCard == undefined) {
         // console.log("no previous card")
         previousCard = card
     } else {
