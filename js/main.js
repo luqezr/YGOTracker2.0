@@ -2,6 +2,7 @@
 var lang;
 var allCards; //reply from the query for the cards
 var allSets; //reply from the query for the sets
+var allArchetypes; //reply from the  query all archetypes
 var thisSet; // Cards for the searched set
 var setsStatus = false; //show true for load more sets button
 var currentCards; // cards filtered by x format
@@ -109,10 +110,32 @@ async function searchAllSets(value) {
             return;
         });
 
-
-
 }
 
+// SEARCH ALL ARCHETYPES
+async function searchAllArchetypes(value) {
+
+    await fetch(
+            "https://db.ygoprodeck.com/api/v7/archetypes.php"
+        )
+        .then((response) => response.json())
+        .then((data) => {
+            allArchetypes = data;
+            resetCurrentCards()
+            // currentCards = allArchetypes
+            console.log('all archetypes fetched 😎')
+            // console.log(allSets)
+            printArchetypes(setsPerPage, allArchetypes, text_allSets1 + '<span class="greenText">' + allArchetypes.length + '</span>' + text_allSets2)
+
+        })
+
+        .catch((error) => {
+            // Code for handling the error
+            console.log("ups 😢 " + error);
+            return;
+        });
+
+}
 // Query YgoOrganization
 
 async function queryYGOrg(cardId, konamId, language) {
@@ -155,13 +178,13 @@ function changeCardInformation(cardId, language) {
 
 // SEARCH PRICES IN YUGIOHPRICES
 
-async function getYgopricesPrice(cardId) {
+async function getYgopricesPrice(cardSetCode, cardId) {
     var request = new XMLHttpRequest();
 
     await request.open(
         "GET",
-        `http://yugiohprices.com/api/price_for_print_tag/${cardId}`
-        //  `https://private-anon-2d909a8f25-yugiohprices.apiary-mock.com/api/price_for_print_tag/${cardSetCode}`
+        // `http://yugiohprices.com/api/price_for_print_tag/${cardSetCode}`
+        `https://private-anon-ace528619a-yugiohprices.apiary-proxy.com/api/price_for_print_tag/${cardSetCode}`
         // `https://private-anon-2d909a8f25-yugiohprices.apiary-proxy.com/api/price_for_print_tag/${cardSetCode}`
 
     );
@@ -175,9 +198,70 @@ async function getYgopricesPrice(cardId) {
             console.log(yugiohPricesResult.data.price_data)
             console.log(yugiohPricesResult.data.price_data.price_data.data.prices)
 
+            document.getElementById(`cardSets_${cardId}`).innerHTML += `
+
+            <div class="YGOPinfo" id="yugiohPricesInfo_${cardId}"> 
+                <p>Price Shift for <span onclick='changeCardPicture('${cardSetCode}', ${cardId})'>
+                    <a  style="cursor: pointer" id="${cardSetCode}" class='getBySet greenText'  class="close" data-dismiss="modal" aria-label="Close">${cardSetCode}</a>, updated at ${yugiohPricesResult.data.price_data.price_data.data.prices.updated_at}
+                </p>
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th scope="col" class="tableHead">Average</th>
+                    <th scope="col" class="tableHead">High</th>
+                    <th scope="col" class="tableHead">Low</th>
+                    </tr>                                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.average}</td>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.high}</td>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.low}</td>
+                    </tr>
+                </tbody>
+                </table>
+                <table class="table table-bordered">
+                <thead >	
+                    <tr>
+                        <th scope="col" class="tableHead">1 Day</th>
+                        <th scope="col" class="tableHead">3 Days</th>
+                        <th scope="col" class="tableHead">7 Days</th>
+                        <th scope="col" class="tableHead">21 Days</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_3.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_7.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_21.toFixed(3)}</td>
+                    </tr>
+                </tbody>
+                </table>
+                <table class="table table-bordered">
+                    <thead >	
+                        <tr>
+                            <th scope="col" class="tableHead">30 Days</th>
+                            <th scope="col" class="tableHead">90 Days</th>
+                            <th scope="col" class="tableHead">180 Days</th>
+                            <th scope="col" class="tableHead">365 Days</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_30.toFixed(3)}</td>
+                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_90.toFixed(3)}</td>
+                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_180.toFixed(3)}</td>
+                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_365.toFixed(3)}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                `
         }
     };
     request.send();
+
 
 }
 
@@ -253,7 +337,7 @@ function searchByExactValue(field, value) {
 // searchByExactValue("archetype", "Branded") 
 // WILL SEARCH "ARCHETYPES" THAT ARE EQUAL TO "BRANDED"
 
-function searchByArchetype(value) {
+function searchByArchetype(value, justsearch) {
 
     window.scrollTo(0, 0);
     printedResults = resultsPerPage
@@ -469,6 +553,41 @@ function printCards(howMany, cards, title1, title2, title3, view) {
 
 }
 
+function createFilterLetters(what2filter) {
+    cardsSection.innerHTML += `
+    <h2 class='setLetters'>
+
+            <span onclick="${what2filter}('A')"> A </span>
+            <span onclick="${what2filter}('C')"> C </span>
+            <span onclick="${what2filter}('D')"> D </span>
+            <span onclick="${what2filter}('B')"> B </span>
+            <span onclick="${what2filter}('F')"> F </span>
+            <span onclick="${what2filter}('G')"> G </span>
+            <span onclick="${what2filter}('H')"> H </span>
+            <span onclick="${what2filter}('I')"> I </span>
+            <span onclick="${what2filter}('J')"> J </span>
+            <span onclick="${what2filter}('K')"> K </span>
+            <span onclick="${what2filter}('L')"> L </span>
+            <span onclick="${what2filter}('M')"> M </span>
+            <span onclick="${what2filter}('N')"> N </span>
+            <span onclick="${what2filter}('O')"> O </span>
+            <span onclick="${what2filter}('P')"> P </span>
+            <span onclick="${what2filter}('Q')"> Q </span>
+            <span onclick="${what2filter}('R')"> R </span>
+            <span onclick="${what2filter}('S')"> S </span>
+            <span onclick="${what2filter}('T')"> T </span>
+            <span onclick="${what2filter}('U')"> U </span>
+            <span onclick="${what2filter}('V')"> V </span>
+            <span onclick="${what2filter}('W')"> W </span>
+            <span onclick="${what2filter}('X')"> X </span>
+            <span onclick="${what2filter}('Y')"> Y </span>
+            <span onclick="${what2filter}('Z')"> Z </span>
+    
+    </h2>`
+
+
+}
+
 function printSets(howMany, sets, title) {
 
     setsStatus = true
@@ -478,39 +597,7 @@ function printSets(howMany, sets, title) {
 
     titlesSection.innerHTML = title
     // console.log(cards2print)
-
-    cardsSection.innerHTML += `
-            <h2 class='setLetters'>
-
-                    <span onclick="filterSets('A')"> A </span>
-                    <span onclick="filterSets('B')"> B </span>
-                    <span onclick="filterSets('C')"> C </span>
-                    <span onclick="filterSets('D')"> D </span>
-                    <span onclick="filterSets('F')"> F </span>
-                    <span onclick="filterSets('G')"> G </span>
-                    <span onclick="filterSets('H')"> H </span>
-                    <span onclick="filterSets('I')"> I </span>
-                    <span onclick="filterSets('J')"> J </span>
-                    <span onclick="filterSets('K')"> K </span>
-                    <span onclick="filterSets('L')"> L </span>
-                    <span onclick="filterSets('M')"> M </span>
-                    <span onclick="filterSets('N')"> N </span>
-                    <span onclick="filterSets('O')"> O </span>
-                    <span onclick="filterSets('P')"> P </span>
-                    <span onclick="filterSets('Q')"> Q </span>
-                    <span onclick="filterSets('R')"> R </span>
-                    <span onclick="filterSets('S')"> S </span>
-                    <span onclick="filterSets('T')"> T </span>
-                    <span onclick="filterSets('U')"> U </span>
-                    <span onclick="filterSets('V')"> V </span>
-                    <span onclick="filterSets('W')"> W </span>
-                    <span onclick="filterSets('X')"> X </span>
-                    <span onclick="filterSets('Y')"> Y </span>
-                    <span onclick="filterSets('Z')"> Z </span>
-            
-            </h2>`
-
-
+    createFilterLetters('filterSets')
 
     for (let i = 0; i < howMany; i++) {
         cards2print.push(sets[i])
@@ -524,6 +611,33 @@ function printSets(howMany, sets, title) {
 
 }
 
+function getRandomCardFromArchetype(archetype) {
+
+}
+
+function printArchetypes(howMany, archetypes, title) {
+
+    setsStatus = true
+    cardsSection.innerHTML = ("")
+    let cards2print = []
+    // cards2print = archetypes
+
+    titlesSection.innerHTML = title
+    // console.log(cards2print)
+
+    // createFilterLetters('searchByArchetype')
+
+    for (let i = 0; i < howMany; i++) {
+        cards2print.push(archetypes[i].archetype_name)
+        try {
+            createArchetype(cards2print[i])
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+}
 
 // #######################################################################
 
@@ -561,7 +675,13 @@ function printMoreResults(howMany) {
     if (setsStatus == true) {
         for (let i = printedResults; i < printedResults + howMany; i++) {
             try {
-                createSet(currentCards[i])
+                if (currentCards[i].archetype_name) {
+                    console.log("yo")
+                    createArchetype(currentCards[i].archetype_name)
+
+                } else {
+                    createSet(currentCards[i])
+                }
             } catch (error) {
                 // console.error(error);
                 console.log("No more sets!")
@@ -960,7 +1080,7 @@ function searchRandomCards(howMany) {
     }
     // console.log(randomCards)
     currentCards = randomCards
-    printCards(resultsPerPage, currentCards, '<span class="purpleText">' + currentCards.length + ' </span> Random cards! ', "", "")
+    printCards(resultsPerPage, currentCards, 'Random cards! ', "", "")
 
 }
 

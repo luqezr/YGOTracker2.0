@@ -1123,6 +1123,27 @@ footer {
     margin: 15px 5px 15px 5px;
 }
 
+.archetypes {
+    width: min-content;
+    width: 250px;
+    height: 280px;
+    background-color: rgba(0, 0, 0, 0.85);
+    /* margin: 15px 5px 15px 5px; */
+
+}
+
+.archetypes div {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.archetypeImage {
+    width: 200px;
+    max-height: 200px;
+}
+
 .setLetters {
     font-family: CardTitle;
     color: rgb(139, 212, 80);

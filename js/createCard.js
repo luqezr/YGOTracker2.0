@@ -85,11 +85,8 @@ function createNormalCard(card, view) {
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
             </span>
-            
-            <br>
-            <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
-            <br>
-            </p>
+            <div class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
+            </div>
           </div>   
 
         </div>
@@ -155,11 +152,8 @@ function createNormalCard(card, view) {
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
             </span>
-            
-            <br>
-            <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
-            <br>
-            </p>
+            <div class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
+            </div>
           </div>   
 
         </div>
@@ -229,11 +223,8 @@ function createNormalCard(card, view) {
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'ko' )"> KO </i><span > / </span> 
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'pt' )"> PT </i>
             </span>
-            
-            <br>
-            <p class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
-            <br>
-            </p>
+            <div class="cardSets scrollspy" data-spy="scroll" id="cardSets_${card.id}">
+            </div>
           </div>   
 
         </div>
@@ -841,7 +832,7 @@ function printCardSets(modalId, card) {
            <tr>
              <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='load(searchBySet,"${card.card_sets[i].set_name}")'  data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
-             <td class="tableBody greenText" style="cursor: pointer" onclick="changeCardPicture(${card.id}, '${card.card_sets[i].set_code}')"> ${card.card_sets[i].set_code}</td>
+             <td class="tableBody greenText" style="cursor: pointer" onclick="changeCardPicture('${card.card_sets[i].set_code}', ${card.id})"> ${card.card_sets[i].set_code}</td>
              <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
            </tr>
     
@@ -897,9 +888,39 @@ function createSet(sets) {
   `
 }
 
-function changeCardPicture(cardId, cardSetCode) {
+function createArchetype(archetype) {
+
+    searchByExactValue("archetype", archetype)
+
+    let card = currentCards[getRandomInt(currentCards.length)]
+
+    cardsSection.innerHTML += `
+    <div class="archetypes" id='${archetype}' >
+      <div class="setGrid" >
+
+        <div class="archetypeImage"> 
+        <div class='cardInfo'>
+        <span><a  style="cursor: pointer" id="${archetype}" class='getBySet setName'  onclick="load(searchByArchetype,'${archetype}')" > ${archetype} </a></span> 
+        </div>
+            <img src="${card.card_images[0].image_url_cropped}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="archetypeImage" >
+ 
+
+          </button>
+        </div>
+      </div>
+    </div>
+
+`
+
+    currentCards = allArchetypes
+}
+
+
+function changeCardPicture(cardSetCode, cardId) {
     document.getElementById(`img_${cardId}`).src = `https://static-7.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
-    getYgopricesPrice(cardSetCode)
+    getYgopricesPrice(cardSetCode, cardId)
+
+
 }
 
 function correctCardImage(cardId) {
