@@ -197,15 +197,15 @@ nav form button {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    flex-direction: column;
     background-color: rgb(0, 0, 0);
 }
 
 .loader {
-    position: absolute;
+    /* position: absolute;
     z-index: 1;
     top: 50vh;
-    left: auto;
+    left: auto; */
     background-color: rgb(0, 0, 0);
 }
 
@@ -246,7 +246,16 @@ nav form button {
     color: rgb(139, 212, 80);
 }
 
-.cardArrows i:hover {
+.changeArtArrow {
+    color: rgb(139, 212, 80);
+    font-size: 30pt;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.cardArrows i:hover,
+.changeArtArrow:hover {
     color: rgb(150, 95, 212);
     cursor: pointer;
 }
@@ -1121,9 +1130,10 @@ footer {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.85);
     text-align: center;
+    /* max-height: 83px; */
     /* display: flex;
-    justify-content: center;
-    align-items: center;*/
+    justify-content: space-around;
+    align-items: center; */
 }
 
 .setLetters span:hover {

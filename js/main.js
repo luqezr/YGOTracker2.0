@@ -6,6 +6,7 @@ var thisSet; // Cards for the searched set
 var setsStatus = false; //show true for load more sets button
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
+var yugiohPricesResult //query from yugiohprices
 var query;
 var filteredQueryResults;
 var currentFilteredResults;
@@ -149,6 +150,34 @@ function changeCardInformation(cardId, language) {
     }
 
     document.getElementById(`name_${cardId}`).innerHTML = `${ygoorgCard.cardData[language].name.toUpperCase()}`
+
+}
+
+// SEARCH PRICES IN YUGIOHPRICES
+
+async function getYgopricesPrice(cardId) {
+    var request = new XMLHttpRequest();
+
+    await request.open(
+        "GET",
+        `http://yugiohprices.com/api/price_for_print_tag/${cardId}`
+        //  `https://private-anon-2d909a8f25-yugiohprices.apiary-mock.com/api/price_for_print_tag/${cardSetCode}`
+        // `https://private-anon-2d909a8f25-yugiohprices.apiary-proxy.com/api/price_for_print_tag/${cardSetCode}`
+
+    );
+
+    request.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            // console.log('Status:', this.status);
+            // console.log('Headers:', this.getAllResponseHeaders());
+            // console.log('Body:', this.responseText);
+            yugiohPricesResult = JSON.parse(this.responseText);
+            console.log(yugiohPricesResult.data.price_data)
+            console.log(yugiohPricesResult.data.price_data.price_data.data.prices)
+
+        }
+    };
+    request.send();
 
 }
 

@@ -785,7 +785,8 @@ function whichRace(modalId, race, card) {
 
 function hasAlternativeArt(modalId, card) {
     if (card.card_images.length > 1) {
-        document.getElementById(`cardHeaderDiv_${modalId}`).innerHTML += ` <button type="button" onclick="changeCardArtwork(${modalId})" class="btn btn-dark">Change Art</button> `
+        document.getElementById(`cardHeaderDiv_${modalId}`).innerHTML += ` <i class="bi bi-arrow-repeat changeArtArrow" onclick="changeCardArtwork(${modalId})" >
+        </i>`
         // console.log("card " + card.name + " has alt art")
     }
 
@@ -898,6 +899,7 @@ function createSet(sets) {
 
 function changeCardPicture(cardId, cardSetCode) {
     document.getElementById(`img_${cardId}`).src = `https://static-7.studiobebop.net/ygo_data/card_variants/${cardSetCode}.jpg`
+    getYgopricesPrice(cardSetCode)
 }
 
 function correctCardImage(cardId) {
