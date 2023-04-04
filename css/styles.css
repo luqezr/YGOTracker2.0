@@ -1387,6 +1387,20 @@ footer {
     .aloneCard {
         max-height: 72vh;
     }
+
+    .archetypes {
+        width: 122px;
+        height: 180px;
+
+    }
+
+    .archetypeImage {
+        width: 113px;
+        max-height: 130px;
+    }
+
+
+
 }
 
 @media (max-width: 543px) {

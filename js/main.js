@@ -12,6 +12,7 @@ var query;
 var filteredQueryResults;
 var currentFilteredResults;
 var filteredSets;
+var filteredArchetypes;
 var filteredStaples;
 var titlesSection = document.getElementById("titlesSection");
 var cardsSection = document.getElementById("cardsSection");
@@ -26,7 +27,9 @@ var scrollingValue = 6000; //distance where buttons will show
 
 // start webpage
 $(window).on("load", function() {
-
+    $('html, body').animate({
+        scrollTop: 0
+    }, '300');
     startWebPage();
 
 });
@@ -125,7 +128,7 @@ async function searchAllArchetypes(value) {
             // currentCards = allArchetypes
             console.log('all archetypes fetched 😎')
             // console.log(allSets)
-            printArchetypes(setsPerPage, allArchetypes, text_allSets1 + '<span class="greenText">' + allArchetypes.length + '</span>' + text_allSets2)
+            printArchetypes(setsPerPage, allArchetypes, text_AllArchetypes1 + '<span class="greenText">' + allArchetypes.length + '</span>' + text_AllArchetypes2)
 
         })
 
@@ -514,12 +517,17 @@ searchButton.addEventListener("click", function getCard(evt) {
 // FILTER SETS BY STARTING LETTER
 
 function filterSets(letter) {
-    filteredSets = currentCards.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
-
+    filteredSets = allSets.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
     printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">' + letter + ' </span>')
+    currentCards = filteredSets
+}
 
-    // console.log(filterSets)
+// FILTER ARCHETYPES BY STARTING LETTER
 
+function filterArchetypes(letter) {
+    filteredArchetypes = allArchetypes.filter(f => f.archetype_name.toLowerCase().startsWith(letter.toLowerCase()))
+    printArchetypes(filteredArchetypes.length, filteredArchetypes, 'Archetypes starting with <span class="purpleText">' + letter + ' </span>')
+    currentCards = filteredArchetypes
 }
 
 // #######################################################################
@@ -556,33 +564,31 @@ function printCards(howMany, cards, title1, title2, title3, view) {
 function createFilterLetters(what2filter) {
     cardsSection.innerHTML += `
     <h2 class='setLetters'>
-
-            <span onclick="${what2filter}('A')"> A </span>
-            <span onclick="${what2filter}('C')"> C </span>
-            <span onclick="${what2filter}('D')"> D </span>
-            <span onclick="${what2filter}('B')"> B </span>
-            <span onclick="${what2filter}('F')"> F </span>
-            <span onclick="${what2filter}('G')"> G </span>
-            <span onclick="${what2filter}('H')"> H </span>
-            <span onclick="${what2filter}('I')"> I </span>
-            <span onclick="${what2filter}('J')"> J </span>
-            <span onclick="${what2filter}('K')"> K </span>
-            <span onclick="${what2filter}('L')"> L </span>
-            <span onclick="${what2filter}('M')"> M </span>
-            <span onclick="${what2filter}('N')"> N </span>
-            <span onclick="${what2filter}('O')"> O </span>
-            <span onclick="${what2filter}('P')"> P </span>
-            <span onclick="${what2filter}('Q')"> Q </span>
-            <span onclick="${what2filter}('R')"> R </span>
-            <span onclick="${what2filter}('S')"> S </span>
-            <span onclick="${what2filter}('T')"> T </span>
-            <span onclick="${what2filter}('U')"> U </span>
-            <span onclick="${what2filter}('V')"> V </span>
-            <span onclick="${what2filter}('W')"> W </span>
-            <span onclick="${what2filter}('X')"> X </span>
-            <span onclick="${what2filter}('Y')"> Y </span>
-            <span onclick="${what2filter}('Z')"> Z </span>
-    
+        <span onclick="${what2filter}('A')"> A </span>
+        <span onclick="${what2filter}('C')"> C </span>
+        <span onclick="${what2filter}('D')"> D </span>
+        <span onclick="${what2filter}('B')"> B </span>
+        <span onclick="${what2filter}('F')"> F </span>
+        <span onclick="${what2filter}('G')"> G </span>
+        <span onclick="${what2filter}('H')"> H </span>
+        <span onclick="${what2filter}('I')"> I </span>
+        <span onclick="${what2filter}('J')"> J </span>
+        <span onclick="${what2filter}('K')"> K </span>
+        <span onclick="${what2filter}('L')"> L </span>
+        <span onclick="${what2filter}('M')"> M </span>
+        <span onclick="${what2filter}('N')"> N </span>
+        <span onclick="${what2filter}('O')"> O </span>
+        <span onclick="${what2filter}('P')"> P </span>
+        <span onclick="${what2filter}('Q')"> Q </span>
+        <span onclick="${what2filter}('R')"> R </span>
+        <span onclick="${what2filter}('S')"> S </span>
+        <span onclick="${what2filter}('T')"> T </span>
+        <span onclick="${what2filter}('U')"> U </span>
+        <span onclick="${what2filter}('V')"> V </span>
+        <span onclick="${what2filter}('W')"> W </span>
+        <span onclick="${what2filter}('X')"> X </span>
+        <span onclick="${what2filter}('Y')"> Y </span>
+        <span onclick="${what2filter}('Z')"> Z </span>
     </h2>`
 
 
@@ -625,7 +631,7 @@ function printArchetypes(howMany, archetypes, title) {
     titlesSection.innerHTML = title
     // console.log(cards2print)
 
-    // createFilterLetters('searchByArchetype')
+    createFilterLetters('filterArchetypes')
 
     for (let i = 0; i < howMany; i++) {
         cards2print.push(archetypes[i].archetype_name)
@@ -676,7 +682,7 @@ function printMoreResults(howMany) {
         for (let i = printedResults; i < printedResults + howMany; i++) {
             try {
                 if (currentCards[i].archetype_name) {
-                    console.log("yo")
+                    // console.log("yo")
                     createArchetype(currentCards[i].archetype_name)
 
                 } else {
@@ -685,12 +691,12 @@ function printMoreResults(howMany) {
             } catch (error) {
                 // console.error(error);
                 console.log("No more sets!")
-                return
+                // return
             }
 
 
         }
-        printedResults = printedResults + howMany
+        // printedResults = printedResults + howMany
 
 
     } else {
@@ -707,11 +713,10 @@ function printMoreResults(howMany) {
 
         }
 
-        printedResults = printedResults + howMany
-
 
     }
 
+    printedResults = printedResults + howMany
 
     // console.log(printedResults)
 
