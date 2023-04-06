@@ -86,7 +86,24 @@ Launch demo modal
 </div>
 
 `
-
+// DECK PRICER 
+var deckPricer_chooseDeck = "Choose deck"
+var deckPricer_button = "Price Breakdown"
+var deckPricer_dropkYdk = "Drop your (.ydk) file anywhere!"
+var deckPricer_deckCreator = "Deck creator"
+var deckPricer_mainDeck = "Main Deck"
+var deckPricer_extraDeck = "Extra Deck"
+var deckPricer_sideDeck = "Side Deck"
+var deckPricer_deck = "Deck"
+var deckPricer_tp = "Total price for "
+var deckPricer_lowestPrice_1 = ""
+var deckPricer_lowestPrice_2 = " $"
+var deckPricer_shiniestPrice_1 = "The higher rarity version price for "
+var deckPricer_shiniestPrice_2 = " is $"
+var deckPricer_card = "Card"
+var deckPricer_rarity = "Rarity"
+var deckPricer_setCode = "Set Code"
+var deckPricer_lowestPrice = "Lowest Price"
 
 
 // CARDS

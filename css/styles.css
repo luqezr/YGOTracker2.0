@@ -281,6 +281,34 @@ nav form button {
 }
 
 
+/* ####################################################################### */
+
+/* DECK PRICER  */
+
+#deckPricer {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    font-family: CardTitle;
+    text-align: center;
+    font-size: 32pt;
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#deck_main,
+#deck_extra,
+#deck_side {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#deck_extra {}
+
+#deck_side {}
 
 /* ####################################################################### */
 
@@ -1131,6 +1159,7 @@ footer {
     /* margin: 15px 5px 15px 5px; */
 
 }
+
 
 .archetypes div {
     display: flex;

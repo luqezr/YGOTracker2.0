@@ -3,19 +3,22 @@
 function createNormalCard(card, view) {
     // console.log(card)
     // let desc = card.desc.replace(/\./g, '. <br/>');
-
+    // str = str.replace(/(?:\r\n|\r|\n)/g, '<br>');
     let desc = card.desc
-        .replace('once per turn.', 'once per turn.<br/> ')
         .replace('----------------------------------------', ' ')
-        .replace('[ Pendulum Effect ]', ' [ Pendulum Effect ] <br/> ')
-        .replace('[ Monster Effect ]', '<br/> [ Monster Effect ] <br/> ')
-        // .replace('. [', '.<br/> [')
-        .replace('.)', '.) <br/>')
-        // .replace('●', '<br/> ● ')
-        .replace('. ●', '.<br/> ● ')
-        .replace('.●', '.<br/> ● ')
+        .replace('[ Pendulum Effect ]', ' [ Pendulum Effect ]<br/>')
+        .replace('[ Monster Effect ]', '<br/>[ Monster Effect ]<br/>')
+        .replace('once per turn.', 'once per turn.<br/>')
+        .replace('. If', '. <br/>If')
+        .replace('. When', '. <br/>When')
+        .replace('ctivate 1 of these effects;', 'ctivate 1 of these effects;<br/>')
+        .replace('. You can', '. <br/> You can')
+        .replace('. During', '.<br/> During')
+        .replace('. ●', '.<br>● ')
+        .replace('. *If', '.<br/> *If')
+        .replace('. This', '.<br/> This ')
+        // .replace('<br/><br/>', '<br/>')
         .replace('<br/> <br/>', '<br/>')
-        .replace('.<br/> <br/>', '<br/>')
 
 
 
@@ -24,15 +27,25 @@ function createNormalCard(card, view) {
     let nextCard = currentCards[getIndex(card.id, "right")]
     let previousCard
 
-
-    if (getIndex(card.id, "right") == 1 || previousCard == undefined) {
+    // if (getIndex(card.id, "right") == 1) {
+    console.log(getIndex(card.id, "right"))
+    if (getIndex(card.id, "right") == 1) {
         // console.log("no previous card")
         previousCard = card
-    } else {
+
+    }
+    // else if (previousCard == undefined) {
+    //     // previousCard = currentCards[getIndex(card.id, "left")]
+    //     previousCard = card
+    //     console.log("previouscard = undefined")
+
+    // }
+    else {
         previousCard = currentCards[getIndex(card.id, "left")]
+        // console.log("else")
     }
 
-    if (currentCards[getIndex(card.id, "right")] == undefined) {
+    if (currentCards[getIndex(card.id, "right")] == undefined || previousCard == undefined) {
         console.log("no next card")
         nextCard = card
     }
@@ -95,7 +108,7 @@ function createNormalCard(card, view) {
 
     `
 
-    } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection') {
+    } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection' || view == 'deck_main' || view == 'deck_extra' || view == 'deck_side') {
         document.getElementById(view).innerHTML += `
   <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
@@ -937,5 +950,44 @@ function correctCardImage(cardId) {
 
 
 
+
+}
+
+
+// CREATE DECK
+
+function createDeck(card, where) {
+
+    document.getElementById("deckPricerDissapear").innerHTML = ''
+    createNormalCard(card, where)
+
+}
+
+
+
+function createDeckDuplicate(card, where) {
+
+
+    if (where == "deck_main") {
+        var deckMain = document.getElementById("deck_main")
+        where = deckMain;
+        // console.log("main!!")
+    }
+    if (where == "deck_extra") {
+        var deckExtra = document.getElementById("deck_extra")
+        where = deckExtra;
+        // console.log("extra!!")
+    }
+    if (where == "deck_side") {
+        var deckSide = document.getElementById("deck_side")
+        where = deckSide;
+        // console.log("side!!")
+    }
+
+    where.innerHTML += `		
+    <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
+    <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
+    </div>
+        `
 
 }

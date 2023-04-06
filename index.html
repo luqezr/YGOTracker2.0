@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body id="dropover">
     <!-- 
                         _____
                         |A .  | _____
@@ -56,6 +56,9 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="load(searchAllArchetypes)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Archetypes</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" onclick="load(printStaples)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Staples</a>
+                        </li>
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle" aria-current="page" style="cursor: pointer" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Banlist</a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -79,11 +82,16 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
                                 <li class="dropdown-item" data-bs-toggle="collapse" data-bs-target="#navbar" onclick="load(searchByFormat,'Duel Links')">Duel Links</li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" onclick="load(printStaples)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Staples</a>
+                            <a class="nav-link" aria-current="page" onclick="load(deckPricer)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Deck Pricer</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" onclick="load(searchRandomCards,resultsPerPage)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">Random</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" onclick="load(about)" style="cursor: pointer" data-bs-toggle="collapse" data-bs-target="#navbar">About</a>
                         </li>
                     </ul>
 
@@ -555,9 +563,7 @@ made with ♥ by @luqezr  |  |  || \ / || ( ) ||A_ _ |
             </div>
         </div>
 
-        <!-- 
-        <i class="bi bi-file-plus-fill" id="loadMoreCards" onclick="printMoreResults(resultsPerPage)"></i>
--->
+
         <!-- <i class="bi bi-arrow-up-circle" id="back2top"></i> -->
 
 
