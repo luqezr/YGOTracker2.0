@@ -1416,26 +1416,30 @@ function deckPricer() {
     cardsSection.innerHTML = `
     <div id="deckPricer" >
         <div id="deckPricerDissapear">
-        <h2 >${deckPricer_chooseDeck}</h2> 
-        <input type="file" id="file-input" class="form-control-file" />
-        <pre id="file-content" ></pre>
-        <h3>${deckPricer_dropkYdk}</h3>
+            <h2 >${deckPricer_chooseDeck}</h2> 
+            <input type="file" id="file-input" class="form-control-file" />
+            <pre id="file-content" ></pre>
+            <h3>${deckPricer_dropkYdk}</h3>
         </div>
         <div id="deck">
-        <div id="deck_creator"></div>
-        <hr>
-        <h2>${deckPricer_mainDeck}</h2>
-        <div id="deck_main"></div>
-        <hr>
-        <h2>${deckPricer_extraDeck}</h2>
-        <div id="deck_extra"></div>
-        <hr>
-        <h2>${deckPricer_sideDeck}</h2>
-        <div id="deck_side"></div>
+            <div id="deck_creator">
+            </div>
+            <hr>
+            <h2>${deckPricer_mainDeck}</h2>
+            <div id="deck_main">
+            </div>
+            <hr>
+            <h2>${deckPricer_extraDeck}</h2>
+            <div id="deck_extra">
+            </div>
+            <hr>
+            <h2>${deckPricer_sideDeck}</h2>
+            <div id="deck_side">
+            </div>
         </div>
-        <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >${deckPricer_button}</button>
-        <br>
-        <br>
+            <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >${deckPricer_button}</button>
+            <br>
+            <br>
         <div id="deck_info">
     
         </div>
@@ -1513,19 +1517,26 @@ function clearDeck() {
 
 function readFileDragAndDrop(e) {
     e.preventDefault();
-    if (document.getElementById('deckPricer')) {
-        clearDeck()
-    } else {
-        deckPricer()
-        clearDeck()
+    try {
+
+        if (document.getElementById('deckPricer')) {
+            clearDeck()
+        } else {
+            deckPricer()
+            clearDeck()
+        }
+        let file = e.dataTransfer.files[0];
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let content = e.target.result;
+            showContent(content);
+        };
+        reader.readAsText(file);
+
+    } catch (error) {
+        console.error(error);
+        alert("wrong type of file")
     }
-    let file = e.dataTransfer.files[0];
-    let reader = new FileReader();
-    reader.onload = function(e) {
-        let content = e.target.result;
-        showContent(content);
-    };
-    reader.readAsText(file);
 }
 
 // Read file 
@@ -1555,7 +1566,7 @@ function searchLowestPrices() {
 
     deckInfo = document.getElementById("deck_info")
     deckInfo.innerHTML = `  
-    <table class="table table-hover" >
+    <table class="table table-hover" id="deck_info_table" >
       <thead>
         <tr>
           <th scope="col">${deckPricer_card}</th>
@@ -1568,8 +1579,8 @@ function searchLowestPrices() {
     </tbody> `
     deckInfo_table = document.getElementById("deckInfo_table")
     deckInfo_table.innerHTML += `
-    <tr style="background-color: black; color:white">
-      <td>MAIN DECK</td>
+    <tr>
+      <td class="purpleText">MAIN DECK</td>
       <td></td>
       <td></td>
       <td></td>
@@ -1578,8 +1589,8 @@ function searchLowestPrices() {
      `
     searchDeckValue(deck.mainDeck)
     deckInfo_table.innerHTML += `
-    <tr style="background-color: black; color:white">
-      <td>EXTRA DECK</td>
+    <tr>
+      <td class="purpleText">EXTRA DECK</td>
       <td></td>
       <td></td>
       <td></td>
@@ -1587,8 +1598,8 @@ function searchLowestPrices() {
      `
     searchDeckValue(deck.extraDeck)
     deckInfo_table.innerHTML += `
-    <tr style="background-color: black; color:white">
-      <td>SIDE DECK</td>
+    <tr>
+      <td class="purpleText">SIDE DECK</td>
       <td></td>
       <td></td>
       <td></td>
@@ -1716,6 +1727,8 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
 }
 
 
+var lis
+var count
 // Create cards 
 function showContent(content) {
     // console.log(contenido)
@@ -1770,7 +1783,19 @@ function showContent(content) {
     getCardsById(rawDeck.sideDeck, "deck_side", "side", "sideDeck")
 
 
+    // Count cards in deck to fit screen
+    lis = $(".smallCard");
+    count = $(".smallCard").length;
 
+    switch (count) {
+        case 40:
+            lis.addClass('deckCardsfitSize10');
+            break;
+        case count < 40 && count > 60:
+            lis.addClass('deckCardsfitSize10');
+            break;
+            //other cases
+    }
 
 
 }
@@ -1872,7 +1897,7 @@ function searchDeckValue(value) {
                 lowestPriceForDeck.mainDeck.push(Math.min(...lowestCardPrice))
             }
             deckInfo_table.innerHTML += `
-      <tr data-toggle="modal" data-target="#ModalID${deck.mainDeck[b].id}">
+      <tr data-bs-toggle="modal" data-bs-target="#card_${deck.mainDeck[b].id}">
         <td>${deck.mainDeck[b].name}</td>
         <td>${lowestCardPriceRaw.rarity_code}</td>
         <td>${lowestCardPriceRaw.setcode}</td>

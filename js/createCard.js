@@ -28,7 +28,7 @@ function createNormalCard(card, view) {
     let previousCard
 
     // if (getIndex(card.id, "right") == 1) {
-    console.log(getIndex(card.id, "right"))
+    // console.log(getIndex(card.id, "right"))
     if (getIndex(card.id, "right") == 1) {
         // console.log("no previous card")
         previousCard = card
@@ -46,7 +46,7 @@ function createNormalCard(card, view) {
     }
 
     if (currentCards[getIndex(card.id, "right")] == undefined || previousCard == undefined) {
-        console.log("no next card")
+        // console.log("no next card")
         nextCard = card
     }
     // console.log(previousCard)

@@ -310,6 +310,27 @@ nav form button {
 
 #deck_side {}
 
+
+#deck_info_table {
+    color: white;
+}
+
+#deck_info_table tr :hover {
+    color: rgb(139, 212, 80);
+}
+
+/* Change deck cards size to fit rows of 10 min and max 15 */
+.deckCardsfitSize10 {
+    width: 400px;
+    /*any other styles you want*/
+}
+
+.deckCardsfitSize15 {
+    width: 200px;
+    /*any other styles you want*/
+}
+
+
 /* ####################################################################### */
 
 
