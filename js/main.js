@@ -6,10 +6,12 @@ var allArchetypes; //reply from the  query all archetypes
 var currentCardsFromDeck; //Current cards from deck
 var thisSet; // Cards for the searched set
 var setsStatus = false; //show true for load more sets button
+var deckPricerStatus = false; //modifies searchbar to add cards to deck
 var currentCards; // cards filtered by x format
 var ygoorgCard; //query from yugiohorganization
 var yugiohPricesResult //query from yugiohprices
 var query;
+var file; //data from current deck file
 var filteredQueryResults;
 var currentFilteredResults;
 var filteredSets;
@@ -298,9 +300,13 @@ function sortBy(property) { //"property" can be any value from allCards.data
     }
 }
 
-function sortCards(value) {
+function sortCards(value, whichCards) {
     resetCurrentCards()
-    currentCards = allCards.data.sort(sortBy(`${value}`))
+    if (whichCards) {
+        currentCards = whichCards.sort(sortBy(`${value}`))
+    } else {
+        currentCards = allCards.data.sort(sortBy(`${value}`))
+    }
 }
 
 
@@ -310,6 +316,7 @@ function sortCards(value) {
 // SEARCHERS
 
 function searchCardsByNameOrDescription(value) {
+    deckPricerStatus = false
     // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
     resetCurrentCards()
     printedResults = resultsPerPage
@@ -329,6 +336,7 @@ function searchCardsByNameOrDescription(value) {
 
 
 function searchByExactValue(field, value) {
+    deckPricerStatus = false
 
     resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
@@ -342,6 +350,7 @@ function searchByExactValue(field, value) {
 // WILL SEARCH "ARCHETYPES" THAT ARE EQUAL TO "BRANDED"
 
 function searchByArchetype(value, justsearch) {
+    deckPricerStatus = false
 
     window.scrollTo(0, 0);
     printedResults = resultsPerPage
@@ -356,6 +365,7 @@ function searchByArchetype(value, justsearch) {
 // FIND BY SET 
 
 function searchBySet(set_name) {
+    deckPricerStatus = false
 
     window.scrollTo(0, 0);
     printedResults = resultsPerPage
@@ -421,6 +431,8 @@ function searchBySet(set_name) {
 // FIND BY FORMATT 
 
 function searchByFormat(format, onlyFormat) {
+    deckPricerStatus = false
+
     window.scrollTo(0, 0);
     printedResults = resultsPerPage
     let thisFormat = []
@@ -518,6 +530,7 @@ searchButton.addEventListener("click", function getCard(evt) {
 // FILTER SETS BY STARTING LETTER
 
 function filterSets(letter) {
+    deckPricerStatus = false
     filteredSets = allSets.filter(f => f.set_name.toLowerCase().startsWith(letter.toLowerCase()))
     printSets(filteredSets.length, filteredSets, 'Sets starting with <span class="purpleText">' + letter + ' </span>')
     currentCards = filteredSets
@@ -526,6 +539,8 @@ function filterSets(letter) {
 // FILTER ARCHETYPES BY STARTING LETTER
 
 function filterArchetypes(letter) {
+    deckPricerStatus = false
+
     filteredArchetypes = allArchetypes.filter(f => f.archetype_name.toLowerCase().startsWith(letter.toLowerCase()))
     printArchetypes(filteredArchetypes.length, filteredArchetypes, 'Archetypes starting with <span class="purpleText">' + letter + ' </span>')
     currentCards = filteredArchetypes
@@ -596,7 +611,7 @@ function createFilterLetters(what2filter) {
 }
 
 function printSets(howMany, sets, title) {
-
+    deckPricerStatus = false
     setsStatus = true
     cardsSection.innerHTML = ("")
     let cards2print = []
@@ -618,12 +633,9 @@ function printSets(howMany, sets, title) {
 
 }
 
-function getRandomCardFromArchetype(archetype) {
-
-}
 
 function printArchetypes(howMany, archetypes, title) {
-
+    deckPricerStatus = false
     setsStatus = true
     cardsSection.innerHTML = ("")
     let cards2print = []
@@ -786,6 +798,7 @@ function filterStaples(letter) {
 // Print Staples
 
 async function printStaples() {
+    deckPricerStatus = false
     currentCards = staplesRaw
     titlesSection.innerHTML = "<span class='greenText'>" + currentCards.length + " </span> staple cards"
     cardsSection.innerHTML = ("")
@@ -839,7 +852,7 @@ window.addEventListener('scroll', () => {
     //  console.log(loadHeight)
     // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
     // console.log(loadHeight)
-    if (window.scrollY + window.innerHeight >= loadHeight - 100) {
+    if (window.scrollY + window.innerHeight >= loadHeight - 100 && deckPricerStatus == false) {
         printMoreResults(resultsPerPage)
 
     }
@@ -1412,39 +1425,45 @@ area.addEventListener('drop', readFileDragAndDrop);
 
 
 function deckPricer() {
+
+    deckPricerStatus = true
     titlesSection.innerHTML = ""
     cardsSection.innerHTML = `
-    <div id="deckPricer" >
-        <div id="deckPricerDissapear">
-            <h2 >${deckPricer_chooseDeck}</h2> 
-            <input type="file" id="file-input" class="form-control-file" />
-            <pre id="file-content" ></pre>
-            <h3>${deckPricer_dropkYdk}</h3>
-        </div>
-        <div id="deck">
-            <div id="deck_creator">
+        <div>
+                <div id="deckPricer" >
+                    <div id="deckPricerDissapear">
+                        <h2 >${deckPricer_chooseDeck}</h2> 
+                        <label class="fileUpload">
+                            <input type="file" id="file-input" class="form-control-file"/>
+                            <h2><i class="bi bi-folder-plus"></i> ${deckPricer_dropkYdk}</h2>
+                            <h3> ${deckPricer_searchBar} </h3>
+
+                        </label>
+                    </div>
+                    <div id="deck">
+                        <div id="deck_creator">
+                        </div>
+                        <hr>
+                        <h2>${deckPricer_mainDeck}</h2>
+                        <div id="deck_main">
+                        </div>
+                        <hr>
+                        <h2>${deckPricer_extraDeck}</h2>
+                        <div id="deck_extra">
+                        </div>
+                        <hr>
+                        <h2>${deckPricer_sideDeck}</h2>
+                        <div id="deck_side">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary btn-lg btn-block deckPricerButton" onclick="searchLowestPrices()" >${deckPricer_button}</button>
+                    <div id="deck_info">
+                
+                    </div>
+
+
+                </div>
             </div>
-            <hr>
-            <h2>${deckPricer_mainDeck}</h2>
-            <div id="deck_main">
-            </div>
-            <hr>
-            <h2>${deckPricer_extraDeck}</h2>
-            <div id="deck_extra">
-            </div>
-            <hr>
-            <h2>${deckPricer_sideDeck}</h2>
-            <div id="deck_side">
-            </div>
-        </div>
-            <button type="button" class="btn btn-secondary btn-lg btn-block blackButton" onclick="searchLowestPrices()" >${deckPricer_button}</button>
-            <br>
-            <br>
-        <div id="deck_info">
-    
-        </div>
-    </div>
-  
     `
 
 
@@ -1525,10 +1544,11 @@ function readFileDragAndDrop(e) {
             deckPricer()
             clearDeck()
         }
-        let file = e.dataTransfer.files[0];
+        file = e.dataTransfer.files[0];
         let reader = new FileReader();
         reader.onload = function(e) {
             let content = e.target.result;
+            // console.log(file)
             showContent(content);
         };
         reader.readAsText(file);
@@ -1542,7 +1562,7 @@ function readFileDragAndDrop(e) {
 // Read file 
 
 function readFile(e) {
-    let file = e.target.files[0];
+    file = e.target.files[0];
     if (!file) {
         return;
     }
@@ -1554,9 +1574,46 @@ function readFile(e) {
     reader.readAsText(file);
 }
 
+// DOWNLOAD DECK
+
+// Function to download data to a file
+function downloadDeck(data, filename, type) {
+
+
+    var deck2save = '#created by ' + data.creator + '\r\n' + '#main' + '\r\n' + data.mainDeck + '\r\n' + '#extra' + '\r\n' + data.extraDeck + '\r\n' + '!side' + '\r\n' + data.sideDeck
+
+    if (!filename) {
+        filename = prompt("Enter a value");
+        filename += '.ydk'
+    }
+
+
+    var file = new Blob([deck2save.replaceAll(',', '\r\n')], {
+        type: type
+    });
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+            url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }, 0);
+    }
+}
+
 // SEARCH LOWEST PRICES TABLE
 function searchLowestPrices() {
 
+    if (lowestPriceForDeck.mainDeck.length === 0 && lowestPriceForDeck.extraDeck.length === 0 && lowestPriceForDeck.sideDeck.length === 0) {
+        alert('Upload a deck first!')
+        return
+    }
 
     lowestPriceForDeck = {
         mainDeck: [],
@@ -1689,8 +1746,11 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
             .then(cardInfo => cardInfo.json())
             .then(data => {
                 currentCardsFromDeck = data.data;
-                console.log(currentCardsFromDeck)
+                // console.log(currentCardsFromDeck)
                 currentCards = []
+                currentCardsFromDeck.sort(sortBy(`type`), currentCardsFromDeck);
+                // currentCardsFromDeck.sort(sortBy(`level`), currentCardsFromDeck);
+
                 // currentCardsFromDeck.sort(sortByType);
                 for (var b = 0; b < currentCardsFromDeck.length; b++) {
                     // create deck
@@ -1720,9 +1780,6 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
 
     })();
 
-    deck.mainDeck.sort(sortByType);
-    deck.extraDeck.sort(sortByType);
-    deck.sideDeck.sort(sortByType);
 
 }
 
@@ -1767,6 +1824,7 @@ function showContent(content) {
               ${deckPricer_mainDeck} (${cardsInMainDeck})
               ${deckPricer_extraDeck} (${cardsInExtraDeck})
               ${deckPricer_sideDeck} (${cardsInSideDeck})
+              <i class="bi bi-download greenText" onclick="downloadDeck(rawDeck, file.name, 'text')"></i>
                 `
 
         var cardPrices = document.getElementById("cardPrices")
@@ -2048,15 +2106,59 @@ function searchDeckValue(value) {
 }
 
 
-// SORT BY TYPE
+// ADD CARD TO DECK 
+// addCardButton.addEventListener("click", preventDefault(), false);
+// while (document.getElementsByClassName("add2deckButton").length > 0) {
+//     console.log("yo")
+//     var addCardButton = document.getElementsByClassName("add2deckButton")
+//     addCardButton.addEventListener('click', e => e.preventDefault());
+//     addCardToDeck()
+
+// }
+
+function addCardToDeck(card, where) {
+
+    if (deck.mainDeck.length > 60 || deck.sideDeck.length > 15 || deck.extraDeck.length > 15) {
+        alert("deck full!")
+        return
+    }
+
+    if (deck.mainDeck.filter(x => x.name === card.name).length == 3 || deck.extraDeck.filter(x => x.name === card.name).length == 3 || deck.mainDeck.filter(x => x.name === card.name).length + deck.sideDeck.filter(x => x.name === card.name).length == 3 || deck.extraDeck.filter(x => x.name === card.name).length + deck.sideDeck.filter(x => x.name === card.name).length == 3) {
+        alert('you cant add more than 3 copies of the same card')
+        return
+    }
+
+    if (where == "deck_main") {
+        if (deck.mainDeck.filter(card => card.name == card.name)) {
+            if (card.type == "Fusion Monster" || card.type == "Synchro Monster" || card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster" || card.type == "Synchro Pendulum Effect Monster" || card.type == "Link Monster" || card.type == "Pendulum Effect Fusion Monster") {
+                deck.extraDeck.push(card)
+                createDeckDuplicate(card, 'deck_extra')
+            } else {
+                console.log("adding duplcate")
+                deck.mainDeck.push(card)
+                createDeckDuplicate(card, where)
+            }
+        } else {
+            if (card.type == "Fusion Monster" || card.type == "Synchro Monster" || card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster" || card.type == "Synchro Pendulum Effect Monster" || card.type == "Link Monster" || card.type == "Pendulum Effect Fusion Monster") {
+                deck.extraDeck.push(card)
+                createDeckDuplicate(card, 'deck_extra')
+            } else {
+                console.log("adding card " + card)
+                deck.mainDeck.push(card)
+                createDeck(card, where)
+            }
+        }
+    } else if (where == 'deck_side') {
+        if (deck.sideDeck.filter(card => card.name == card)) {
+            console.log("adding duplcate")
+            deck.sideDeck.push(card)
+            createDeckDuplicate(card, where)
+        } else {
+            console.log("adding card " + card)
+            deck.sideDeck.push(card)
+            createDeck(card, where)
+        }
+    }
 
 
-function sortByType(a, b) {
-    if (a.type < b.type) {
-        return -1;
-    }
-    if (a.type > b.type) {
-        return 1;
-    }
-    return 0;
 }

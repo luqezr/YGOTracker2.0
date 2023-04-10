@@ -25,6 +25,7 @@ body {
     background-repeat: initial;
     /* background-repeat: repeat-y; */
     position: relative;
+    cursor: default;
 }
 
 main {
@@ -289,12 +290,18 @@ nav form button {
     background-color: rgba(0, 0, 0, 0.85);
     color: white;
     font-family: CardTitle;
-    text-align: center;
-    font-size: 32pt;
+    font-size: 24pt;
+    /* text-align: center; */
     padding: 10px 10px 10px 10px;
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+#deckPricer h2 {
+    text-align: center;
+    font-size: 42pt;
+
 }
 
 #deck_main,
@@ -306,9 +313,75 @@ nav form button {
     flex-wrap: wrap;
 }
 
-#deck_extra {}
+#deckPricer tbody {
+    color: rgb(115, 79, 154);
+}
 
-#deck_side {}
+.fileUpload {
+    width: 100%;
+    text-align: center;
+    /* vertical-align: middle; */
+    color: rgb(150, 95, 212);
+    cursor: pointer;
+
+}
+
+.fileUpload:hover {
+    color: rgb(139, 212, 80);
+    cursor: pointer;
+
+
+    /* background-color: rgb(29, 26, 47); */
+    /* border: rgb(115, 79, 154) solid 2px; */
+}
+
+
+input[type="file"] {
+    display: none;
+}
+
+.add2deckButton {
+    color: rgb(150, 95, 212);
+    font-size: 18pt;
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 10px;
+
+}
+
+/* .add2deckButton:hover {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(139, 212, 80);
+} */
+
+
+
+.deckPricerButton {
+    background-color: rgb(29, 26, 47) !important;
+    border: rgb(115, 79, 154) solid 2px !important;
+    color: rgb(139, 212, 80) !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in; */
+    /* background: #f5f5f5;  */
+    /* padding: 20px; */
+}
+
+.deckPricerButton:hover {
+    background-color: rgb(115, 79, 154) !important;
+    border: rgb(29, 26, 47) solid 2px !important;
+    color: rgb(139, 212, 80) !important;
+}
+
+
+
+
+/* #deck_extra {}
+
+#deck_side {} */
 
 
 #deck_info_table {
@@ -356,7 +429,10 @@ form input,
 }
 
 #searchBar-div span,
-#searchBar-div button {
+#searchBar-div button
+
+/* #searchBar-div i  */
+    {
     /* background-color: rgb(29, 26, 47) !important; */
     background-color: rgba(0, 0, 0, 1);
     color: rgb(150, 95, 212) !important;
@@ -368,6 +444,18 @@ form input,
 
 #searchBar-div button:hover {
     color: rgb(139, 212, 80) !important;
+}
+
+.searchBarCard {
+    display: flex;
+    width: 100%;
+}
+
+.searchBardCard_info {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 
@@ -451,8 +539,13 @@ input[type="submit"] {
 
 /*when hovering an item:*/
 
-.autocomplete-items div:hover {
+.autocomplete-items div:hover,
+.autocomplete-items i:hover {
     background-color: rgb(115, 79, 154);
+}
+
+.autocomplete-items i:hover {
+    color: rgb(139, 212, 80);
 }
 
 
@@ -1528,7 +1621,8 @@ footer {
         font-size: 11pt;
     }
 
-    .cardInfo a {
+    .cardInfo a,
+    .cardInfo i {
         font-size: 11pt;
     }
 

@@ -17,6 +17,7 @@ function searchCardNamesForAutocomplete() {
 
 
 function autocomplete(inp, arr) {
+
     var currentFocus;
     inp.addEventListener("input", function(e) {
         var a, b, i, val = this.value;
@@ -33,17 +34,61 @@ function autocomplete(inp, arr) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             if (arr[i].substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");
-                b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                b.innerHTML += arr[i].substr(val.length);
+                if (deckPricerStatus == false) {
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+
+                } else {
+                    let currentCard = allCards.data.filter(card => card.name == arr[i].substr(0, val.length) + arr[i].substr(val.length))
+
+                    // b.classList.add("scrollspy")
+                    b.innerHTML = ` 
+                    <i class='bi bi-plus-circle add2deckButton'></i>  
+                    <i class='bi bi-plus-circle-dotted add2deckButton'></i>
+                    <strong>
+                        <div class="searchBarCard">
+                            <div>
+                                <div class="searchBarCard_image">
+                                <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
+                                </div>
+                            </div>
+                            <div class="searchBardCard_info">
+                                <div class="searchBarCard_Name">
+                                ${arr[i].substr(0, val.length)+arr[i].substr(val.length)} 
+                                //
+                                ${currentCard[0].type}
+                                </div>
+                                <div class="searchBardCard_description">
+                                    ${currentCard[0].desc}
+                                </div>
+                            </div>
+                        </div>
+                    </strong>`;
+                }
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 b.addEventListener("click", function(e) {
+                    // console.log(e.target.classList)
                     inp.value = this.getElementsByTagName("input")[0].value;
-                    closeAllLists();
-                    searchCardsByNameOrDescription(inp.value)
+                    if (deckPricerStatus === false) {
+                        closeAllLists();
+                        searchCardsByNameOrDescription(inp.value)
+                    } else {
+                        let currentCard = allCards.data.filter(card => card.name == inp.value)
+                        // console.log(currentCard)
+                        if (e.target.className == 'bi bi-plus-circle add2deckButton') {
+                            console.log('adding to main deck')
+                            addCardToDeck(currentCard[0], 'deck_main')
+
+                        } else if (e.target.className == 'bi bi-plus-circle-dotted add2deckButton') {
+                            console.log("adding to side deck")
+                            addCardToDeck(currentCard[0], 'deck_side')
+                        }
+                    }
                 });
                 a.appendChild(b);
             }
         }
+
     })
 
     ;
@@ -122,7 +167,11 @@ function autocomplete(inp, arr) {
 
 
     document.addEventListener("click", function(e) {
-        closeAllLists(e.target);
+        if (deckPricerStatus === true) {
+            return
+        } else {
+            closeAllLists(e.target);
+        }
         // console.log(e.target)
         // console.log("element clicked")
 

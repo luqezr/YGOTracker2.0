@@ -89,7 +89,8 @@ Launch demo modal
 // DECK PRICER 
 var deckPricer_chooseDeck = "Choose deck"
 var deckPricer_button = "Price Breakdown"
-var deckPricer_dropkYdk = "Drop your (.ydk) file anywhere!"
+var deckPricer_dropkYdk = "Click here to browse file or drop your (.ydk) file anywhere"
+var deckPricer_searchBar = "Use the search bar to add cards! <br> <i class='bi bi-plus-circle '></i> Add to Main Deck    <i class='bi bi-plus-circle-dotted'></i> Add to Side Deck"
 var deckPricer_deckCreator = "Deck creator"
 var deckPricer_mainDeck = "Main Deck"
 var deckPricer_extraDeck = "Extra Deck"
