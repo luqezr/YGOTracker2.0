@@ -30,18 +30,20 @@ function autocomplete(inp, arr) {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
-        for (i = 0; i < arr.length; i++) {
+        for (i = 0; i < arr.length && arr.length >= 30; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             if (arr[i].substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");
+
+                let currentCard = allCards.data.filter(card => (card.name == arr[i].substr(0, val.length) + arr[i].substr(val.length)))
+
                 if (deckPricerStatus == false) {
+                    b.classList.add("simplecardinfo")
                     b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
                     b.innerHTML += arr[i].substr(val.length);
-
                 } else {
-                    let currentCard = allCards.data.filter(card => card.name == arr[i].substr(0, val.length) + arr[i].substr(val.length))
-
-                    // b.classList.add("scrollspy")
+                    b.classList.remove("autocomplete-items")
+                    b.classList.add("searchBarDeckPricerCard")
                     b.innerHTML = ` 
                     <i class='bi bi-plus-circle add2deckButton'></i>  
                     <i class='bi bi-plus-circle-dotted add2deckButton'></i>
@@ -49,8 +51,10 @@ function autocomplete(inp, arr) {
                         <div class="searchBarCard">
                             <div>
                                 <div class="searchBarCard_image">
-                                <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
-                                </div>
+                                <!-- 
+                                    <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
+                                    </div>
+                                -->
                             </div>
                             <div class="searchBardCard_info">
                                 <div class="searchBarCard_Name">

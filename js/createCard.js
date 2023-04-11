@@ -251,7 +251,7 @@ function createNormalCard(card, view) {
 
     // <span> Type <img src="/media/icons.png" alt="cardType" class="${cardType}"></span>
 
-
+    checkBetaName(card)
     hasArchetype(`archetype_${card.id}`, card.archetype)
     checkBanStatus(`cardName_${card.id}`, card)
     levelOrRankOrLink(`cardName_${card.id}`, card)
@@ -273,12 +273,11 @@ function createNormalCard(card, view) {
     hasAlternativeArt(card.id, card)
 
     // CHECK RESOLUTION 
-    if (window.screen.width < 400) {
-        changeResolution(card.id)
-    }
+    // if (window.screen.width < 400) {
+    //     changeResolution(card.id)
+    // }
 
     correctCardImage(card.id)
-    checkBetaName(card)
 
 }
 

@@ -340,14 +340,7 @@ input[type="file"] {
     display: none;
 }
 
-.add2deckButton {
-    color: rgb(150, 95, 212);
-    font-size: 18pt;
-    text-align: center;
-    vertical-align: middle;
-    padding-right: 10px;
 
-}
 
 /* .add2deckButton:hover {
     background-color: rgba(0, 0, 0, 0);
@@ -451,6 +444,19 @@ form input,
     width: 100%;
 }
 
+.searchBarDeckPricerCard {
+    background-color: rgb(29, 26, 47);
+    color: rgb(139, 212, 80);
+    border: 1px solid rgb(150, 95, 212);
+    align-items: center;
+    /* text-align: center; */
+    vertical-align: middle;
+}
+
+.searchBarDeckPricerCard:hover {
+    background-color: rgb(150, 95, 212)
+}
+
 .searchBardCard_info {
     display: flex;
     align-items: flex-start;
@@ -458,6 +464,14 @@ form input,
     flex-direction: column;
 }
 
+
+.add2deckButton {
+    color: rgb(150, 95, 212);
+    font-size: 18pt;
+    text-align: center;
+    vertical-align: middle;
+    padding-right: 10px;
+}
 
 /* ####################################################################### */
 
@@ -524,10 +538,13 @@ input[type="submit"] {
     top: 100%;
     left: 0;
     right: 0;
-    border-color: rgb(150, 95, 212);
+    /* border-color: rgb(150, 95, 212); */
+
+
+
 }
 
-.autocomplete-items div {
+.autocomplete-items .simplecardinfo {
     padding: 7px;
     cursor: pointer;
     background-color: rgb(29, 26, 47);

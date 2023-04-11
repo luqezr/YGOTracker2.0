@@ -18,6 +18,29 @@ Request all cards => https://db.ygoprodeck.com/api/v7/cardinfo.php
 Request all sets => https://db.ygoprodeck.com/api/v7/cardsets.php
 Request cards from certain period => https://db.ygoprodeck.com/api/v7/cardinfo.php?&startdate=01/01/2000&enddate=08/23/2002&dateregion=tcg_date
 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+YuGiPedia API!
+https://yugipedia.com/api.php
+
+Request a card page information
+https://yugipedia.com/api.php?action=query&prop=info&titles=Dark%20Magician => Query raw
+https://yugipedia.com/api.php?action=query&prop=info&titles=Dark%20Magician&format=json => Formato JSON 
+
+Request card images
+https://yugipedia.com/api.php?action=query&prop=images&titles=Dark%20Magician&format=json =>See how many files exists of that card
+https://yugipedia.com/api.php?action=query&prop=images&titles=Dark%20Magician&prop=info&format=json 
+https://yugipedia.com/api.php?action=query&titles=File:DarkMagician-DULI-EN-VG-artwork-6.png&prop=imageinfo&iiprop=url => Request a image url, but you have to put the file name with a prior request
+
+
+Request links of element 
+https://yugipedia.com/api.php?action=query&prop=links&titles=Dark%20Magician&format=json 
+
+
+https://yugipedia.com/api.php?action=query&titles=File:DarkMagician-DULI-EN-VG-artwork-6.png&prop=imageinfo
+
+
+
 #######################################
 -------------- ESTETICOS --------------
 #######################################

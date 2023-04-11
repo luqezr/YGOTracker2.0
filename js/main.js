@@ -25,6 +25,12 @@ var resultsPerPage = 24;
 var setsPerPage = 24;
 var printedResults = resultsPerPage;
 var scrollingValue = 6000; //distance where buttons will show
+var deck2download = {
+    creator: [],
+    mainDeck: [],
+    extraDeck: [],
+    sideDeck: [],
+};
 
 
 
@@ -185,90 +191,88 @@ function changeCardInformation(cardId, language) {
 // SEARCH PRICES IN YUGIOHPRICES
 
 async function getYgopricesPrice(cardSetCode, cardId) {
-    var request = new XMLHttpRequest();
-
-    await request.open(
-        "GET",
-        // `http://yugiohprices.com/api/price_for_print_tag/${cardSetCode}`
-        `https://private-anon-ace528619a-yugiohprices.apiary-proxy.com/api/price_for_print_tag/${cardSetCode}`
-        // `https://private-anon-2d909a8f25-yugiohprices.apiary-proxy.com/api/price_for_print_tag/${cardSetCode}`
-
-    );
-
-    request.onreadystatechange = function() {
-        if (this.readyState === 4) {
-            // console.log('Status:', this.status);
-            // console.log('Headers:', this.getAllResponseHeaders());
-            // console.log('Body:', this.responseText);
-            yugiohPricesResult = JSON.parse(this.responseText);
-            console.log(yugiohPricesResult.data.price_data)
-            console.log(yugiohPricesResult.data.price_data.price_data.data.prices)
-
+    await fetch(
+            `http://yugiohprices.com/api/price_for_print_tag/${cardSetCode}`
+        )
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data)
+            // let response = data;
+            yugiohPricesResult = data
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
+            console.log('YugiohPrices data fetched 😎')
             document.getElementById(`cardSets_${cardId}`).innerHTML += `
 
-            <div class="YGOPinfo" id="yugiohPricesInfo_${cardId}"> 
-                <p>Price Shift for <span onclick='changeCardPicture('${cardSetCode}', ${cardId})'>
-                    <a  style="cursor: pointer" id="${cardSetCode}" class='getBySet greenText'  class="close" data-dismiss="modal" aria-label="Close">${cardSetCode}</a>, updated at ${yugiohPricesResult.data.price_data.price_data.data.prices.updated_at}
-                </p>
-                <table class="table table-bordered">
-                <thead>
-                    <tr>
-                    <th scope="col" class="tableHead">Average</th>
-                    <th scope="col" class="tableHead">High</th>
-                    <th scope="col" class="tableHead">Low</th>
-                    </tr>                                    
-                </thead>
-                <tbody>
-                    <tr>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.average}</td>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.high}</td>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.low}</td>
-                    </tr>
-                </tbody>
-                </table>
-                <table class="table table-bordered">
+        <div class="YGOPinfo" id="yugiohPricesInfo_${cardId}"> 
+            <p>Price Shift for <span onclick='changeCardPicture('${cardSetCode}', ${cardId})'>
+                <a  style="cursor: pointer" id="${cardSetCode}" class='getBySet greenText'  class="close" data-dismiss="modal" aria-label="Close">${cardSetCode}</a>, updated at ${yugiohPricesResult.data.price_data.price_data.data.prices.updated_at}
+            </p>
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th scope="col" class="tableHead">Average</th>
+                <th scope="col" class="tableHead">High</th>
+                <th scope="col" class="tableHead">Low</th>
+                </tr>                                    
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.average}</td>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.high}</td>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.low}</td>
+                </tr>
+            </tbody>
+            </table>
+            <table class="table table-bordered">
+            <thead >	
+                <tr>
+                    <th scope="col" class="tableHead">1 Day</th>
+                    <th scope="col" class="tableHead">3 Days</th>
+                    <th scope="col" class="tableHead">7 Days</th>
+                    <th scope="col" class="tableHead">21 Days</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift.toFixed(3)}</td>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_3.toFixed(3)}</td>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_7.toFixed(3)}</td>
+                    <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_21.toFixed(3)}</td>
+                </tr>
+            </tbody>
+            </table>
+            <table class="table table-bordered">
                 <thead >	
                     <tr>
-                        <th scope="col" class="tableHead">1 Day</th>
-                        <th scope="col" class="tableHead">3 Days</th>
-                        <th scope="col" class="tableHead">7 Days</th>
-                        <th scope="col" class="tableHead">21 Days</th>
+                        <th scope="col" class="tableHead">30 Days</th>
+                        <th scope="col" class="tableHead">90 Days</th>
+                        <th scope="col" class="tableHead">180 Days</th>
+                        <th scope="col" class="tableHead">365 Days</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift.toFixed(3)}</td>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_3.toFixed(3)}</td>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_7.toFixed(3)}</td>
-                        <td scope="row"  class="cardSet tableBody">$ ${yugiohPricesResult.data.price_data.price_data.data.prices.shift_21.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_30.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_90.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_180.toFixed(3)}</td>
+                        <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_365.toFixed(3)}</td>
                     </tr>
                 </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead >	
-                        <tr>
-                            <th scope="col" class="tableHead">30 Days</th>
-                            <th scope="col" class="tableHead">90 Days</th>
-                            <th scope="col" class="tableHead">180 Days</th>
-                            <th scope="col" class="tableHead">365 Days</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_30.toFixed(3)}</td>
-                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_90.toFixed(3)}</td>
-                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_180.toFixed(3)}</td>
-                            <td scope="row"  class="cardSet tableBody">$${yugiohPricesResult.data.price_data.price_data.data.prices.shift_365.toFixed(3)}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-                `
-        }
-    };
-    request.send();
+            </table>
+        </div>
+            `
 
+        })
 
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -1720,11 +1724,6 @@ function searchLowestPrices() {
 
 function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
 
-    deck = {
-        mainDeck: [],
-        extraDeck: [],
-        sideDeck: [],
-    };
 
 
     if (checkDuplicates == "deck") {
@@ -1756,15 +1755,14 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
                     // create deck
                     currentCards = currentCards.concat(currentCardsFromDeck[b])
                     createDeck(currentCardsFromDeck[b], where);
-                    pushToDeck(modifyDeckArray, b)
+                    addCardToDeck(modifyDeckArray, b)
                     // check for card duplicates
                     for (var c = 1; c < checkDuplicates[currentCardsFromDeck[b].id]; c++) {
                         // create duplicates
                         currentCards = currentCards.concat(currentCardsFromDeck[b])
 
                         createDeckDuplicate(currentCardsFromDeck[b], where);
-
-                        pushToDeck(modifyDeckArray, b)
+                        addCardToDeck(modifyDeckArray, b)
 
 
                     }
@@ -1845,14 +1843,12 @@ function showContent(content) {
     lis = $(".smallCard");
     count = $(".smallCard").length;
 
-    switch (count) {
-        case 40:
-            lis.addClass('deckCardsfitSize10');
-            break;
-        case count < 40 && count > 60:
-            lis.addClass('deckCardsfitSize10');
-            break;
-            //other cases
+    if (count == 40) {
+        lis.addClass('deckCardsfitSize10');
+    } else if (count < 40 && count > 60) {
+        lis.addClass('deckCardsfitSize10');
+    } else if (count >= 60) {
+        alert("deck exceeds maximum allowed quantity of cards")
     }
 
 
@@ -1878,23 +1874,9 @@ function count_duplicate(a) {
     return counts
 }
 
-// PUSH CARD TO DECK
-
-function pushToDeck(modifyDeckArray, b) {
-    if (modifyDeckArray == "mainDeck") {
-        deck.mainDeck.push(currentCardsFromDeck[b]);
-        // console.log("main!!")
-    } else if (modifyDeckArray == "extraDeck") {
-        deck.extraDeck.push(currentCardsFromDeck[b]);
-        // console.log("extra!!")
-    } else if (modifyDeckArray == "sideDeck") {
-        deck.sideDeck.push(currentCardsFromDeck[b]);
-        // console.log("side!!")
-    }
-}
 
 
-// SEarch deck value
+// Search deck value
 
 function searchDeckValue(value) {
     deckInfo = document.getElementById("deck_info")
@@ -2117,6 +2099,28 @@ function searchDeckValue(value) {
 // }
 
 function addCardToDeck(card, where) {
+
+    if (deck.mainDeck.length == 0 && deck.extraDeck.length == 0 && deck.sideDeck.length == 0) {
+        let deckCreator = document.getElementById("deck_creator")
+        let cardsInMainDeck
+        let cardsInExtraDeck
+        let cardsInSideDeck
+
+        if (rawDeck.creator.length === 0) {
+            rawDeck.creator = "Undefined"
+        }
+
+        // ADD COUNTER HERE TO MODIFY WHEN CARD AMOUNT CHANGES 
+
+        deckCreator.innerHTML = `
+        ${deckPricer_deckCreator} : ${rawDeck.creator}
+        <br>
+        ${deckPricer_mainDeck} (${cardsInMainDeck})
+        ${deckPricer_extraDeck} (${cardsInExtraDeck})
+        ${deckPricer_sideDeck} (${cardsInSideDeck})
+        <i class="bi bi-download greenText" onclick="downloadDeck(rawDeck, file.name, 'text')"></i>
+          `
+    }
 
     if (deck.mainDeck.length > 60 || deck.sideDeck.length > 15 || deck.extraDeck.length > 15) {
         alert("deck full!")
