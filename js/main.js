@@ -2122,7 +2122,7 @@ function addCardToDeck(card, where) {
           `
     }
 
-    if (deck.mainDeck.length > 60 || deck.sideDeck.length > 15 || deck.extraDeck.length > 15) {
+    if (deck.mainDeck.length == 60 || deck.sideDeck.length == 15 || deck.extraDeck.length == 15) {
         alert("deck full!")
         return
     }
@@ -2133,27 +2133,40 @@ function addCardToDeck(card, where) {
     }
 
     if (where == "deck_main") {
-        if (deck.mainDeck.filter(card => card.name == card.name)) {
+        // console.log(deck.mainDeck.filter(card => card.name == card.name))
+        if (deck.mainDeck.includes(card.name) || deck.extraDeck.includes(card.name)) {
+            // console.log("card already in deck")
             if (card.type == "Fusion Monster" || card.type == "Synchro Monster" || card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster" || card.type == "Synchro Pendulum Effect Monster" || card.type == "Link Monster" || card.type == "Pendulum Effect Fusion Monster") {
+                // console.log('adding to extra deck')
                 deck.extraDeck.push(card)
                 createDeckDuplicate(card, 'deck_extra')
             } else {
-                console.log("adding duplcate")
+                // console.log("adding to main deck")
                 deck.mainDeck.push(card)
                 createDeckDuplicate(card, where)
             }
         } else {
+            // console.log("card not in deck")
             if (card.type == "Fusion Monster" || card.type == "Synchro Monster" || card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster" || card.type == "Synchro Pendulum Effect Monster" || card.type == "Link Monster" || card.type == "Pendulum Effect Fusion Monster") {
                 deck.extraDeck.push(card)
-                createDeckDuplicate(card, 'deck_extra')
+                createDeck(card, 'deck_extra')
             } else {
-                console.log("adding card " + card)
+                // console.log("adding card " + card)
                 deck.mainDeck.push(card)
                 createDeck(card, where)
             }
         }
     } else if (where == 'deck_side') {
-        if (deck.sideDeck.filter(card => card.name == card)) {
+
+        // AGREGAR VERIFICACION CUANDO LA CARTA YA EXISTE EN EL SIDE DECK Y/O EXTRA DECK 
+
+        // if ((card.type == "Fusion Monster" || card.type == "Synchro Monster" || card.type == "XYZ Monster" || card.type == "XYZ Pendulum Effect Monster" || card.type == "Synchro Pendulum Effect Monster" || card.type == "Link Monster" || card.type == "Pendulum Effect Fusion Monster") && deck.sideDeck.includes(card.name) && deck.extraDeck.includes(card.name)){
+        //     alert("You can't add more than 3 copies of a card counting both the extra deck and the side deck")
+        // }
+
+
+
+        if (deck.sideDeck.includes(card.name)) {
             console.log("adding duplcate")
             deck.sideDeck.push(card)
             createDeckDuplicate(card, where)

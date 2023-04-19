@@ -256,9 +256,7 @@ function createNormalCard(card, view) {
     checkBanStatus(`cardName_${card.id}`, card)
     levelOrRankOrLink(`cardName_${card.id}`, card)
     checkPendulumScales(`cardName_${card.id}`, card)
-    if (card.attribute) {
-        whichAttribute(`cardName_${card.id}`, card)
-    }
+    whichAttribute(`cardName_${card.id}`, card)
     whichRace(`cardName_${card.id}`, card.race, card)
     whichType(`cardName_${card.id}`, card.type, card)
 
@@ -511,64 +509,65 @@ function whichType(modalId, type, card) {
 }
 
 function whichAttribute(modalId, card) {
-    let cardAttribute = card.attribute.toLowerCase()
-    // console.log(cardRace)
+    if (card.attribute) {
+        let cardAttribute = card.attribute.toLowerCase()
+        // console.log(cardRace)
 
 
-    if (cardAttribute == "light") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "light") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite light"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "dark") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "dark") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite dark"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "water") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "water") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite water"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "fire") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "fire") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite fire"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "earth") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "earth") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite earth"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "wind") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "wind") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite wind"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "divine") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "divine") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite divine"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "spell") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "spell") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite spell"></span>  ${card.attribute.toUpperCase()} </span>
     `
-    }
+        }
 
-    if (cardAttribute == "trap") {
-        document.getElementById(modalId).innerHTML += `
+        if (cardAttribute == "trap") {
+            document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite trap"></span>  ${card.attribute.toUpperCase()} </span>
     `
+        }
     }
-
 }
 
 function whichRace(modalId, race, card) {

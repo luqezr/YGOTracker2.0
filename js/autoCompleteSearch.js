@@ -51,16 +51,13 @@ function autocomplete(inp, arr) {
                         <div class="searchBarCard">
                             <div>
                                 <div class="searchBarCard_image">
-                                <!-- 
                                     <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
                                     </div>
-                                -->
                             </div>
                             <div class="searchBardCard_info">
-                                <div class="searchBarCard_Name">
-                                ${arr[i].substr(0, val.length)+arr[i].substr(val.length)} 
-                                //
-                                ${currentCard[0].type}
+                                <div class="searchBarCard_Name" id="searchBarCard_${currentCard[0].id}">
+                                    <span> ${arr[i].substr(0, val.length)+arr[i].substr(val.length)} </span>
+                                    <span id="cardSearchBarType_${currentCard[0].id}>${currentCard[0].type}</span>
                                 </div>
                                 <div class="searchBardCard_description">
                                     ${currentCard[0].desc}
@@ -68,8 +65,21 @@ function autocomplete(inp, arr) {
                             </div>
                         </div>
                     </strong>`;
+
+                    // checkBanStatus(`searchBarCard_${currentCard[0].id}`, currentCard[0])
+                    // whichType(`searchBarCard_${currentCard[0].id}`, currentCard[0].type, currentCard[0])
+                    // whichAttribute(`searchBarCard_${currentCard[0].id}`, currentCard[0])
+                    // whichRace(`searchBarCard_${currentCard[0].id}`, currentCard[0].race, currentCard[0])
+                    // levelOrRankOrLink(`searchBarCard_${currentCard[0].id}`, currentCard[0])
+                    // checkPendulumScales(`searchBarCard_${currentCard[0].id}`, currentCard[0])
+
+
                 }
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+
+
+
+
                 b.addEventListener("click", function(e) {
                     // console.log(e.target.classList)
                     inp.value = this.getElementsByTagName("input")[0].value;
