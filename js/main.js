@@ -858,7 +858,7 @@ window.addEventListener('scroll', () => {
         // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
         // console.log(loadHeight)
     if (window.scrollY + window.innerHeight >= loadHeight - 100 && deckPricerStatus == false) {
-        // printMoreResults(resultsPerPage)
+        printMoreResults(resultsPerPage)
 
     }
     // else {alert("No more cards 😓")}

@@ -30,7 +30,7 @@ function autocomplete(inp, arr) {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
-        for (i = 0; i < arr.length && arr.length < 30; i++) {
+        for (i = 0; i < arr.length && val.length >= 3; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             if (arr[i].name.substr(0, val.length).toUpperCase().includes(val.toUpperCase()) || arr[i].desc.substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");
@@ -39,7 +39,7 @@ function autocomplete(inp, arr) {
                 if (deckPricerStatus == false) {
 
                     b.classList.add("simplecardinfo")
-                    document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
+                        // document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
                     b.innerHTML = `
                     
                     <div  class="searchBarCard_search">
