@@ -416,13 +416,10 @@ form input,
 }
 
 #searchBar-div span,
-#searchBar-div button
-/* #searchBar-div i  */
-
-{
+#searchBar-div button {
     /* background-color: rgb(29, 26, 47) !important; */
     background-color: rgba(0, 0, 0, 1);
-    color: rgb(150, 95, 212) !important;
+    color: rgb(150, 95, 212);
 }
 
 #searchBar-div button {
@@ -433,9 +430,18 @@ form input,
     color: rgb(139, 212, 80) !important;
 }
 
+input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+}
+
 .searchBarCard {
     display: flex;
     width: 100%;
+    align-items: center;
+}
+
+.searchBarCard img {
+    width: 100px;
 }
 
 .searchBarDeckPricerCard {
@@ -451,11 +457,42 @@ form input,
     background-color: rgb(150, 95, 212)
 }
 
+.searchBarCard_search {
+    display: flex;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.searchBarCard_search_div1 {}
+
+.searchBarCard_search_div2 {}
+
 .searchBardCard_info {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
     flex-direction: column;
+}
+
+.searchBarCard_Name span {
+    color: rgb(139, 212, 80) !important;
+    font-size: 23pt !important;
+}
+
+.searchBardCard_info span {
+    background-color: rgba(0, 0, 0, 0) !important;
+    font-family: CardTitle;
+    font-weight: lighter;
+    color: rgb(29, 26, 47);
+}
+
+.searchBardCard_description span {
+    font-family: CardEffect;
+    font-size: 14pt;
+    color: #fff!important;
+    font-weight: lighter;
 }
 
 .add2deckButton {

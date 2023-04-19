@@ -30,41 +30,65 @@ function autocomplete(inp, arr) {
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         this.parentNode.appendChild(a);
-        for (i = 0; i < arr.length && arr.length >= 30; i++) {
+        for (i = 0; i < arr.length && arr.length < 30; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-            if (arr[i].substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
+            if (arr[i].name.substr(0, val.length).toUpperCase().includes(val.toUpperCase()) || arr[i].desc.substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");
-
-                let currentCard = allCards.data.filter(card => (card.name == arr[i].substr(0, val.length) + arr[i].substr(val.length)))
+                let currentCard = allCards.data.filter(card => (card.name == arr[i].name.substr(0, val.length) + arr[i].name.substr(val.length)))
 
                 if (deckPricerStatus == false) {
+
                     b.classList.add("simplecardinfo")
-                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
-                    b.innerHTML += arr[i].substr(val.length);
+                    document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
+                    b.innerHTML = `
+                    
+                    <div  class="searchBarCard_search">
+                        <div class='searchBarCard_search_div1'>
+                            <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" style="width:70px">
+                        </div>
+                        <div class='searchBarCard_search_div2'>
+                            <strong>
+                                ${arr[i].name.substr(0, val.length)+arr[i].name.substr(val.length)}
+                            </strong>
+                            <br>
+                            <strong>
+                                ${arr[i].desc.substr(0, val.length)+arr[i].desc.substr(val.length)}
+                            </strong>
+                        </div>
+
+                    </div>
+                     `
+
                 } else {
                     b.classList.remove("autocomplete-items")
                     b.classList.add("searchBarDeckPricerCard")
                     b.innerHTML = ` 
-                    <i class='bi bi-plus-circle add2deckButton'></i>  
-                    <i class='bi bi-plus-circle-dotted add2deckButton'></i>
-                    <strong>
-                        <div class="searchBarCard">
-                            <div>
-                                <div class="searchBarCard_image">
-                                    <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
-                                    </div>
-                            </div>
-                            <div class="searchBardCard_info">
-                                <div class="searchBarCard_Name" id="searchBarCard_${currentCard[0].id}">
-                                    <span> ${arr[i].substr(0, val.length)+arr[i].substr(val.length)} </span>
-                                    <span id="cardSearchBarType_${currentCard[0].id}>${currentCard[0].type}</span>
-                                </div>
-                                <div class="searchBardCard_description">
-                                    ${currentCard[0].desc}
-                                </div>
+
+                    
+                    <div class="searchBarCard">
+                  
+                        <div>
+                            <div class="searchBarCard_image">
+                                <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" >
                             </div>
                         </div>
-                    </strong>`;
+                        <div class="searchBardCard_info">
+                            <div class="searchBarCard_Name" id="searchBarCard_${currentCard[0].id}">
+                                <span> ${arr[i].name.substr(0, val.length)+arr[i].name.substr(val.length)} </span>
+                                <span id="cardSearchBarType_${currentCard[0].id}">${currentCard[0].type}</span>
+                            </div>
+                            <div class="searchBardCard_description">
+                            <span> ${currentCard[0].desc}</span> 
+                            </div>
+                        </div>
+                        <div class="searchBarCard_buttons">
+                            <i class='bi bi-plus-circle add2deckButton'></i>  
+                            <i class='bi bi-plus-circle-dotted add2deckButton'></i>
+                        </div>
+                    </div>
+
+                    
+                    `;
 
                     // checkBanStatus(`searchBarCard_${currentCard[0].id}`, currentCard[0])
                     // whichType(`searchBarCard_${currentCard[0].id}`, currentCard[0].type, currentCard[0])
@@ -75,7 +99,7 @@ function autocomplete(inp, arr) {
 
 
                 }
-                b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                b.innerHTML += "<input type='hidden' value='" + arr[i].name + "'>";
 
 
 
@@ -88,7 +112,7 @@ function autocomplete(inp, arr) {
                         searchCardsByNameOrDescription(inp.value)
                     } else {
                         let currentCard = allCards.data.filter(card => card.name == inp.value)
-                        // console.log(currentCard)
+                            // console.log(currentCard)
                         if (e.target.className == 'bi bi-plus-circle add2deckButton') {
                             console.log('adding to main deck')
                             addCardToDeck(currentCard[0], 'deck_main')
@@ -131,7 +155,7 @@ function autocomplete(inp, arr) {
             // console.log(addActive(x))
             // console.log("enter pressed, searching")
             closeAllLists(e.target)
-            // console.log("Searching : "+cardName)
+                // console.log("Searching : "+cardName)
 
             var cardName = document.search.fname.value;
             // searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)
@@ -192,5 +216,3 @@ function autocomplete(inp, arr) {
 
     });
 }
-
-autocomplete(document.getElementById("card_name"), allCardNames);
