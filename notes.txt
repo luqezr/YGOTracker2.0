@@ -134,3 +134,25 @@ onerror="this.src='../media/noimage.webp'"
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
+Search bar item 
+
+                    
+                    <div  class="searchBarCard_search">
+                        <div class='searchBarCard_search_div1'>
+                            <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" style="width:70px">
+                        </div>
+                        <div class='searchBarCard_search_div2'>
+                            <strong>
+                                ${arr[i].name.substr(0, val.length)+arr[i].name.substr(val.length)}
+                            </strong>
+                            <br>
+                            <strong>
+                                ${arr[i].desc.substr(0, val.length)+arr[i].desc.substr(val.length)}
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+

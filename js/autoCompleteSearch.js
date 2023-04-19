@@ -27,8 +27,15 @@ function autocomplete(inp, arr) {
         }
         currentFocus = -1;
         a = document.createElement("DIV");
+        // a.innerHTML = `
+        // <div  data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="50" id="${this.id}autocomplete-list" class="autocomplete-items">
+
+        //  </div>
+        //  `
         a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("id", "searchbar-cards")
         a.setAttribute("class", "autocomplete-items");
+        a.setAttribute("data-bs-spy", "scroll");
         this.parentNode.appendChild(a);
         for (i = 0; i < arr.length && val.length >= 3; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
@@ -39,10 +46,10 @@ function autocomplete(inp, arr) {
                 if (deckPricerStatus == false) {
 
                     b.classList.add("simplecardinfo")
-                        // document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
+                    // document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
                     b.innerHTML = `
-                    
                     <div  class="searchBarCard_search">
+                    
                         <div class='searchBarCard_search_div1'>
                             <img src="${currentCard[0].card_images[0].image_url_small}" loading='lazy' id="img2_${currentCard[0].id}" alt="${currentCard[0].name}" class="smallCard" style="width:70px">
                         </div>
@@ -112,7 +119,7 @@ function autocomplete(inp, arr) {
                         searchCardsByNameOrDescription(inp.value)
                     } else {
                         let currentCard = allCards.data.filter(card => card.name == inp.value)
-                            // console.log(currentCard)
+                        // console.log(currentCard)
                         if (e.target.className == 'bi bi-plus-circle add2deckButton') {
                             console.log('adding to main deck')
                             addCardToDeck(currentCard[0], 'deck_main')
@@ -155,7 +162,7 @@ function autocomplete(inp, arr) {
             // console.log(addActive(x))
             // console.log("enter pressed, searching")
             closeAllLists(e.target)
-                // console.log("Searching : "+cardName)
+            // console.log("Searching : "+cardName)
 
             var cardName = document.search.fname.value;
             // searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)

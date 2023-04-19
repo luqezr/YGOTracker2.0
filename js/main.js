@@ -79,11 +79,11 @@ async function queryYGOPD() {
         .then((data) => {
             allCards = data;
             currentCards = allCards.data
-                // console.log(allCards.data); // show all cards
-                // // .replaceAll('. ', '.\n');  ACAAAAA
-                // for (let i = 0; i < allCards.data.length; i++) { 
-                //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
-                // }
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
@@ -93,11 +93,11 @@ async function queryYGOPD() {
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 // SEARCH ALL SETS FROM YGOPD
@@ -112,16 +112,16 @@ async function searchAllSets(value) {
             resetCurrentCards()
             currentCards = allSets
             console.log('all sets fetched 😎')
-                // console.log(allSets)
+            // console.log(allSets)
             printSets(setsPerPage, allSets, text_allSets1 + '<span class="greenText">' + allSets.length + '</span>' + text_allSets2)
 
         })
 
-    .catch((error) => {
-        // Code for handling the error
-        console.log("ups 😢 " + error);
-        return;
-    });
+        .catch((error) => {
+            // Code for handling the error
+            console.log("ups 😢 " + error);
+            return;
+        });
 
 }
 
@@ -135,18 +135,18 @@ async function searchAllArchetypes(value) {
         .then((data) => {
             allArchetypes = data;
             resetCurrentCards()
-                // currentCards = allArchetypes
+            // currentCards = allArchetypes
             console.log('all archetypes fetched 😎')
-                // console.log(allSets)
+            // console.log(allSets)
             printArchetypes(setsPerPage, allArchetypes, text_AllArchetypes1 + '<span class="greenText">' + allArchetypes.length + '</span>' + text_AllArchetypes2)
 
         })
 
-    .catch((error) => {
-        // Code for handling the error
-        console.log("ups 😢 " + error);
-        return;
-    });
+        .catch((error) => {
+            // Code for handling the error
+            console.log("ups 😢 " + error);
+            return;
+        });
 
 }
 // Query YgoOrganization
@@ -159,16 +159,16 @@ async function queryYGOrg(cardId, konamId, language) {
             ygoorgCard = data;
             // console.log(ygoorgCard); // show card
             console.log('data from YGOrg fetched 😎')
-                // console.log(ygoorgCard)
+            // console.log(ygoorgCard)
             changeCardInformation(cardId, language)
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        alert("No languages for this card yet! 😢")
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            alert("No languages for this card yet! 😢")
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -198,13 +198,13 @@ async function getYgopricesPrice(cardSetCode, cardId) {
         .then((response) => response.json())
         .then((data) => {
             console.log(data)
-                // let response = data;
+            // let response = data;
             yugiohPricesResult = data
-                // console.log(allCards.data); // show all cards
-                // // .replaceAll('. ', '.\n');  ACAAAAA
-                // for (let i = 0; i < allCards.data.length; i++) { 
-                //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
-                // }
+            // console.log(allCards.data); // show all cards
+            // // .replaceAll('. ', '.\n');  ACAAAAA
+            // for (let i = 0; i < allCards.data.length; i++) { 
+            //     allCards.data[i].desc.replaceAll('. ', '.\n'); 
+            // }
             console.log('YugiohPrices data fetched 😎')
             document.getElementById(`cardSets_${cardId}`).innerHTML += `
 
@@ -269,11 +269,11 @@ async function getYgopricesPrice(cardSetCode, cardId) {
 
         })
 
-    .catch((error) => {
-        console.log("ups 😢 " + error);
-        return;
-        // Code for handling the error
-    });
+        .catch((error) => {
+            console.log("ups 😢 " + error);
+            return;
+            // Code for handling the error
+        });
 }
 
 
@@ -322,15 +322,15 @@ function sortCards(value, whichCards) {
 
 function searchCardsByNameOrDescription(value) {
     deckPricerStatus = false
-        // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
+    // PASAR TODO A MAYUSCULA O MINUSCULA Y LUEGO BUSCAR 
     resetCurrentCards()
     printedResults = resultsPerPage
     query = value.toLowerCase();
     currentCards = allCards.data.filter((card) =>
         `${card.name.toLowerCase()} ${card.desc.toLowerCase()}`.includes(query));
     console.log("Results: " + currentCards.length + " cards")
-        // console.log(filteredQueryResults);
-        // if (filteredQueryResults.length < 30 ){
+    // console.log(filteredQueryResults);
+    // if (filteredQueryResults.length < 30 ){
     if (resultsPerPage < currentCards.length) {
         printCards(resultsPerPage, currentCards, text_CardResults1, currentCards.length, text_CardResults2) //https://codepen.io/piotrek/pen/mXpRmQ
     } else {
@@ -345,7 +345,7 @@ function searchByExactValue(field, value) {
 
     resetCurrentCards()
     currentCards = allCards.data.filter((card) => card[field] === value)
-        // console.log(filteredCards)
+    // console.log(filteredCards)
 }
 
 
@@ -563,7 +563,7 @@ function printCards(howMany, cards, title1, title2, title3, view) {
     cardsSection.innerHTML = ("")
 
     titlesSection.innerHTML = title1 + title2 + title3
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     for (let i = 0; i < (howMany); i++) {
         try {
@@ -623,7 +623,7 @@ function printSets(howMany, sets, title) {
     cards2print = sets
 
     titlesSection.innerHTML = title
-        // console.log(cards2print)
+    // console.log(cards2print)
     createFilterLetters('filterSets')
 
     for (let i = 0; i < howMany; i++) {
@@ -644,10 +644,10 @@ function printArchetypes(howMany, archetypes, title) {
     setsStatus = true
     cardsSection.innerHTML = ("")
     let cards2print = []
-        // cards2print = archetypes
+    // cards2print = archetypes
 
     titlesSection.innerHTML = title
-        // console.log(cards2print)
+    // console.log(cards2print)
 
     createFilterLetters('filterArchetypes')
 
@@ -677,7 +677,7 @@ function changeResolution(id) {
     // alert("Your screen resolution is: " + window.screen.width * window.devicePixelRatio + "x" + window.screen.height * window.devicePixelRatio);
     var width = window.screen.width
     var height = window.screen.height
-        // console.log(width+"px width and "+ height + "px height")
+    // console.log(width+"px width and "+ height + "px height")
 
     // MOVE:
     // jQuery("#NodesToMove").detach().appendTo('#DestinationContainerNode')
@@ -709,7 +709,7 @@ function printMoreResults(howMany) {
             } catch (error) {
                 // console.error(error);
                 console.log("No more sets!")
-                    // return
+                // return
             }
 
 
@@ -792,7 +792,7 @@ $(window).scroll(function() {
 
 function filterStaples(letter) {
     filteredStaples = staples.filter(f => f.name.toLowerCase().startsWith(letter.toLowerCase()))
-        // currentCards = filteredStaples
+    // currentCards = filteredStaples
     printCards(resultsPerPage, filteredStaples, 'Staples starting with <span class="purpleText">' + letter + ' </span>', filteredStaples.length + ' cards <br> ' + text_allFilters, '')
 
     // console.log(filterSets)
@@ -853,10 +853,10 @@ window.addEventListener('scroll', () => {
     // console.log("scrolled", window.scrollY) //scrolled from top
     //  console.log(window.innerHeight) //visible part of screen
     let loadHeight = (document.documentElement.scrollHeight)
-        // console.log(document.documentElement.scrollHeight)
-        //  console.log(loadHeight)
-        // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
-        // console.log(loadHeight)
+    // console.log(document.documentElement.scrollHeight)
+    //  console.log(loadHeight)
+    // console.log(window.scrollY + window.innerHeight) //1560 aprox primera aparicion
+    // console.log(loadHeight)
     if (window.scrollY + window.innerHeight >= loadHeight - 100 && deckPricerStatus == false) {
         printMoreResults(resultsPerPage)
 
@@ -877,10 +877,10 @@ function getIndex(cardId, orientation) {
 
     if (orientation == 'right') {
         return cardIndex + 1
-            // console.log(cardIndex + 1)
+        // console.log(cardIndex + 1)
     } else if (orientation == 'left') {
         return cardIndex - 1
-            // console.log(cardIndex - 1)
+        // console.log(cardIndex - 1)
     }
 }
 
@@ -921,8 +921,8 @@ function getCheckboxValues() {
             searchByFormat(checkbox.value, '')
             filteredQueryResults = currentCards
             console.log(currentCards)
-                // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                // currentCards = currentFilteredResults
+            // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            // currentCards = currentFilteredResults
         }
     }
 
@@ -943,10 +943,10 @@ function getCheckboxValues() {
             // if (currentFilteredResults[0] && !(checkbox.checked)) { // aca hay que agregar una verificacion de que si no hay otra cosa tildada dentro del mismo grupo filtre en currentfilteredresults, porque si hay otra tildada no va a buscar multiples cosas del mismo tipo
             filteredQueryResults = currentFilteredResults.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
             currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                // } else {
-                // filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
-                // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
-                // }
+            // } else {
+            // filteredQueryResults = currentCards.filter(card => (card.level == checkbox.value) || (card.linkval == checkbox.value))
+            // currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
+            // }
         }
     }
 
@@ -960,7 +960,7 @@ function getCheckboxValues() {
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             } else {
                 filteredQueryResults = currentCards.filter(card => card.type == checkbox.value)
-                    // console.log(filteredQueryResults)
+                // console.log(filteredQueryResults)
                 currentFilteredResults = currentFilteredResults.concat(filteredQueryResults)
             }
         }
@@ -1046,7 +1046,7 @@ document.getElementById('filterButton').onclick = function() {
     getCheckboxValues()
     resetFilters()
     currentCards = currentFilteredResults.sort(sortBy("name"))
-        // console.log(currentCards)
+    // console.log(currentCards)
     if (!currentCards[0]) {
         currentCards = allCards.data
     }
@@ -1129,7 +1129,7 @@ function searchByBanlist(banlist, title) {
                 // Verificar que banlist esta pidiendo y mostrar esa, falta definir què info de la carta agregara 
                 if (allCards.data[i].banlist_info.ban_tcg) {
                     thisBanlist.push(allCards.data[i])
-                        // console.log(thisBanlist)
+                    // console.log(thisBanlist)
                     if (allCards.data[i].banlist_info.ban_tcg == 'Banned') {
                         bannedCards.push(allCards.data[i])
                     } else if (allCards.data[i].banlist_info.ban_tcg == 'Limited') {
@@ -1141,7 +1141,7 @@ function searchByBanlist(banlist, title) {
             } else if (banlist == 'ban_ocg') {
                 if (allCards.data[i].banlist_info.ban_ocg) {
                     thisBanlist.push(allCards.data[i])
-                        // console.log(thisBanlist)
+                    // console.log(thisBanlist)
                     if (allCards.data[i].banlist_info.ban_ocg == 'Banned') {
                         bannedCards.push(allCards.data[i])
                     } else if (allCards.data[i].banlist_info.ban_ocg == 'Limited') {
@@ -1153,7 +1153,7 @@ function searchByBanlist(banlist, title) {
             } else if (banlist == 'ban_goat') {
                 if (allCards.data[i].banlist_info.ban_goat) {
                     thisBanlist.push(allCards.data[i])
-                        // console.log(thisBanlist)
+                    // console.log(thisBanlist)
                     if (allCards.data[i].banlist_info.ban_goat == 'Banned') {
                         bannedCards.push(allCards.data[i])
                     } else if (allCards.data[i].banlist_info.ban_goat == 'Limited') {
@@ -1210,9 +1210,16 @@ function searchByBanlist(banlist, title) {
     </div>
     `
     thisBanlist.sort(sortBy(`name`))
+
     bannedCards.sort(sortBy(`name`))
+    // bannedCards.sort(sortBy("type"))
+
     limitedCards.sort(sortBy(`name`))
+    // limitedCards.sort(sortBy("type"))
+
     semiLimitedCards.sort(sortBy(`name`))
+    // semiLimitedCards.sort(sortBy("type"))
+
 
 
     for (let i = 0; i < bannedCards.length; i++) {
@@ -1228,7 +1235,7 @@ function searchByBanlist(banlist, title) {
 
     currentCards = thisBanlist
     printedResults = thisBanlist.length
-        // createNormalCard(card, view)
+    // createNormalCard(card, view)
 
     // $(".loader-wrapper").fadeOut("slow");
 
@@ -1492,18 +1499,18 @@ function createDeckArray() {
     textFromFile = textFromFile.replace("#side", "#side:");
     // Values From .ydk
     var rawinfo = textFromFile.split("#creator:")
-        // console.log(rawinfo[1])
+    // console.log(rawinfo[1])
     var rawname = rawinfo[1].split("#main:")
-        // console.log("Deck Creator : ", rawname[0])
+    // console.log("Deck Creator : ", rawname[0])
     var rawmain = rawname[1].split("#extra:")
-        // console.log("Main deck : ", rawmain[0])
+    // console.log("Main deck : ", rawmain[0])
     var rawextra = rawmain[1].split("#side:")
-        // console.log("Extra deck : ", rawextra[0])
-        // console.log("Side deck : ", rawextra[1])
-        // CREATOR 
+    // console.log("Extra deck : ", rawextra[0])
+    // console.log("Side deck : ", rawextra[1])
+    // CREATOR 
     deck.creator = rawname[0].replace(/\r\n/g, "")
     rawDeck.creator = rawname[0].replace(/\r\n/g, "")
-        // MAIN DECK
+    // MAIN DECK
     deck.mainDeck = rawmain[0].trimStart().trimRight().replace(/\r\n/g, ",")
     rawDeck.mainDeck = deck.mainDeck
     deck.mainDeck = deck.mainDeck.split(","); //Convert to array
@@ -1743,7 +1750,7 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
     (async function() {
         await fetch("https://db.ygoprodeck.com/api/v7/cardinfo.php?id=" + cardIds + "&misc=yes")
 
-        .then(cardInfo => cardInfo.json())
+            .then(cardInfo => cardInfo.json())
             .then(data => {
                 currentCardsFromDeck = data.data;
                 // console.log(currentCardsFromDeck)
@@ -1757,7 +1764,7 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
                     currentCards = currentCards.concat(currentCardsFromDeck[b])
                     createDeck(currentCardsFromDeck[b], where);
                     addCardToDeck(modifyDeckArray, b)
-                        // check for card duplicates
+                    // check for card duplicates
                     for (var c = 1; c < checkDuplicates[currentCardsFromDeck[b].id]; c++) {
                         // create duplicates
                         currentCards = currentCards.concat(currentCardsFromDeck[b])
@@ -1785,7 +1792,7 @@ function getCardsById(cardIds, where, checkDuplicates, modifyDeckArray) {
 
 var lis
 var count
-    // Create cards 
+// Create cards 
 function showContent(content) {
     // console.log(contenido)
     textFromFile = content
