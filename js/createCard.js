@@ -42,7 +42,7 @@ function createNormalCard(card, view) {
     // }
     else {
         previousCard = currentCards[getIndex(card.id, "left")]
-        // console.log("else")
+            // console.log("else")
     }
 
     if (currentCards[getIndex(card.id, "right")] == undefined || previousCard == undefined) {
@@ -511,7 +511,7 @@ function whichType(modalId, type, card) {
 function whichAttribute(modalId, card) {
     if (card.attribute) {
         let cardAttribute = card.attribute.toLowerCase()
-        // console.log(cardRace)
+            // console.log(cardRace)
 
 
         if (cardAttribute == "light") {
@@ -638,6 +638,12 @@ function whichRace(modalId, race, card) {
     if (cardRace == "fish") {
         document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite fish"></span>  ${card.race.toUpperCase()} </span>
+    `
+    }
+
+    if (cardRace == "illusionist") {
+        document.getElementById(modalId).innerHTML += `
+    <span> <span class="iconsSprite illusionist"></span>  ${card.race.toUpperCase()} </span>
     `
     }
 
@@ -789,7 +795,7 @@ function hasAlternativeArt(modalId, card) {
     if (card.card_images.length > 1) {
         document.getElementById(`cardHeaderDiv_${modalId}`).innerHTML += ` <i class="bi bi-arrow-repeat changeArtArrow" onclick="changeCardArtwork(${modalId})" >
         </i>`
-        // console.log("card " + card.name + " has alt art")
+            // console.log("card " + card.name + " has alt art")
     }
 
 }
@@ -798,9 +804,9 @@ function changeCardArtwork(cardId) {
     // console.log("changing artowrk for " + cardId)
     // Search for card in CurrentCards and check how many artworks it has 
     let cardsWithAltArtworks = currentCards.filter(card => card.card_images.length > 1)
-    // Loop artworks here 
+        // Loop artworks here 
     let filterCurrentArtwork = cardsWithAltArtworks.filter(card => card.id == cardId)
-    // console.log(filterCurrentArtwork[0])
+        // console.log(filterCurrentArtwork[0])
     if (filterCurrentArtwork[0].card_images[filterCurrentArtwork[0].card_images.length - 1].image_url == document.getElementById(`img_${cardId}`).src) {
         document.getElementById(`img_${cardId}`).src = filterCurrentArtwork[0].card_images[0].image_url
     } else {
