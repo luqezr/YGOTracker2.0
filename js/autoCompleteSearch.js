@@ -34,10 +34,10 @@ function autocomplete(inp, arr) {
         //  `
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("id", "searchbar-cards")
-        a.setAttribute("class", "autocomplete-items");
-        a.setAttribute("data-bs-spy", "scroll");
+        a.setAttribute("class", "autocomplete-items scrollspy");
+        // a.setAttribute("data-bs-spy", "scroll");
         this.parentNode.appendChild(a);
-        for (i = 0; i < arr.length && val.length >= 3; i++) {
+        for (i = 0; i < arr.length  && val.length >= 3; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             if (arr[i].name.substr(0, val.length).toUpperCase().includes(val.toUpperCase()) || arr[i].desc.substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");

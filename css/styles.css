@@ -467,9 +467,25 @@ form input,
     align-items: flex-start;
 }
 
-.searchBarCard_search_div1 {}
+.searchBarCard_search_div1 {
+  
+}
 
-.searchBarCard_search_div2 {}
+.searchBarCard_search_div2 {
+ 
+}
+
+.searchBardCardName{  
+    font-family: CardTitle;
+    color: rgb(139, 212, 80) !important;
+    font-size: 20pt !important;
+}
+.searchBardCardDesc{
+    font-family: CardEffect;
+    font-size: 14pt;
+    color: #fff !important;
+    font-weight: lighter;
+}
 
 .searchBardCard_info {
     display: flex;
