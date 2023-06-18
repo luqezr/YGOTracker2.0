@@ -114,14 +114,15 @@ function createNormalCard(card, view) {
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
   </div>
 
-  <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="cardModal" aria-hidden="true">
     <div class="modal-dialog" id="thisCard_${card.id}">
       <div class="modal-content" >
         <div class="modal-body"  >
           <div class="cardHeader">
+
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}" >
             <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -844,13 +845,14 @@ function printCardSets(modalId, card) {
     for (let i = 0; i <= (card.card_sets.length - 1); i++) {
 
         // console.log(card.card_sets[i])
+        if (card.card_sets[i].set_price == 0) { card.card_sets[i].set_price = 'N/A' } else { card.card_sets[i].set_price = '$ ' + card.card_sets[i].set_price }
 
         document.getElementById(`table_${modalId}`).innerHTML += `
            <tr>
              <th scope="row"  class="cardSet tableBody" id="set_${card.id}" onclick='load(searchBySet,"${card.card_sets[i].set_name}")'  data-bs-toggle="modal" data-bs-target="#card_${card.id}" style="cursor: pointer">${card.card_sets[i].set_name.toUpperCase()}</th>
              <td class="tableBody">${card.card_sets[i].set_rarity_code} ${card.card_sets[i].set_rarity}</td>
              <td class="tableBody greenText" style="cursor: pointer" onclick="changeCardPicture('${card.card_sets[i].set_code}', ${card.id})"> ${card.card_sets[i].set_code}</td>
-             <td class="tableBody">$ ${card.card_sets[i].set_price}</td>
+             <td class="tableBody">${card.card_sets[i].set_price}</td>
            </tr>
     
     `
