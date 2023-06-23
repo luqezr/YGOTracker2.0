@@ -89,7 +89,7 @@ async function queryYGOPD() {
             printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
             printedResults = resultsPerPage
 
-            autocomplete(document.getElementById("card_name"), allCards.data.sort(sortBy("name")));
+            autocomplete(document.getElementById("card_name"), allCards.data);
 
         })
 

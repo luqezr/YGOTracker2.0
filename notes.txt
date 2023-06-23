@@ -156,3 +156,5 @@ Search bar item
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 
+DOWNLOAD TO EXCEL FILE
+https://stackoverflow.com/questions/333537/how-can-i-export-excel-files-using-javascript
