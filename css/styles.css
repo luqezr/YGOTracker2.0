@@ -842,6 +842,18 @@ footer {
     padding-right: 10px;
 }
 
+.fullSizeImage {
+    /* height: fit-content;
+    width: fit-content; */
+    height: 80vh !important;
+    width: auto !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+}
+
 .cardHeader img {
     max-width: 337px;
     max-height: 459px;
@@ -1285,14 +1297,29 @@ footer {
     background-position: -480px -384px;
 }
 
+.modalCardImage {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
 
 /* SET MODALS */
+
+.setGrid {
+    padding: 6px 8px 6px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .setImage button {
     width: 200px;
     height: 350px;
     max-height: 350px;
     background-color: rgba(0, 0, 0, 0.75);
+}
+
+.setImage {
+    width: 75%;
 }
 
 .setImageTitle {
@@ -1306,13 +1333,20 @@ footer {
 
 .setName {
     font-size: 20pt;
+    /* font-size: 2vw; */
     text-align: center;
+    color: rgb(139, 212, 80);
+}
+
+.setName:hover {
+    color: rgb(150, 95, 212)
 }
 
 .setInfo {
-    font-size: 16pt;
+    font-size: 14pt;
     color: white;
     text-align: center;
+    width: 25%;
 }
 
 .set:hover {
@@ -1364,10 +1398,6 @@ footer {
 .setLetters span:hover {
     color: rgb(115, 79, 154);
     font-size: 60pt;
-}
-
-.setGrid {
-    padding: 6px 8px 6px 8px;
 }
 
 

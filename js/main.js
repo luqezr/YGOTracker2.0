@@ -33,7 +33,6 @@ var deck2download = {
 };
 
 
-
 // start webpage
 $(window).on("load", function() {
     $('html, body').animate({
@@ -419,9 +418,34 @@ function searchBySet(set_name) {
 
 
     if (thisSet.length < 9) {
-        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `, "aloneCard")
+        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `
+
+        <br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> 
+        `, "aloneCard")
     } else {
-        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `<br> <span><img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" class="card-img-bottom setImageTitle"> </span> `)
+        printCards(resultsPerPage, thisSet, '<span class="greenText">' + thisSet.length + '</span>', text_SetResults1 + '<span class="purpleText">' + set_name + '</span> ', text_SetResults2 + `
+        
+        <div class=""> 
+             <button type="button" class="btn setImages" data-bs-toggle="modal" data-bs-target="#set_${setImage}">
+             <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setImage}'  alt="set Image" srcset=""> 
+         
+             </button>
+         </div>
+
+
+
+   
+
+         <div class="modal fade modalCardImage" id="set_${setImage}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+             <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#set_${setImage}">
+             
+             <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom fullSizeImage" id='${setImage}' alt="${setImage}" class="close " data-dismiss="modal">
+
+             </div>
+         </div>
+         </div>
+      `)
     }
 
 

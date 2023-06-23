@@ -57,12 +57,27 @@ function createNormalCard(card, view) {
         cardsSection.innerHTML += `        
         <div class="modal-content " >
         <div class="modal-body " id="aloneCard">
+
+      
           <div class="cardHeader" id="cardHeaderDiv_${card.id}" data-bs-toggle="modal" data-bs-target="#card_${card.id}">
             <div> 
-            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  >
+            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}" "style="cursor: pointer" >
+            <div class="modal fade modalCardImage" id="cardImage_${card.id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}">
+                
+                <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy'  class="fullSizeImage" data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}" "style="cursor: pointer"  >
+                    
+                </div>
+            </div>
+            </div>
+
+            
             </div>
             <div id="cardHeader_${card.id}"> </div>
           </div>
+
+
           <div class="cardInfo  scrollspy">
               <span class="cardName" >
               <span id="cardName_${card.id}">
@@ -114,6 +129,18 @@ function createNormalCard(card, view) {
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
   </div>
 
+
+  <div class="modal fade modalCardImage" id="cardImage_${card.id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}">
+      
+      <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy'  class="fullSizeImage" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"  >
+          
+      </div>
+  </div>
+  </div>
+
+
   <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="cardModal" aria-hidden="true">
     <div class="modal-dialog" id="thisCard_${card.id}">
       <div class="modal-content" >
@@ -122,13 +149,13 @@ function createNormalCard(card, view) {
 
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" loading='lazy' id="img_${card.id}" alt="${card.name}"  data-bs-toggle="modal" data-bs-target="#card_${card.id}" >
-            <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
+             <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy' data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}" "style="cursor: pointer"  >  <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
                 <i class="bi bi-caret-right" class="card arrowsDesktop" id="nextCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}" ></i>
             </div>
             </div>
+
             <div id="cardHeader_${card.id}"> </div>
           </div>
           <div class="cardInfo  scrollspy">
@@ -184,6 +211,15 @@ function createNormalCard(card, view) {
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" >
   </div>
 
+    <div class="modal fade modalCardImage" id="cardImage_${card.id}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}">
+        
+        <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy'  class="fullSizeImage" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"  >
+            
+        </div>
+    </div>
+    </div>
   
 
   <div  class="modal fade" id="card_${card.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -193,7 +229,7 @@ function createNormalCard(card, view) {
           <div class="cardHeader">
             <div class="cardHeaderDiv" id="cardHeaderDiv_${card.id}"> 
             <i class="bi bi-caret-left arrowsMobile" id="previousCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
-            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy' data-bs-toggle="modal" data-bs-target="#card_${card.id}"  >
+            <img src="${card.card_images[0].image_url}" id="img_${card.id}" alt="${card.name}" loading='lazy'  data-bs-toggle="modal" data-bs-target="#cardImage_${card.id}" "style="cursor: pointer"  >
             <i class="bi bi-caret-right arrowsMobile" id="nextCard_${card.id}" class="card" data-bs-toggle="modal"  data-bs-target="#card_${nextCard.id}"  ></i>
             <div class="cardArrows">
                 <i class="bi bi-caret-left"  class="card arrowsDesktop" id="previousCard_${card.id}" data-bs-toggle="modal"  data-bs-target="#card_${previousCard.id}" ></i>
@@ -832,7 +868,7 @@ function printCardSets(modalId, card) {
               <th scope="col" class="tableHead">Set</th>
               <th scope="col"class="tableHead">Rarity</th>
               <th scope="col"class="tableHead">Set Code</th>
-              <th scope="col"class="tableHead" data-toggle="tooltip" data-placement="top" title="Shown price is the average price for that card of that specific set, the price is expresed in US dolars">Price</th>
+              <th scope="col"class="tableHead" data-bs-toggle="tooltip" data-placement="top" title="Shown price is the average price for that card of that specific set, the price is expresed in US dolars">Price</th>
             </tr>
           </thead>
           
@@ -875,36 +911,37 @@ function createSet(sets) {
 
 
     cardsSection.innerHTML += `
-        <div class="sets" id='${setCode}' >
-          <div class="setGrid" >
-
-            <div class="setImage"> 
-            <div class='cardInfo'>
-            <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="load(searchBySet,'${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
-            </div>
-              <button type="button" class="btn" data-toggle="modal" data-target="#ModalID${setCode}">
-                <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
-            
-              </button>
-            </div>
-
-          
+        <div class="sets" id='${setCode}' class="setGrid" >
           
 
-            <div class="modal fade modalCardImage" id="ModalID${setCode}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content modalImage">
-                  
-                  <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}' alt="${setName}" class="close" data-dismiss="modal">
 
+                <div class='cardInfo'>
+                <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="load(searchBySet,'${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
                 </div>
-              </div>
-            </div>
+
+                
+                <div class="setImage"> 
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalID_${setCode}">
+                    <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
+                
+                    </button>
+                </div>
+          
+
+                <div class="modal fade modalCardImage" id="ModalID_${setCode}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#ModalID_${setCode}">
+                    
+                    <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom fullSizeImage" id='${setName}' alt="${setName}" class="close " data-dismiss="modal">
+
+                    </div>
+                </div>
+                </div>
 
           </div>
-        </div>
 	
   `
+
 }
 
 function createArchetype(archetype) {
