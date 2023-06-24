@@ -2,6 +2,16 @@ img[src*="000webhost"] {
     display: none !important;
 }
 
+html {
+    overflow: scroll;
+}
+
+ ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+}
+
 .sticky-top {
     z-index: 100;
 }
@@ -812,10 +822,14 @@ footer {
 
 .scrollspy {
     position: relative;
-    overflow: auto;
     height: auto;
     width: 100%;
+    overflow: auto;
     /* padding-bottom: 30px; */
+}
+
+.autocomplete-items {
+    max-height: 80vh;
 }
 
 .modal-body {
@@ -1625,8 +1639,11 @@ footer {
     .modal-body {
         align-items: center;
     }
+    .fullSizeImage {
+        max-height: 75%;
+    }
     .card {
-        width: 94px;
+        width: 91px;
         height: 118px;
     }
     #cardSection {
@@ -1719,6 +1736,9 @@ footer {
     .sets {
         width: 156px;
         height: 400px;
+    }
+    .fullSizeImage {
+        max-height: 50vh;
     }
     .smallCard {
         width: 36px;
