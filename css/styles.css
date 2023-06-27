@@ -759,6 +759,14 @@ footer {
     width: 107px;
     /* height: 323px; */
     /* padding: 6px 8px 6px 8px; */
+    position: relative;
+}
+
+.closeButton {
+    position: absolute;
+    top: -20px;
+    right: 0px;
+    color: red;
 }
 
 .smallCard {
@@ -1369,6 +1377,9 @@ footer {
 }
 
 .sets {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     width: min-content;
     width: 250px;
     height: 555px;
@@ -1403,6 +1414,7 @@ footer {
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.85);
     text-align: center;
+    /* vertical-align: middle; */
     /* max-height: 83px; */
     /* display: flex;
     justify-content: space-around;

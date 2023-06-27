@@ -101,8 +101,16 @@ function createNormalCard(card, view) {
             <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
             <br>
             <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
+            <br>
+            <span id='cardLinks_${card.id}' class="cardLinks">  
+            <a href='https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&productName=${card.name}&view=grid&page=1' target="_blank" class='greenText'>TCG Player</a> / 
+            <a href='https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${card.name}' target="_blank" class='greenText'>Card Market</a>  / 
+            <a href='https://www.ebay.com/sch/183454/i.html?_nkw=${card.name}' target="_blank" class='greenText'>Ebay</a>  / 
+            <a href='https://www.amazon.com/s?k=${card.name}&crid=1LQCD6AZPRO8Y' target="_blank" class='greenText'>Amazon</a>  / 
+            <a href='https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${card.name}' target="_blank" class='greenText'>CoolStuff INC</a>            
+            </span>
             </p>
-
+            
             <span class="languageBar" >
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'es' )"> ES </i><span > / </span> 
             <i class="bi bi-translate greenText" onclick="queryYGOrg(${card.id}, ${card.misc_info[0].konami_id}, 'en' )"> EN </i><span > / </span> 
@@ -125,7 +133,7 @@ function createNormalCard(card, view) {
 
     } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection' || view == 'deck_main' || view == 'deck_extra' || view == 'deck_side') {
         document.getElementById(view).innerHTML += `
-  <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
+  <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" id="deckCard_${card.id}" "style="cursor: pointer"> 
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
   </div>
 
@@ -181,6 +189,14 @@ function createNormalCard(card, view) {
             <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
             <br>
             <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
+            <br>
+            <span id='cardLinks_${card.id}' class="cardLinks">  
+            <a href='https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&productName=${card.name}&view=grid&page=1' target="_blank" class='greenText'>TCG Player</a> / 
+            <a href='https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${card.name}' target="_blank" class='greenText'>Card Market</a>  / 
+            <a href='https://www.ebay.com/sch/183454/i.html?_nkw=${card.name}' target="_blank" class='greenText'>Ebay</a>  / 
+            <a href='https://www.amazon.com/s?k=${card.name}&crid=1LQCD6AZPRO8Y' target="_blank" class='greenText'>Amazon</a>  / 
+            <a href='https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${card.name}' target="_blank" class='greenText'>CoolStuff INC</a>            
+            </span>
             </p>
 
             <span class="languageBar" >
@@ -261,6 +277,14 @@ function createNormalCard(card, view) {
             <a href='https://db.ygorganization.com/card#${card.misc_info[0].konami_id}' target="_blank" class='greenText'> Card Rulings </a>
             <br>
             <span id='cardFormats_${card.id}' class="cardFormats">Card Formats :</span>
+            <br>
+            <span id='cardLinks_${card.id}' class="cardLinks">  
+            <a href='https://www.tcgplayer.com/search/yugioh/product?productLineName=yugioh&productName=${card.name}&view=grid&page=1' target="_blank" class='greenText'>TCG Player</a> / 
+            <a href='https://www.cardmarket.com/en/YuGiOh/Products/Search?searchString=${card.name}' target="_blank" class='greenText'>Card Market</a>  / 
+            <a href='https://www.ebay.com/sch/183454/i.html?_nkw=${card.name}' target="_blank" class='greenText'>Ebay</a>  / 
+            <a href='https://www.amazon.com/s?k=${card.name}&crid=1LQCD6AZPRO8Y' target="_blank" class='greenText'>Amazon</a>  / 
+            <a href='https://www.coolstuffinc.com/main_search.php?pa=searchOnName&page=1&resultsPerPage=25&q=${card.name}' target="_blank" class='greenText'>CoolStuff INC</a>            
+            </span>
             </p>
 
             <span class="languageBar" >
@@ -915,20 +939,20 @@ function createSet(sets) {
           
 
 
-                <div class='cardInfo'>
-                <span><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="load(searchBySet,'${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
+                <div  class='cardInfo'>
+                <span  ><a  style="cursor: pointer" id="${setCode}" class='getBySet setName'  onclick="load(searchBySet,'${setName}')" > ${setName} </a><br><span class="setInfo">${setQuantity} // ${setCode} //  ${setDate}</span></span> 
                 </div>
 
                 
                 <div class="setImage"> 
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalID_${setCode}">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#ModalID_${setImage}">
                     <img src="https://static-7.studiobebop.net/ygo_data/set_images/${setImage}.jpg" loading='lazy' onerror="this.src='error.gif';this.onerror='';" class="card-img-bottom setImages" id='${setName}'  alt="set Image" srcset=""> 
                 
                     </button>
                 </div>
           
 
-                <div class="modal fade modalCardImage" id="ModalID_${setCode}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal fade modalCardImage" id="ModalID_${setImage}" class="close" data-dismiss="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content modalImage" data-bs-toggle="modal" data-bs-target="#ModalID_${setCode}">
                     
@@ -1003,7 +1027,11 @@ function createDeck(card, where) {
 
     document.getElementById("deckPricerDissapear").innerHTML = ''
     createNormalCard(card, where)
-
+    document.getElementById(`deckCard_${card.id}`).innerHTML += `
+    <div class='closeButton'>
+        <i class="bi bi-dash-circle"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
+    </div>
+    `
 }
 
 
@@ -1030,7 +1058,19 @@ function createDeckDuplicate(card, where) {
     where.innerHTML += `		
     <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
     <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
+    <div class='closeButton'>
+    <i class="bi bi-dash-circle"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
+    </div>
     </div>
         `
 
+
+}
+
+function deleteCardDeck(card, where) {
+
+    const index = where.indexOf(card);
+    if (index > -1) { // only splice array when item is found
+        where.splice(index, 1); // 2nd parameter means remove one item only
+    }
 }
