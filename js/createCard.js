@@ -133,7 +133,7 @@ function createNormalCard(card, view) {
 
     } else if (view == 'banSection' || view == 'limitedSection' || view == 'semiLimitedSection' || view == 'deck_main' || view == 'deck_extra' || view == 'deck_side') {
         document.getElementById(view).innerHTML += `
-  <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" id="deckCard_${card.id}" "style="cursor: pointer"> 
+  <div class="smallcard draggable" data-bs-toggle="modal" data-bs-target="#card_${card.id}" id="deckCard_${card.id}" "style="cursor: pointer"> 
   <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
   </div>
 
@@ -702,7 +702,7 @@ function whichRace(modalId, race, card) {
     `
     }
 
-    if (cardRace == "illusionist") {
+    if (cardRace == "illusion") {
         document.getElementById(modalId).innerHTML += `
     <span> <span class="iconsSprite illusionist"></span>  ${card.race.toUpperCase()} </span>
     `
@@ -1029,7 +1029,7 @@ function createDeck(card, where) {
     createNormalCard(card, where)
     document.getElementById(`deckCard_${card.id}`).innerHTML += `
     <div class='closeButton'>
-        <i class="bi bi-dash-circle"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
+        <i class="bi bi-dash-circle-fill"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
     </div>
     `
 }
@@ -1038,6 +1038,7 @@ function createDeck(card, where) {
 
 function createDeckDuplicate(card, where) {
 
+    console.log("duplicate")
 
     if (where == "deck_main") {
         var deckMain = document.getElementById("deck_main")
@@ -1056,14 +1057,13 @@ function createDeckDuplicate(card, where) {
     }
 
     where.innerHTML += `		
-    <div class="smallcard" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
+    <div class="smallcard draggable" data-bs-toggle="modal" data-bs-target="#card_${card.id}" "style="cursor: pointer"> 
     <img src="${card.card_images[0].image_url}" loading='lazy' id="img2_${card.id}" alt="${card.name}" class="smallCard" >
-    <div class='closeButton'>
-    <i class="bi bi-dash-circle"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
-    </div>
+        <div class='closeButton'>
+            <i class="bi bi-dash-circle-fill"  onclick="deleteCardDeck(${card}, deck.${where})" ></i>
+        </div>
     </div>
         `
-
 
 }
 

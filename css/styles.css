@@ -766,7 +766,12 @@ footer {
     position: absolute;
     top: -20px;
     right: 0px;
-    color: red;
+}
+
+.closeButton i {
+    color: rgb(226, 66, 66);
+    font-size: 30px;
+    /* background-color: aliceblue; */
 }
 
 .smallCard {

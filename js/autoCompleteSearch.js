@@ -37,7 +37,7 @@ function autocomplete(inp, arr) {
         a.setAttribute("class", "autocomplete-items scrollspy");
         // a.setAttribute("data-bs-spy", "scroll");
         this.parentNode.appendChild(a);
-        for (i = 0; i < arr.length  && val.length >= 3; i++) {
+        for (i = 0; i < arr.length && val.length >= 3; i++) {
             // if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
             if (arr[i].name.substr(0, val.length).toUpperCase().includes(val.toUpperCase()) || arr[i].desc.substr(0, val.length).toUpperCase().includes(val.toUpperCase())) {
                 b = document.createElement("DIV");
@@ -46,7 +46,7 @@ function autocomplete(inp, arr) {
                 if (deckPricerStatus == false) {
 
                     b.classList.add("simplecardinfo")
-                    // document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
+                        // document.getElementById('card_nameautocomplete-list').classList.add("scrollspy")
                     b.innerHTML = `
                     <div  class="searchBarCard_search">
                     
@@ -119,14 +119,16 @@ function autocomplete(inp, arr) {
                         searchCardsByNameOrDescription(inp.value)
                     } else {
                         let currentCard = allCards.data.filter(card => card.name == inp.value)
-                        // console.log(currentCard)
+                            // console.log(currentCard)
                         if (e.target.className == 'bi bi-plus-circle add2deckButton') {
-                            console.log('adding to main deck')
                             addCardToDeck(currentCard[0], 'deck_main')
+                            console.log('adding to main deck')
+
 
                         } else if (e.target.className == 'bi bi-plus-circle-dotted add2deckButton') {
-                            console.log("adding to side deck")
                             addCardToDeck(currentCard[0], 'deck_side')
+                            console.log("adding to side deck")
+
                         }
                     }
                 });
@@ -162,7 +164,7 @@ function autocomplete(inp, arr) {
             // console.log(addActive(x))
             // console.log("enter pressed, searching")
             closeAllLists(e.target)
-            // console.log("Searching : "+cardName)
+                // console.log("Searching : "+cardName)
 
             var cardName = document.search.fname.value;
             // searchCards(cardName, searchedCards_H1_1, searchedCards_H1_2, noResultsWhenSearch_H1, noResultsWhenSearch_H2)

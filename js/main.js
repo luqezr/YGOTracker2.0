@@ -31,6 +31,11 @@ var deck2download = {
     extraDeck: [],
     sideDeck: [],
 };
+var currentURL
+var host
+var fullURL
+var pathname
+var hash
 
 
 // start webpage
@@ -38,27 +43,57 @@ $(window).on("load", function() {
     $('html, body').animate({
         scrollTop: 0
     }, '300');
+    // if (window.l)
     startWebPage();
 });
 
 
-function startWebPage() {
+async function startWebPage() {
+
+    currentURL = window.location.hash
+    host = window.location.host + '/'
+    fullURL = host + currentURL
+    pathname = window.location.pathname
+    hash = window.location.hash
+    banlist = "tcg"
 
     if (lang == undefined || lang == null) {
         // setting default language to english...
         lang = "en";
         // hacer un query a la db de todas las cartas
     }
-    load(queryYGOPD);
+
+    load(queryYGOPD, 'print');
+
+    switch (currentURL) {
+        case `#/newCards`:
+            console.log("/newCards")
+                // await searchNewCards(newCards_H1)
+            await load(printCards, resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
+            printedResults = resultsPerPage
+            break;
+        case ``:
+            console.log("nothing")
+            if (pathname == 'index.html') {
+                await load(printCards, resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
+                printedResults = resultsPerPage
+                window.location.hash = `/newCards`
+            }
+            break;
+    }
+
+
+    // history.pushState({}, "", "/main");
+    // history.pushState({}, "");
 
 
 
 }
 
-async function load(what, parameter1, parameter2) {
+async function load(what, p1, p2, p3, p4, p5, p6, p7, p8, p9) {
 
     loaderSection.style.display = 'flex';
-    await what(parameter1, parameter2)
+    await what(p1, p2, p3, p4, p5, p6, p7, p8, p9)
     $(".loader-wrapper").fadeOut("fast");
 }
 
@@ -69,7 +104,7 @@ async function load(what, parameter1, parameter2) {
 // Query ALL Yugiohprodeck DB
 
 // async function queryYGOPD() {
-async function queryYGOPD() {
+async function queryYGOPD(print) {
     // https://db.ygoprodeck.com/api/v7/cardinfo.php
     await fetch(
             "https://db.ygoprodeck.com/api/v7/cardinfo.php?&misc=yes&sort=new"
@@ -85,11 +120,11 @@ async function queryYGOPD() {
                 // }
             console.log('all cards from YGOPD fetched 😎')
             searchCardNamesForAutocomplete()
-            printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
-            printedResults = resultsPerPage
-
             autocomplete(document.getElementById("card_name"), allCards.data);
-
+            if (print) {
+                printCards(resultsPerPage, allCards.data, text_NewestCards1, '', text_NewestCards2)
+                printedResults = resultsPerPage
+            }
         })
 
     .catch((error) => {
@@ -2131,6 +2166,8 @@ function searchDeckValue(value) {
 
 // }
 
+
+
 function addCardToDeck(card, where) {
 
     if (deck.mainDeck.length == 0 && deck.extraDeck.length == 0 && deck.sideDeck.length == 0) {
@@ -2156,7 +2193,7 @@ function addCardToDeck(card, where) {
     }
 
     if (deck.mainDeck.length == 60 || deck.sideDeck.length == 15 || deck.extraDeck.length == 15) {
-        alert("deck full!")
+        // alert("deck full!")
         return
     }
 
