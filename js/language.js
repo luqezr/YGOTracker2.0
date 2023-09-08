@@ -6,12 +6,12 @@ var text_NewestCards1 = "Newest Cards "
 var text_NewestCards2 = ""
 var text_Archetype1 = " cards from the Archetype "
 var text_Archetype2 = " "
-var text_SetResults1 = " cards from the set "
-var text_SetResults2 = " "
 var text_AllArchetypes1 = "There are <span class='greenText'>"
 var text_AllArchetypes2 = "</span> archetypes"
 var text_FormatResults1 = " cards from the format "
 var text_FormatResults2 = " "
+var text_SetResults1 = ` cards from the set `
+var text_SetResults2 = ``
 var text_allSets1 = "There are "
 var text_allSets2 = " sets"
 var text_allCards1 = "All cards from newer to older"
@@ -59,33 +59,33 @@ var text_allFilters = `
 </h2>
 `
 
-var text_imageFromSet =
-    `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-Launch demo modal
-</button>
+var text_imageFromSet = `
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Launch demo modal
+            </button>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      ...
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn btn-primary">Save changes</button>
-    </div>
-  </div>
-</div>
-</div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                ...
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        `
 
-`
 // DECK PRICER 
 var deckPricer_chooseDeck = "Choose deck"
 var deckPricer_button = "Price Breakdown"
